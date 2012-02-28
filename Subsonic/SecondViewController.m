@@ -7,9 +7,10 @@
 //
 
 #import "SecondViewController.h"
+#import "APITestViewController.h"
 
 @implementation SecondViewController
-
+@synthesize submitButton;
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -55,6 +56,19 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"submitAPI"]) {
+        APITestViewController *nextViewController = [segue destinationViewController];
+        nextViewController.username = @"mobileappdev";
+        nextViewController.password = @"mobile123";
+        nextViewController.apiURL = @"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=Subsonic";
+        NSURL *url = [NSURL URLWithString:@"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=Subsonic/rest/getLicense.view"];
+        //NSXMLParser 
+        //nextViewController.testLabel.text =
+    }
 }
 
 @end

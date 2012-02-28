@@ -20,6 +20,7 @@
 		032E6ECE14F3F4860072697A /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032E6ECD14F3F4860072697A /* SecondViewController.m */; };
 		032E6ED014F3F4860072697A /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6ECF14F3F4860072697A /* second.png */; };
 		032E6ED214F3F4860072697A /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6ED114F3F4860072697A /* second@2x.png */; };
+		9E95916514FC3902000E3A67 /* APITestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E95916414FC3902000E3A67 /* APITestViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,13 @@
 		032E6ECD14F3F4860072697A /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		032E6ECF14F3F4860072697A /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		032E6ED114F3F4860072697A /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		9E95916314FC3902000E3A67 /* APITestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APITestViewController.h; sourceTree = "<group>"; };
+		9E95916414FC3902000E3A67 /* APITestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APITestViewController.m; sourceTree = "<group>"; };
+		9ED3020714FD2DFE00880BE9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9ED3020914FD2E0E00880BE9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9ED3020B14FD2E1B00880BE9 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		9ED3020D14FD2E3400880BE9 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		9ED3020F14FD2F3600880BE9 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +69,11 @@
 		032E6EA114F3F4860072697A = {
 			isa = PBXGroup;
 			children = (
+				9ED3020F14FD2F3600880BE9 /* libxml2.dylib */,
+				9ED3020D14FD2E3400880BE9 /* libz.dylib */,
+				9ED3020B14FD2E1B00880BE9 /* MobileCoreServices.framework */,
+				9ED3020914FD2E0E00880BE9 /* SystemConfiguration.framework */,
+				9ED3020714FD2DFE00880BE9 /* CFNetwork.framework */,
 				032E6EB614F3F4860072697A /* Subsonic */,
 				032E6EAF14F3F4860072697A /* Frameworks */,
 				032E6EAD14F3F4860072697A /* Products */,
@@ -91,6 +104,8 @@
 				032E6EBF14F3F4860072697A /* AppDelegate.h */,
 				032E6EC014F3F4860072697A /* AppDelegate.m */,
 				032E6EC214F3F4860072697A /* MainStoryboard.storyboard */,
+				9E95916314FC3902000E3A67 /* APITestViewController.h */,
+				9E95916414FC3902000E3A67 /* APITestViewController.m */,
 				032E6EC514F3F4860072697A /* FirstViewController.h */,
 				032E6EC614F3F4860072697A /* FirstViewController.m */,
 				032E6EC814F3F4860072697A /* first.png */,
@@ -185,6 +200,7 @@
 				032E6EC114F3F4860072697A /* AppDelegate.m in Sources */,
 				032E6EC714F3F4860072697A /* FirstViewController.m in Sources */,
 				032E6ECE14F3F4860072697A /* SecondViewController.m in Sources */,
+				9E95916514FC3902000E3A67 /* APITestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +312,7 @@
 				032E6ED714F3F4870072697A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

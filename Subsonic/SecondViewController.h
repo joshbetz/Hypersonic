@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
+@interface SecondViewController : UIViewController {
+    UIButton *submitButton;
+}
+
+@property (nonatomic, retain) IBOutlet UIButton *submitButton;
 
 @end
