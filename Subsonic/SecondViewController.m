@@ -67,7 +67,7 @@
         nextViewController.apiURL = @"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=Subsonic";
         NSURL *url = [NSURL URLWithString:@"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=Subsonic/rest/getLicense.view"];
         //NSXMLParser 
-        //nextViewController.testLabel.text =
+        //nextViewController.testLabel.text 
     }
 }
 
