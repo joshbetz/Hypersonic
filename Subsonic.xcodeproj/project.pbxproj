@@ -17,7 +17,6 @@
 		032E6EC714F3F4860072697A /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032E6EC614F3F4860072697A /* FirstViewController.m */; };
 		032E6EC914F3F4860072697A /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6EC814F3F4860072697A /* first.png */; };
 		032E6ECB14F3F4860072697A /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6ECA14F3F4860072697A /* first@2x.png */; };
-		032E6ECE14F3F4860072697A /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032E6ECD14F3F4860072697A /* SecondViewController.m */; };
 		032E6ED014F3F4860072697A /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6ECF14F3F4860072697A /* second.png */; };
 		032E6ED214F3F4860072697A /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6ED114F3F4860072697A /* second@2x.png */; };
 /* End PBXBuildFile section */
@@ -38,8 +37,6 @@
 		032E6EC614F3F4860072697A /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		032E6EC814F3F4860072697A /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		032E6ECA14F3F4860072697A /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		032E6ECC14F3F4860072697A /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		032E6ECD14F3F4860072697A /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		032E6ECF14F3F4860072697A /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		032E6ED114F3F4860072697A /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,8 +92,6 @@
 				032E6EC614F3F4860072697A /* FirstViewController.m */,
 				032E6EC814F3F4860072697A /* first.png */,
 				032E6ECA14F3F4860072697A /* first@2x.png */,
-				032E6ECC14F3F4860072697A /* SecondViewController.h */,
-				032E6ECD14F3F4860072697A /* SecondViewController.m */,
 				032E6ECF14F3F4860072697A /* second.png */,
 				032E6ED114F3F4860072697A /* second@2x.png */,
 				032E6EB714F3F4860072697A /* Supporting Files */,
@@ -184,7 +179,6 @@
 				032E6EBD14F3F4860072697A /* main.m in Sources */,
 				032E6EC114F3F4860072697A /* AppDelegate.m in Sources */,
 				032E6EC714F3F4860072697A /* FirstViewController.m in Sources */,
-				032E6ECE14F3F4860072697A /* SecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
