@@ -22,7 +22,7 @@
 		9E25DB77150299B5000766D7 /* ArtistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E25DB76150299B5000766D7 /* ArtistTableViewController.m */; };
 		9E25DB7A150299EC000766D7 /* AlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E25DB79150299EC000766D7 /* AlbumTableViewController.m */; };
 		9E25DB7D15029A0A000766D7 /* SongTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E25DB7C15029A0A000766D7 /* SongTableViewController.m */; };
-		9E7B5CCB150285DE007C93EC /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B5CC9150285DE007C93EC /* RSSParser.m */; };
+		9E48190815029E7F002B1023 /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E48190715029E7F002B1023 /* RSSParser.m */; };
 		9E8ADD3915028CA7009EA4AA /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8ADD3815028CA7009EA4AA /* Error.m */; };
 /* End PBXBuildFile section */
 
@@ -50,8 +50,8 @@
 		9E25DB79150299EC000766D7 /* AlbumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumTableViewController.m; sourceTree = "<group>"; };
 		9E25DB7B15029A0A000766D7 /* SongTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableViewController.h; sourceTree = "<group>"; };
 		9E25DB7C15029A0A000766D7 /* SongTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewController.m; sourceTree = "<group>"; };
-		9E7B5CC8150285DE007C93EC /* RSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSParser.h; path = "../../../Downloads/RSSParser_iOS(1)/RSSParser.h"; sourceTree = "<group>"; };
-		9E7B5CC9150285DE007C93EC /* RSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSParser.m; path = "../../../Downloads/RSSParser_iOS(1)/RSSParser.m"; sourceTree = "<group>"; };
+		9E48190615029E7F002B1023 /* RSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSParser.h; path = ../RSSParser.h; sourceTree = "<group>"; };
+		9E48190715029E7F002B1023 /* RSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSParser.m; path = ../RSSParser.m; sourceTree = "<group>"; };
 		9E8ADD3715028CA7009EA4AA /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
 		9E8ADD3815028CA7009EA4AA /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,8 +113,8 @@
 				032E6EC614F3F4860072697A /* FirstViewController.m */,
 				9E8ADD3715028CA7009EA4AA /* Error.h */,
 				9E8ADD3815028CA7009EA4AA /* Error.m */,
-				9E7B5CC8150285DE007C93EC /* RSSParser.h */,
-				9E7B5CC9150285DE007C93EC /* RSSParser.m */,
+				9E48190615029E7F002B1023 /* RSSParser.h */,
+				9E48190715029E7F002B1023 /* RSSParser.m */,
 				032E6EC814F3F4860072697A /* first.png */,
 				032E6ECA14F3F4860072697A /* first@2x.png */,
 				032E6ECF14F3F4860072697A /* second.png */,
@@ -204,11 +204,11 @@
 				032E6EBD14F3F4860072697A /* main.m in Sources */,
 				032E6EC114F3F4860072697A /* AppDelegate.m in Sources */,
 				032E6EC714F3F4860072697A /* FirstViewController.m in Sources */,
-				9E7B5CCB150285DE007C93EC /* RSSParser.m in Sources */,
 				9E8ADD3915028CA7009EA4AA /* Error.m in Sources */,
 				9E25DB77150299B5000766D7 /* ArtistTableViewController.m in Sources */,
 				9E25DB7A150299EC000766D7 /* AlbumTableViewController.m in Sources */,
 				9E25DB7D15029A0A000766D7 /* SongTableViewController.m in Sources */,
+				9E48190815029E7F002B1023 /* RSSParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
