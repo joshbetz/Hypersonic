@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
+@interface FirstViewController : UIViewController{
+    UILabel *testLabel;
+}
+@property (strong, nonatomic) IBOutlet UILabel *testLabel;
+
 
 @end

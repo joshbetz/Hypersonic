@@ -7,8 +7,10 @@
 //
 
 #import "FirstViewController.h"
+#import "RSSParser.h"
 
 @implementation FirstViewController
+@synthesize testLabel;
 
 - (void)didReceiveMemoryWarning
 {
@@ -21,6 +23,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSString *userURL = @"http://subsonic.org/demo/rest/index.view";
+    RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+    testLabel.text = [[[rssParser articleList] objectAtIndex: 0] message];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
