@@ -1,2 +1,2 @@
-*.DS_Store
-Subsonic.xcodeproj/project.xcworkspace/xcuserdata/josh.xcuserdatad/UserInterfaceState.xcuserstate
+.DS_Store
+*.xcuserstate
