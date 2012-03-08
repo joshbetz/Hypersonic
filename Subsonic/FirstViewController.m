@@ -33,8 +33,12 @@
     NSLog(userURL);
     rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
     NSLog([[artistList objectAtIndex:0] artistID]);
+    NSMutableArray *albumList;
+    albumList = rssParser.albumList;
+    [[artistList objectAtIndex:0] albumList] = albumList;
     [[[artistList objectAtIndex:0] albumList] addObjectsFromArray:rssParser.albumList];
     NSLog([[[[artistList objectAtIndex:0] albumList] objectAtIndex:1] albumID]);
+    NSLog([NSString stringWithFormat:@"%d", [[[artistList objectAtIndex:0] albumList] count]]);
     //testLabel.text = [[[rssParser articleList] objectAtIndex: 0] message];
 	// Do any additional setup after loading the view, typically from a nib.
 }
