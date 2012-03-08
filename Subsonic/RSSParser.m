@@ -7,11 +7,11 @@
 //
 
 #import "RSSParser.h"
-
+#import "Artist.h"
 
 @implementation RSSParser
 
-@synthesize articleList, rssURL, currentData, currentError;
+@synthesize articleList, rssURL, currentData, currentError, artistList, currentArtist, currentAlbum, albumList;
 
 -(RSSParser*) initWithRSSFeed: (NSString *)anRSSFeed {
     self = [super init];
@@ -19,6 +19,8 @@
     if ( self ) {
         self.rssURL = anRSSFeed;
 		self.articleList = [NSMutableArray array];
+        self.albumList = [NSMutableArray array];
+        self.artistList = [NSMutableArray array];
 		NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:anRSSFeed]];
 		
 		if(data != nil)
@@ -48,11 +50,14 @@
 // Reduce potential parsing errors by using string constants declared in a single place.
 static NSString * const kEntryElementName = @"subsonic-response";
 static NSString * const kLinkElementName = @"error";
+static NSString * const kArtistElement = @"artist";
+static NSString * const kAlbumOrSongElement = @"child";
 
 #pragma mark NSXMLParser delegate methods
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     NSLog(elementName);
+    isDir = false;
     if ([elementName isEqualToString:kEntryElementName]) {
         Error *error = [[Error alloc] init];
         self.currentError = error;
@@ -66,6 +71,40 @@ static NSString * const kLinkElementName = @"error";
          // The mutable string needs to be reset to empty.
          [currentData setString:@""];
          }*/
+    } else if ([elementName isEqualToString:kArtistElement]) {
+		Artist *artist = [[Artist alloc] init];
+        currentArtist = artist;
+        [currentData setString:[attributeDict objectForKey:@"name"]];
+        NSLog(currentData);
+        self.currentArtist.artistName = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"id"]];
+        NSLog(currentData);
+        self.currentArtist.artistID = [self.currentData copy];
+    } else if ([elementName isEqualToString:kAlbumOrSongElement] && [[attributeDict objectForKey:@"isDir"] isEqualToString:@"true"]) {
+		Album *album = [[Album alloc] init];
+        currentAlbum = album;
+        isDir = true;
+        [currentData setString:[attributeDict objectForKey:@"title"]];
+        NSLog(currentData);
+        self.currentAlbum.albumName = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"id"]];
+        NSLog(currentData);
+        self.currentAlbum.albumID = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"artist"]];
+        NSLog(currentData);
+        self.currentAlbum.artistName = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"parent"]];
+        NSLog(currentData);
+        self.currentAlbum.parentID = [self.currentData copy];
+    }
+    else if ([elementName isEqualToString:kAlbumOrSongElement] && [[attributeDict objectForKey:@"isDir"] isEqualToString:@"false"]) {
+		isDir = false;
+        [currentData setString:[attributeDict objectForKey:@"name"]];
+        NSLog(currentData);
+        self.currentArtist.artistName = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"id"]];
+        NSLog(currentData);
+        self.currentArtist.artistID = [self.currentData copy];
     }
 }
 
@@ -77,7 +116,17 @@ static NSString * const kLinkElementName = @"error";
         NSLog(currentData);
         NSLog(elementName);
         self.currentError.message = [self.currentData copy];
+    } else if ([elementName isEqualToString:kArtistElement]) {
+        NSLog(currentData);
+        NSLog(elementName);
+        [self.artistList addObject:self.currentArtist];
+    } else if ([elementName isEqualToString:kAlbumOrSongElement] && isDir == true) {
+        [self.albumList addObject:self.currentAlbum];
+        isDir = false;
+    } else if ([elementName isEqualToString:kAlbumOrSongElement] && isDir == false) {
+        [self.albumList addObject:self.currentAlbum];
     }
+
     // Stop accumulating parsed character data. We won't start again until specific elements begin.
     accumulatingParsedCharacterData = NO;
 }

@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "RSSParser.h"
+#import "Artist.h"
 
 @implementation FirstViewController
 @synthesize testLabel;
@@ -23,9 +24,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSString *userURL = @"http://subsonic.org/demo/rest/index.view";
+    NSString *userURL = @"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp";
     RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
-    testLabel.text = [[[rssParser articleList] objectAtIndex: 0] message];
+    NSMutableArray *artistList = rssParser.artistList;
+    userURL = @"http://wilmothighschool.com:4040/rest/getMusicDirectory.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp&id=";
+    userURL = [userURL stringByAppendingString:[[artistList objectAtIndex:0] artistID]];
+    NSLog([[artistList objectAtIndex:0] artistName]);
+    NSLog(userURL);
+    rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+    NSLog([[artistList objectAtIndex:0] artistID]);
+    [[[artistList objectAtIndex:0] albumList] addObjectsFromArray:rssParser.albumList];
+    NSLog([[[[artistList objectAtIndex:0] albumList] objectAtIndex:1] albumID]);
+    //testLabel.text = [[[rssParser articleList] objectAtIndex: 0] message];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
