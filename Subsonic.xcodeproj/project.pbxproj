@@ -19,6 +19,13 @@
 		032E6ECB14F3F4860072697A /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6ECA14F3F4860072697A /* first@2x.png */; };
 		032E6ED014F3F4860072697A /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6ECF14F3F4860072697A /* second.png */; };
 		032E6ED214F3F4860072697A /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6ED114F3F4860072697A /* second@2x.png */; };
+		03D8A0ED1502B54C00DA09D4 /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D8A0EC1502B54C00DA09D4 /* RSSParser.m */; };
+		9E25DB77150299B5000766D7 /* ArtistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E25DB76150299B5000766D7 /* ArtistTableViewController.m */; };
+		9E25DB7A150299EC000766D7 /* AlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E25DB79150299EC000766D7 /* AlbumTableViewController.m */; };
+		9E25DB7D15029A0A000766D7 /* SongTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E25DB7C15029A0A000766D7 /* SongTableViewController.m */; };
+		9E63E09A150900B200DF04A0 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E63E099150900B200DF04A0 /* Artist.m */; };
+		9E63E09E1509046E00DF04A0 /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E63E09D1509046E00DF04A0 /* Album.m */; };
+		9E8ADD3915028CA7009EA4AA /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8ADD3815028CA7009EA4AA /* Error.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +46,20 @@
 		032E6ECA14F3F4860072697A /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
 		032E6ECF14F3F4860072697A /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		032E6ED114F3F4860072697A /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		03D8A0EB1502B54C00DA09D4 /* RSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSParser.h; sourceTree = "<group>"; };
+		03D8A0EC1502B54C00DA09D4 /* RSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSParser.m; sourceTree = "<group>"; };
+		9E25DB75150299B5000766D7 /* ArtistTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistTableViewController.h; sourceTree = "<group>"; };
+		9E25DB76150299B5000766D7 /* ArtistTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistTableViewController.m; sourceTree = "<group>"; };
+		9E25DB78150299EC000766D7 /* AlbumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumTableViewController.h; sourceTree = "<group>"; };
+		9E25DB79150299EC000766D7 /* AlbumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumTableViewController.m; sourceTree = "<group>"; };
+		9E25DB7B15029A0A000766D7 /* SongTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableViewController.h; sourceTree = "<group>"; };
+		9E25DB7C15029A0A000766D7 /* SongTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewController.m; sourceTree = "<group>"; };
+		9E63E098150900B200DF04A0 /* Artist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Artist.h; sourceTree = "<group>"; };
+		9E63E099150900B200DF04A0 /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
+		9E63E09C1509046E00DF04A0 /* Album.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Album.h; sourceTree = "<group>"; };
+		9E63E09D1509046E00DF04A0 /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
+		9E8ADD3715028CA7009EA4AA /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
+		9E8ADD3815028CA7009EA4AA /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +109,22 @@
 				032E6EBF14F3F4860072697A /* AppDelegate.h */,
 				032E6EC014F3F4860072697A /* AppDelegate.m */,
 				032E6EC214F3F4860072697A /* MainStoryboard.storyboard */,
+				9E25DB7B15029A0A000766D7 /* SongTableViewController.h */,
+				9E25DB7C15029A0A000766D7 /* SongTableViewController.m */,
+				9E25DB78150299EC000766D7 /* AlbumTableViewController.h */,
+				9E25DB79150299EC000766D7 /* AlbumTableViewController.m */,
+				9E25DB75150299B5000766D7 /* ArtistTableViewController.h */,
+				9E25DB76150299B5000766D7 /* ArtistTableViewController.m */,
 				032E6EC514F3F4860072697A /* FirstViewController.h */,
 				032E6EC614F3F4860072697A /* FirstViewController.m */,
+				9E8ADD3715028CA7009EA4AA /* Error.h */,
+				9E8ADD3815028CA7009EA4AA /* Error.m */,
+				03D8A0EB1502B54C00DA09D4 /* RSSParser.h */,
+				03D8A0EC1502B54C00DA09D4 /* RSSParser.m */,
+				9E63E09C1509046E00DF04A0 /* Album.h */,
+				9E63E09D1509046E00DF04A0 /* Album.m */,
+				9E63E098150900B200DF04A0 /* Artist.h */,
+				9E63E099150900B200DF04A0 /* Artist.m */,
 				032E6EC814F3F4860072697A /* first.png */,
 				032E6ECA14F3F4860072697A /* first@2x.png */,
 				032E6ECF14F3F4860072697A /* second.png */,
@@ -179,6 +214,13 @@
 				032E6EBD14F3F4860072697A /* main.m in Sources */,
 				032E6EC114F3F4860072697A /* AppDelegate.m in Sources */,
 				032E6EC714F3F4860072697A /* FirstViewController.m in Sources */,
+				9E8ADD3915028CA7009EA4AA /* Error.m in Sources */,
+				9E25DB77150299B5000766D7 /* ArtistTableViewController.m in Sources */,
+				9E25DB7A150299EC000766D7 /* AlbumTableViewController.m in Sources */,
+				9E25DB7D15029A0A000766D7 /* SongTableViewController.m in Sources */,
+				03D8A0ED1502B54C00DA09D4 /* RSSParser.m in Sources */,
+				9E63E09A150900B200DF04A0 /* Artist.m in Sources */,
+				9E63E09E1509046E00DF04A0 /* Album.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
