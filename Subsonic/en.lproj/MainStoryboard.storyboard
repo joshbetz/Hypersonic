@@ -82,7 +82,7 @@
         <scene sceneID="7ax-8p-rRk">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kks-xJ-E4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController title="Artists" id="Nqi-oT-6uF" sceneMemberID="viewController">
+                <tableViewController title="Artists" id="Nqi-oT-6uF" customClass="ArtistTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="YXd-qU-yQY">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

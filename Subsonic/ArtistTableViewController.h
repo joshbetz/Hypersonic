@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ArtistTableViewController : UITableViewController
-
+@interface ArtistTableViewController : UITableViewController{
+    NSMutableArray *artistList;
+}
+@property (nonatomic, strong) NSMutableArray *artistList;
 @end

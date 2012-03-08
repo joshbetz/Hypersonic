@@ -7,10 +7,11 @@
 //
 
 #import "ArtistTableViewController.h"
-
+#import "RSSParser.h"
+#import "Artist.h"
 
 @implementation ArtistTableViewController
-
+@synthesize artistList;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -32,8 +33,12 @@
 
 - (void)viewDidLoad
 {
+    
+    NSString *userURL = @"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp";
+    RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+    artistList = rssParser.artistList;
     [super viewDidLoad];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -92,6 +97,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -99,6 +105,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[artistList objectAtIndex: indexPath.row] artistName] ];
     // Configure the cell...
     
     return cell;
