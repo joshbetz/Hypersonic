@@ -42,6 +42,36 @@
             </objects>
             <point key="canvasLocation" x="657" y="-146"/>
         </scene>
+        <!--Table View Controller - Settings-->
+        <scene sceneID="uSM-LA-ld9">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q6i-PG-gGT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="cAM-1u-YDi" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="lyg-PH-OKb">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8J3-aJ-kEf">
+                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="cAM-1u-YDi" id="kzM-Sc-jQc"/>
+                            <outlet property="delegate" destination="cAM-1u-YDi" id="BHY-pa-Xcd"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Settings" id="sx7-4t-g0M"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1103" y="-146"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Vxu-0O-kxg">
             <objects>
@@ -81,7 +111,7 @@
                         <segue destination="Nqi-oT-6uF" kind="relationship" relationship="viewControllers" id="Ijw-ZH-jHs"/>
                         <segue destination="upn-zh-CHp" kind="relationship" relationship="viewControllers" id="QFw-s6-qwY"/>
                         <segue destination="jTg-2a-G1F" kind="relationship" relationship="viewControllers" id="g2c-5P-5aa"/>
-                        <segue destination="U8N-tO-HGM" kind="relationship" relationship="viewControllers" id="QOw-An-7gj"/>
+                        <segue destination="cAM-1u-YDi" kind="relationship" relationship="viewControllers" id="sp6-Se-diA"/>
                     </connections>
                 </tabBarController>
             </objects>
@@ -304,21 +334,6 @@
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1637" y="343"/>
-        </scene>
-        <!--View Controller - Settings-->
-        <scene sceneID="Ofo-xC-Kfc">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ofC-zC-zTs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="U8N-tO-HGM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5ZT-lx-j9m">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="x3c-d9-kOs"/>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="1159" y="-146"/>
         </scene>
         <!--Table View Controller - Playlists-->
         <scene sceneID="tji-60-77c">
