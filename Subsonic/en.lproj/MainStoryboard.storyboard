@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="48m-cn-VIM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="10K549" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="48m-cn-VIM">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
+        <deployment defaultVersion="1280" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
     </dependencies>
     <scenes>
-        <!--Now Playing - Music Player-->
         <scene sceneID="isy-Aq-syK">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tfh-8W-dHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -42,7 +41,6 @@
             </objects>
             <point key="canvasLocation" x="657" y="-146"/>
         </scene>
-        <!--Settings - Settings-->
         <scene sceneID="uSM-LA-ld9">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6i-PG-gGT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -88,7 +86,6 @@
             </objects>
             <point key="canvasLocation" x="1103" y="-146"/>
         </scene>
-        <!--Navigation Controller-->
         <scene sceneID="Vxu-0O-kxg">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Wi-sK-msH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -104,7 +101,6 @@
             </objects>
             <point key="canvasLocation" x="-322" y="180"/>
         </scene>
-        <!--Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
@@ -133,7 +129,6 @@
             </objects>
             <point key="canvasLocation" x="132" y="180"/>
         </scene>
-        <!--Artist Table View Controller - Artists-->
         <scene sceneID="7ax-8p-rRk">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kks-xJ-E4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -157,7 +152,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="6JK-jk-1AT" kind="push" id="raH-A8-QXh"/>
+                                    <segue destination="6JK-jk-1AT" kind="push" identifier="ShowAlbums" id="raH-A8-QXh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -171,7 +166,6 @@
             </objects>
             <point key="canvasLocation" x="657" y="455"/>
         </scene>
-        <!--Table View Controller - Albums-->
         <scene sceneID="GRJ-XS-bOn">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXn-N5-RGb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -216,7 +210,6 @@
             </objects>
             <point key="canvasLocation" x="657" y="1037"/>
         </scene>
-        <!--Table View Controller - Random-->
         <scene sceneID="kVJ-zB-w05">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JOE-X9-xQu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -249,7 +242,6 @@
             </objects>
             <point key="canvasLocation" x="1179" y="766"/>
         </scene>
-        <!--Table View Controller - Frequent-->
         <scene sceneID="ppn-Nr-RcY">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eir-Ns-pEP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -282,11 +274,10 @@
             </objects>
             <point key="canvasLocation" x="1179" y="1369"/>
         </scene>
-        <!--Table View Controller - Songs-->
         <scene sceneID="vWE-RT-STR">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K0d-Jf-cyS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController title="Songs" id="i2i-H5-TZb" sceneMemberID="viewController">
+                <tableViewController title="Songs" id="i2i-H5-TZb" customClass="SongTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vim-UW-KpN">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -298,7 +289,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Rug-yH-K4v">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Rug-yH-K4v">
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -318,17 +309,16 @@
             </objects>
             <point key="canvasLocation" x="2176" y="1163"/>
         </scene>
-        <!--Table View Controller-->
         <scene sceneID="v92-Fj-4cx">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6t0-FD-ynk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="6JK-jk-1AT" sceneMemberID="viewController">
+                <tableViewController id="6JK-jk-1AT" customClass="AlbumTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lD5-tA-B2z">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ycl-Mp-WKs">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="ycl-Mp-WKs">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -337,7 +327,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="i2i-H5-TZb" kind="push" id="BGi-rz-QxG"/>
+                                    <segue destination="i2i-H5-TZb" kind="push" identifier="ShowSongs" id="BGi-rz-QxG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -351,7 +341,6 @@
             </objects>
             <point key="canvasLocation" x="1637" y="343"/>
         </scene>
-        <!--Table View Controller - Playlists-->
         <scene sceneID="tji-60-77c">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SKA-wj-ctS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -386,6 +375,9 @@
         </scene>
     </scenes>
     <classes>
+        <class className="AlbumTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumTableViewController.h"/>
+        </class>
         <class className="ArtistTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ArtistTableViewController.h"/>
         </class>
@@ -398,6 +390,9 @@
         <class className="Settings" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/Settings.h"/>
         </class>
+        <class className="SongTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SongTableViewController.h"/>
+        </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -405,6 +400,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="x6E-W5-IKb"/>
+        <segue reference="BGi-rz-QxG"/>
     </inferredMetricsTieBreakers>
 </document>

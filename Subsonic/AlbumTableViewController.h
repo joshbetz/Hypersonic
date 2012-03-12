@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RSSParser.h"
 
-@interface AlbumTableViewController : UITableViewController
-
+@interface AlbumTableViewController : UITableViewController {
+    RSSParser *parser;
+    NSMutableArray *albumList;
+}
+@property (strong, nonatomic) RSSParser *parser;
+@property (strong, nonatomic) NSMutableArray *albumList;
 @end

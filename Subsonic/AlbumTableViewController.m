@@ -7,9 +7,10 @@
 //
 
 #import "AlbumTableViewController.h"
-
+#import "SongTableViewController.h"
 
 @implementation AlbumTableViewController
+@synthesize parser, albumList;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -74,6 +75,19 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"ShowSongs"]) {
+        NSString *albumID = [[albumList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumID];
+        NSString *userURL = @"http://wilmothighschool.com:4040/rest/getMusicDirectory.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp&id=";
+        userURL = [userURL stringByAppendingString:albumID];
+        NSLog(userURL);
+        SongTableViewController *nextViewController = [segue destinationViewController];
+        nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
+        nextViewController.songList = nextViewController.parser.songList;
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -85,7 +99,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 1;
+    return [albumList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -97,6 +111,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[albumList objectAtIndex: indexPath.row] albumName] ];
     // Configure the cell...
     
     return cell;

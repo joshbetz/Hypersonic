@@ -9,6 +9,7 @@
 #import "ArtistTableViewController.h"
 #import "RSSParser.h"
 #import "Artist.h"
+#import "AlbumTableViewController.h"
 
 @implementation ArtistTableViewController
 
@@ -79,6 +80,19 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"ShowAlbums"]) {
+        NSString *artistID = [[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] artistID];
+        NSString *userURL = @"http://wilmothighschool.com:4040/rest/getMusicDirectory.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp&id=";
+        userURL = [userURL stringByAppendingString:artistID];
+        NSLog(userURL);
+        AlbumTableViewController *nextViewController = [segue destinationViewController];
+        nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
+        nextViewController.albumList = nextViewController.parser.albumList;
+    }
 }
 
 #pragma mark - Table view data source

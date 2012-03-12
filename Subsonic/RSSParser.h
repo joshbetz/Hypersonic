@@ -10,18 +10,21 @@
 #import "Error.h"
 #import "Artist.h"
 #import "Album.h"
+#import "Song.h"
 
 @interface RSSParser : NSObject <NSXMLParserDelegate> {
 @public
 	NSMutableArray *articleList;
     NSMutableArray *artistList;
     NSMutableArray *albumList;
+    NSMutableArray *songList;
 @private
 	NSString *rssURL;
 	NSMutableString *currentData;
     Error *currentError;
     Artist *currentArtist;
     Album *currentAlbum;
+    Song *currentSong;
 	BOOL accumulatingParsedCharacterData;
 	BOOL inItemTag;
     BOOL isDir;
@@ -35,7 +38,9 @@
 @property (nonatomic, strong) Error *currentError;
 @property (nonatomic, strong) Artist *currentArtist;
 @property (nonatomic, strong) Album *currentAlbum;
+@property (nonatomic, strong) Song *currentSong;
 @property (nonatomic, strong) NSMutableArray *artistList;
 @property (nonatomic, strong) NSMutableArray *albumList;
+@property (nonatomic, strong) NSMutableArray *songList;
 
 @end

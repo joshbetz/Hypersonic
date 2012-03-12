@@ -10,6 +10,7 @@
 
 
 @implementation SongTableViewController
+@synthesize songList, parser;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -85,7 +86,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 1;
+    return [songList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -97,6 +98,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[songList objectAtIndex: indexPath.row] songName] ];
     // Configure the cell...
     
     return cell;

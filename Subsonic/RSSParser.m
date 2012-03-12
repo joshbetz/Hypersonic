@@ -8,10 +8,11 @@
 
 #import "RSSParser.h"
 #import "Artist.h"
+#import "Song.h"
 
 @implementation RSSParser
 
-@synthesize articleList, rssURL, currentData, currentError, artistList, currentArtist, currentAlbum, albumList;
+@synthesize articleList, rssURL, currentData, currentError, artistList, currentArtist, currentAlbum, albumList, songList, currentSong;
 
 -(RSSParser*) initWithRSSFeed: (NSString *)anRSSFeed {
     self = [super init];
@@ -21,6 +22,7 @@
 		self.articleList = [NSMutableArray array];
         self.albumList = [NSMutableArray array];
         self.artistList = [NSMutableArray array];
+        self.songList = [NSMutableArray array];
 		NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:anRSSFeed]];
 		
 		if(data != nil)
@@ -98,13 +100,21 @@ static NSString * const kAlbumOrSongElement = @"child";
         self.currentAlbum.parentID = [self.currentData copy];
     }
     else if ([elementName isEqualToString:kAlbumOrSongElement] && [[attributeDict objectForKey:@"isDir"] isEqualToString:@"false"]) {
-		isDir = false;
-        [currentData setString:[attributeDict objectForKey:@"name"]];
+		Song *song = [[Song alloc] init];
+        currentSong = song;
+        isDir = false;
+        [currentData setString:[attributeDict objectForKey:@"title"]];
         NSLog(currentData);
-        self.currentArtist.artistName = [self.currentData copy];
+        self.currentSong.songName = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"id"]];
         NSLog(currentData);
-        self.currentArtist.artistID = [self.currentData copy];
+        self.currentSong.songID = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"artist"]];
+        NSLog(currentData);
+        self.currentSong.artistName = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"album"]];
+        NSLog(currentData);
+        self.currentSong.albumName = [self.currentData copy];
     }
 }
 
@@ -124,7 +134,7 @@ static NSString * const kAlbumOrSongElement = @"child";
         [self.albumList addObject:self.currentAlbum];
         isDir = false;
     } else if ([elementName isEqualToString:kAlbumOrSongElement] && isDir == false) {
-        [self.albumList addObject:self.currentAlbum];
+        [self.songList addObject:self.currentSong];
     }
 
     // Stop accumulating parsed character data. We won't start again until specific elements begin.

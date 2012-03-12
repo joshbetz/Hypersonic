@@ -28,6 +28,7 @@
 		9E63E09A150900B200DF04A0 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E63E099150900B200DF04A0 /* Artist.m */; };
 		9E63E09E1509046E00DF04A0 /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E63E09D1509046E00DF04A0 /* Album.m */; };
 		9E8ADD3915028CA7009EA4AA /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8ADD3815028CA7009EA4AA /* Error.m */; };
+		9EBF78F4150E7F4B00672257 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF78F3150E7F4B00672257 /* Song.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,8 @@
 		9E63E09D1509046E00DF04A0 /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
 		9E8ADD3715028CA7009EA4AA /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
 		9E8ADD3815028CA7009EA4AA /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
+		9EBF78F2150E7F4B00672257 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
+		9EBF78F3150E7F4B00672257 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,8 @@
 				9E8ADD3815028CA7009EA4AA /* Error.m */,
 				03D8A0EB1502B54C00DA09D4 /* RSSParser.h */,
 				03D8A0EC1502B54C00DA09D4 /* RSSParser.m */,
+				9EBF78F2150E7F4B00672257 /* Song.h */,
+				9EBF78F3150E7F4B00672257 /* Song.m */,
 				9E63E09C1509046E00DF04A0 /* Album.h */,
 				9E63E09D1509046E00DF04A0 /* Album.m */,
 				9E63E098150900B200DF04A0 /* Artist.h */,
@@ -233,6 +238,7 @@
 				9E63E09E1509046E00DF04A0 /* Album.m in Sources */,
 				03EDBDBF1509800D0093C55C /* NowPlaying.m in Sources */,
 				033B09CE150B0E7E006D5738 /* Settings.m in Sources */,
+				9EBF78F4150E7F4B00672257 /* Song.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
