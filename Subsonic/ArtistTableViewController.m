@@ -92,6 +92,8 @@
         AlbumTableViewController *nextViewController = [segue destinationViewController];
         nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
         nextViewController.albumList = nextViewController.parser.albumList;
+        NSLog([NSString stringWithFormat:@"%d", [nextViewController.albumList count]]);
+        
     }
 }
 
