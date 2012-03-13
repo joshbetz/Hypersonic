@@ -75,7 +75,6 @@ static NSString * const kAlbumOrSongElement = @"child";
 		Artist *artist = [[Artist alloc] init];
         currentArtist = artist;
         [currentData setString:[attributeDict objectForKey:@"name"]];
-
         self.currentArtist.artistName = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"id"]];
         self.currentArtist.artistID = [self.currentData copy];
@@ -86,15 +85,12 @@ static NSString * const kAlbumOrSongElement = @"child";
         [currentData setString:[attributeDict objectForKey:@"title"]];
         self.currentAlbum.albumName = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"id"]];
-
         self.currentAlbum.albumID = [self.currentData copy];
-        
         if ([attributeDict objectForKey:@"artist"] != nil) {
         [currentData setString:[attributeDict objectForKey:@"artist"]];
         self.currentAlbum.artistName = [self.currentData copy];
         }
         [currentData setString:[attributeDict objectForKey:@"parent"]];
-
         self.currentAlbum.parentID = [self.currentData copy];
     }
     else if ([elementName isEqualToString:kAlbumOrSongElement] && [[attributeDict objectForKey:@"isDir"] isEqualToString:@"false"]) {
@@ -105,12 +101,18 @@ static NSString * const kAlbumOrSongElement = @"child";
         self.currentSong.songName = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"id"]];
 
+
         self.currentSong.songID = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"artist"]];
 
         self.currentSong.artistName = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"album"]];
 
+
+        self.currentSong.songID = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"artist"]];
+        self.currentSong.artistName = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"album"]];
         self.currentSong.albumName = [self.currentData copy];
     }
 }
