@@ -32,6 +32,7 @@
 		9E63E09A150900B200DF04A0 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E63E099150900B200DF04A0 /* Artist.m */; };
 		9E63E09E1509046E00DF04A0 /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E63E09D1509046E00DF04A0 /* Album.m */; };
 		9E8ADD3915028CA7009EA4AA /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8ADD3815028CA7009EA4AA /* Error.m */; };
+		9EA29E66150FBC8100C55A81 /* AlbumSongTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA29E65150FBC8100C55A81 /* AlbumSongTableViewController.m */; };
 		9EBF78F4150E7F4B00672257 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF78F3150E7F4B00672257 /* Song.m */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,8 @@
 		9E63E09D1509046E00DF04A0 /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
 		9E8ADD3715028CA7009EA4AA /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
 		9E8ADD3815028CA7009EA4AA /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
+		9EA29E64150FBC8100C55A81 /* AlbumSongTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumSongTableViewController.h; sourceTree = "<group>"; };
+		9EA29E65150FBC8100C55A81 /* AlbumSongTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumSongTableViewController.m; sourceTree = "<group>"; };
 		9EBF78F2150E7F4B00672257 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
 		9EBF78F3150E7F4B00672257 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +143,8 @@
 				9E25DB79150299EC000766D7 /* AlbumTableViewController.m */,
 				9E25DB75150299B5000766D7 /* ArtistTableViewController.h */,
 				9E25DB76150299B5000766D7 /* ArtistTableViewController.m */,
+				9EA29E64150FBC8100C55A81 /* AlbumSongTableViewController.h */,
+				9EA29E65150FBC8100C55A81 /* AlbumSongTableViewController.m */,
 				032E6EC514F3F4860072697A /* FirstViewController.h */,
 				032E6EC614F3F4860072697A /* FirstViewController.m */,
 				9E8ADD3715028CA7009EA4AA /* Error.h */,
@@ -255,6 +260,7 @@
 				03EDBDBF1509800D0093C55C /* NowPlaying.m in Sources */,
 				033B09CE150B0E7E006D5738 /* Settings.m in Sources */,
 				9EBF78F4150E7F4B00672257 /* Song.m in Sources */,
+				9EA29E66150FBC8100C55A81 /* AlbumSongTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

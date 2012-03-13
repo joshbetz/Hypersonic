@@ -1,21 +1,18 @@
 //
-//  ArtistTableViewController.m
+//  AlbumSongTableViewController.m
 //  Subsonic
 //
-//  Created by Erin Rasmussen on 3/3/12.
+//  Created by Erin Rasmussen on 3/13/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "ArtistTableViewController.h"
-#import "RSSParser.h"
-#import "Artist.h"
-#import "AlbumTableViewController.h"
 #import "AlbumSongTableViewController.h"
+#import "Artist.h"
+#import "Album.h"
+#import "Song.h"
 
-@implementation ArtistTableViewController
-
-@synthesize artistList;
-
+@implementation AlbumSongTableViewController
+@synthesize songList, albumList, parser;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -37,12 +34,22 @@
 
 - (void)viewDidLoad
 {
-    
-    NSString *userURL = @"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp";
-    RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
-    artistList = rssParser.artistList;
+    albumList = parser.albumList;
+    songList  = parser.songList;
+    if ([albumList count] > 0) {
+        albums = true;
+    }
+    else {
+        albums = false;
+    }
+    if ([songList count] > 0){
+        songs = true;
+    }
+    else {
+        songs = false;
+    }
     [super viewDidLoad];
-        
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -86,52 +93,79 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"ShowAlbums"]) {
-        /*NSString *artistID = [[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] artistID];
-        NSString *userURL = @"http://wilmothighschool.com:4040/rest/getMusicDirectory.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp&id=";
-        userURL = [userURL stringByAppendingString:artistID];
-        NSLog(userURL);
-        AlbumTableViewController *nextViewController = [segue destinationViewController];
-        nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
-        nextViewController.albumList = nextViewController.parser.albumList;
-        NSLog([NSString stringWithFormat:@"%d", [nextViewController.albumList count]]); */
-    }
-    else if ([[segue identifier] isEqualToString:@"AlbumClick"]) {
-        NSString *artistID = [[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] artistID];
-        NSString *userURL = @"http://wilmothighschool.com:4040/rest/getMusicDirectory.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp&id=";
-        userURL = [userURL stringByAppendingString:artistID];
-        AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-        nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
+        NSString *albumID = [[albumList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumID];
+         NSString *userURL = @"http://wilmothighschool.com:4040/rest/getMusicDirectory.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp&id=";
+         userURL = [userURL stringByAppendingString:albumID];
+         NSLog(userURL);
+         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
+         nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
     }
 }
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [artistList count];
+    if (songs == true && albums && true){
+        // fix this edge case!
+        return 0;
+    } else if (songs == true){
+        return [songList count];
+    }
+    else {
+        return [albumList count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    static NSString *CellIdentifier = @"Cell";
+    // Edge case with songs and albums mixed - need a way to fill the table in an organized way.
+    if (songs == true && albums && true){
+        static NSString *CellIdentifier = @"Albums";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        
+        // Configure the cell...
+        
+        return cell;
+    } else if (songs == true){
+    static NSString *CellIdentifier = @"Songs";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[artistList objectAtIndex: indexPath.row] artistName] ];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[songList objectAtIndex: indexPath.row] songName] ];
     // Configure the cell...
     
     return cell;
+    }
+    else {
+        static NSString *CellIdentifier = @"Albums";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", [[albumList objectAtIndex: indexPath.row] albumName] ];
+        
+        return cell;
+    }
 }
 
 /*
