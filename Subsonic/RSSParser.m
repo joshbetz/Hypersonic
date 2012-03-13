@@ -58,7 +58,6 @@ static NSString * const kAlbumOrSongElement = @"child";
 #pragma mark NSXMLParser delegate methods
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
-    NSLog(elementName);
     isDir = false;
     if ([elementName isEqualToString:kEntryElementName]) {
         Error *error = [[Error alloc] init];
@@ -66,7 +65,6 @@ static NSString * const kAlbumOrSongElement = @"child";
 		inItemTag = YES;
     } else if ([elementName isEqualToString:kLinkElementName]) {
 		[currentData setString:[attributeDict objectForKey:@"message"]];
-        NSLog(currentData);
         //self.currentError.message = [self.currentData copy];
         /*if (inItemTag) {
          accumulatingParsedCharacterData = YES;
@@ -77,26 +75,20 @@ static NSString * const kAlbumOrSongElement = @"child";
 		Artist *artist = [[Artist alloc] init];
         currentArtist = artist;
         [currentData setString:[attributeDict objectForKey:@"name"]];
-        NSLog(currentData);
         self.currentArtist.artistName = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"id"]];
-        NSLog(currentData);
         self.currentArtist.artistID = [self.currentData copy];
     } else if ([elementName isEqualToString:kAlbumOrSongElement] && [[attributeDict objectForKey:@"isDir"] isEqualToString:@"true"]) {
 		Album *album = [[Album alloc] init];
         currentAlbum = album;
         isDir = true;
         [currentData setString:[attributeDict objectForKey:@"title"]];
-        NSLog(currentData);
         self.currentAlbum.albumName = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"id"]];
-        NSLog(currentData);
         self.currentAlbum.albumID = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"artist"]];
-        NSLog(currentData);
         self.currentAlbum.artistName = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"parent"]];
-        NSLog(currentData);
         self.currentAlbum.parentID = [self.currentData copy];
     }
     else if ([elementName isEqualToString:kAlbumOrSongElement] && [[attributeDict objectForKey:@"isDir"] isEqualToString:@"false"]) {
@@ -104,16 +96,12 @@ static NSString * const kAlbumOrSongElement = @"child";
         currentSong = song;
         isDir = false;
         [currentData setString:[attributeDict objectForKey:@"title"]];
-        NSLog(currentData);
         self.currentSong.songName = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"id"]];
-        NSLog(currentData);
         self.currentSong.songID = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"artist"]];
-        NSLog(currentData);
         self.currentSong.artistName = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"album"]];
-        NSLog(currentData);
         self.currentSong.albumName = [self.currentData copy];
     }
 }
@@ -123,12 +111,8 @@ static NSString * const kAlbumOrSongElement = @"child";
         [self.articleList addObject:self.currentError];
 		inItemTag = NO;
     } else if ([elementName isEqualToString:kLinkElementName]) {
-        NSLog(currentData);
-        NSLog(elementName);
         self.currentError.message = [self.currentData copy];
     } else if ([elementName isEqualToString:kArtistElement]) {
-        NSLog(currentData);
-        NSLog(elementName);
         [self.artistList addObject:self.currentArtist];
     } else if ([elementName isEqualToString:kAlbumOrSongElement] && isDir == true) {
         [self.albumList addObject:self.currentAlbum];
