@@ -48,6 +48,8 @@
     else {
         songs = false;
     }
+    NSLog(@" %s", songs ? "true" : "false");
+    NSLog(@" %s", albums ? "true" : "false");
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -109,7 +111,7 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -124,6 +126,7 @@
     }
     else {
         return [albumList count];
+        NSLog(@" %s", songs ? "true" : "false");
     }
 }
 
