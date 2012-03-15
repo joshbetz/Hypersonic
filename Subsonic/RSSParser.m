@@ -100,15 +100,6 @@ static NSString * const kAlbumOrSongElement = @"child";
         [currentData setString:[attributeDict objectForKey:@"title"]];
         self.currentSong.songName = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"id"]];
-
-
-        self.currentSong.songID = [self.currentData copy];
-        [currentData setString:[attributeDict objectForKey:@"artist"]];
-
-        self.currentSong.artistName = [self.currentData copy];
-        [currentData setString:[attributeDict objectForKey:@"album"]];
-
-
         self.currentSong.songID = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"artist"]];
         self.currentSong.artistName = [self.currentData copy];

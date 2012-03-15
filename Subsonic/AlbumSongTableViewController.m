@@ -10,6 +10,7 @@
 #import "Artist.h"
 #import "Album.h"
 #import "Song.h"
+#import "NowPlaying.h"
 
 @implementation AlbumSongTableViewController
 @synthesize songList, albumList, parser;
@@ -48,8 +49,6 @@
     else {
         songs = false;
     }
-    NSLog(@" %s", songs ? "true" : "false");
-    NSLog(@" %s", albums ? "true" : "false");
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -98,9 +97,13 @@
         NSString *albumID = [[albumList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumID];
          NSString *userURL = @"http://wilmothighschool.com:4040/rest/getMusicDirectory.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp&id=";
          userURL = [userURL stringByAppendingString:albumID];
-         NSLog(userURL);
          AlbumSongTableViewController *nextViewController = [segue destinationViewController];
          nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
+    }
+    if ([[segue identifier] isEqualToString:@"SelectedSong"]) {
+        NSString *song = [[songList objectAtIndex:[self.tableView indexPathForSelectedRow].row] songID];
+        NowPlaying *nextViewController = [segue destinationViewController];
+        nextViewController.songID = song;    
     }
 }
 
@@ -126,7 +129,6 @@
     }
     else {
         return [albumList count];
-        NSLog(@" %s", songs ? "true" : "false");
     }
 }
 
