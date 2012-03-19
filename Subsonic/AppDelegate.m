@@ -7,14 +7,16 @@
 //
 
 #import "AppDelegate.h"
-
+#import "LoginViewController.h"
 @implementation AppDelegate
 
-@synthesize window = _window;
+@synthesize window = _window, userName, userPassword, serverURL;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [self loadSettings];
+    NSLog(@"3");
     return YES;
 }
 							
@@ -57,4 +59,25 @@
      */
 }
 
+-(void)loadSettings{
+	
+    
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	serverURL = [prefs objectForKey:@"serverURL"];
+	userPassword = [prefs objectForKey:@"userPassword"];
+	userName = [prefs objectForKey:@"userName"];
+    NSLog(@"1");
+	if (serverURL == nil){
+        NSLog(@"2");
+        LoginViewController *next = [[LoginViewController alloc] init];
+        //[self pushViewController:self.window.rootViewController];
+        //[self.window addSubview: next];
+        self.window.rootViewController = next;
+        [self.window makeKeyAndVisible];
+
+        
+	}		
+	
+}
+         
 @end

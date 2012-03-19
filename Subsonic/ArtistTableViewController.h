@@ -10,6 +10,12 @@
 
 @interface ArtistTableViewController : UITableViewController{
     NSMutableArray *artistList;
+    NSString *serverURL;
+    NSString *userName;
+    NSString *userPassword;
 }
 @property (nonatomic, strong) NSMutableArray *artistList;
+@property (strong, nonatomic) NSString *serverURL;
+@property (strong, nonatomic) NSString *userName;
+@property (strong, nonatomic) NSString *userPassword;
 @end

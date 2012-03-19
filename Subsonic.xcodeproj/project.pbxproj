@@ -34,6 +34,7 @@
 		9E63E09E1509046E00DF04A0 /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E63E09D1509046E00DF04A0 /* Album.m */; };
 		9E8ADD3915028CA7009EA4AA /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8ADD3815028CA7009EA4AA /* Error.m */; };
 		9EA29E66150FBC8100C55A81 /* AlbumSongTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA29E65150FBC8100C55A81 /* AlbumSongTableViewController.m */; };
+		9EB97E731517B69B00C18801 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EB97E721517B69B00C18801 /* LoginViewController.m */; };
 		9EBF78F4150E7F4B00672257 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF78F3150E7F4B00672257 /* Song.m */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,8 @@
 		9E8ADD3815028CA7009EA4AA /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
 		9EA29E64150FBC8100C55A81 /* AlbumSongTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumSongTableViewController.h; sourceTree = "<group>"; };
 		9EA29E65150FBC8100C55A81 /* AlbumSongTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumSongTableViewController.m; sourceTree = "<group>"; };
+		9EB97E711517B69A00C18801 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		9EB97E721517B69B00C18801 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9EBF78F2150E7F4B00672257 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
 		9EBF78F3150E7F4B00672257 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +139,8 @@
 			children = (
 				032E6EBF14F3F4860072697A /* AppDelegate.h */,
 				032E6EC014F3F4860072697A /* AppDelegate.m */,
+				9EB97E711517B69A00C18801 /* LoginViewController.h */,
+				9EB97E721517B69B00C18801 /* LoginViewController.m */,
 				032E6EC214F3F4860072697A /* MainStoryboard.storyboard */,
 				033B09CC150B0E7E006D5738 /* Settings.h */,
 				033B09CD150B0E7E006D5738 /* Settings.m */,
@@ -265,6 +270,7 @@
 				033B09CE150B0E7E006D5738 /* Settings.m in Sources */,
 				9EBF78F4150E7F4B00672257 /* Song.m in Sources */,
 				9EA29E66150FBC8100C55A81 /* AlbumSongTableViewController.m in Sources */,
+				9EB97E731517B69B00C18801 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

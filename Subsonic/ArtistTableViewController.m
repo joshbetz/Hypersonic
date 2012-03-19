@@ -11,10 +11,11 @@
 #import "Artist.h"
 #import "AlbumTableViewController.h"
 #import "AlbumSongTableViewController.h"
+#import "LoginViewController.h"
 
 @implementation ArtistTableViewController
 
-@synthesize artistList;
+@synthesize artistList, serverURL, userName,userPassword;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,7 +38,19 @@
 
 - (void)viewDidLoad
 {
-    
+   /* NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	serverURL = [prefs objectForKey:@"serverURL"];
+	userPassword = [prefs objectForKey:@"userPassword"];
+	userName = [prefs objectForKey:@"userName"];
+    NSLog(@"1");
+	if (serverURL == nil){
+        NSLog(@"2");
+        LoginViewController *next = [[LoginViewController alloc] init];
+        //[self pushViewController:self.window.rootViewController];
+        //[self.window addSubview: next];
+        [self presentModalViewController:next animated:YES];
+        
+	}	*/
     NSString *userURL = @"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp";
     RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
     artistList = rssParser.artistList;

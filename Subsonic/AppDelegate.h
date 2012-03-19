@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>{
+    NSString *serverURL;
+    NSString *userName;
+    NSString *userPassword;
+}
+
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (strong, nonatomic) NSString *serverURL;
+@property (strong, nonatomic) NSString *userName;
+@property (strong, nonatomic) NSString *userPassword;
+-(void)loadSettings;
 @end
