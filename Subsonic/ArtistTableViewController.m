@@ -51,9 +51,10 @@
         [self presentModalViewController:next animated:YES];
         
 	}	*/
-    NSString *userURL = @"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp";
-    RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
-    artistList = rssParser.artistList;
+    
+    //NSString *userURL = @"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp";
+    //RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+    //artistList = rssParser.artistList;
     [super viewDidLoad];
         
     // Uncomment the following line to preserve selection between presentations.

@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "AppDelegate.h"
 #import "ArtistTableViewController.h"
+#import "RSSParser.h"
 
 @implementation LoginViewController
 @synthesize loginButton, password, name, server, userPassword, userName, serverURL;
@@ -35,7 +36,21 @@
         userName = name.text;
         serverURL = server.text;
         userPassword = password.text;
-        ArtistTableViewController *nextViewController = [segue destinationViewController];
+        UINavigationController *navigationController = segue.destinationViewController;
+        navigationController = [[navigationController viewControllers] objectAtIndex:0];
+        ArtistTableViewController *nextViewController = [[navigationController viewControllers] objectAtIndex:0];
+        NSString *userURL = @"http://";
+        userURL = [userURL stringByAppendingString:serverURL];
+        userURL = [userURL stringByAppendingString:@"/rest/getIndexes.view?u="];
+        userURL = [userURL stringByAppendingString:userName];
+        userURL = [userURL stringByAppendingString:@"&p="];
+        userURL = [userURL stringByAppendingString:userPassword];
+        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp"];
+        RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+        nextViewController.artistList = rssParser.artistList;
+        nextViewController.serverURL = serverURL;
+        nextViewController.userPassword = userPassword;
+        nextViewController.userName = userName;
     }
 }
 

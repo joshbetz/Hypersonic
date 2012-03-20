@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="10K549" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="48m-cn-VIM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="10K549" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="yis-JZ-hT9">
     <dependencies>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
@@ -157,11 +157,11 @@
                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="4" kind="relationship" relationship="rootViewController" id="0c3-Ii-v6h"/>
+                        <segue destination="4" kind="relationship" relationship="rootViewController" id="lDk-M7-3Gf"/>
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-322" y="180"/>
+            <point key="canvasLocation" x="-322" y="188"/>
         </scene>
         <scene sceneID="15">
             <objects>
@@ -238,7 +238,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WdK-er-mn4">
-                                <rect key="frame" x="124" y="221" width="72" height="37"/>
+                                <rect key="frame" x="131" y="20" width="72" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Login">
@@ -250,6 +250,7 @@
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="yis-JZ-hT9" eventType="touchUpInside" id="Ctt-Hq-vyZ"/>
+                                    <segue destination="48m-cn-VIM" kind="modal" identifier="Login" id="aiF-jY-QGl"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="8ol-XG-PCt">
@@ -303,7 +304,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-201" y="835"/>
+            <point key="canvasLocation" x="-116" y="778"/>
         </scene>
         <scene sceneID="GRJ-XS-bOn">
             <objects>

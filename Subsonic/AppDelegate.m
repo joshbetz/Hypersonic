@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "ArtistTableViewController.h"
+#import "RSSParser.h"
 @implementation AppDelegate
 
 @synthesize window = _window, userName, userPassword, serverURL;
@@ -15,8 +17,28 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [self loadSettings];
+    /*[self loadSettings];
     NSLog(@"3");
+    if (serverURL != nil){
+        NSLog(@"2");
+        ArtistTableViewController *next = [[ArtistTableViewController alloc] init];
+        NSString *userURL = @"http://";
+        userURL = [userURL stringByAppendingString:serverURL];
+        userURL = [userURL stringByAppendingString:@"/rest/getIndexes.view?u="];
+        userURL = [userURL stringByAppendingString:userName];
+        userURL = [userURL stringByAppendingString:@"&p="];
+        userURL = [userURL stringByAppendingString:userPassword];
+        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp"];
+        RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+        next.artistList = rssParser.artistList;
+        next.serverURL = serverURL;
+        next.userPassword = userPassword;
+        next.userName = userName;
+        //[self pushViewController:self.window.rootViewController];
+        [self.window addSubview: next.view];
+        //self.window.rootViewController = next;
+        [self.window makeKeyAndVisible];
+	}*/
     return YES;
 }
 							
@@ -62,21 +84,12 @@
 -(void)loadSettings{
 	
     
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	/*NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	serverURL = [prefs objectForKey:@"serverURL"];
 	userPassword = [prefs objectForKey:@"userPassword"];
 	userName = [prefs objectForKey:@"userName"];
-    NSLog(@"1");
-	if (serverURL == nil){
-        NSLog(@"2");
-        LoginViewController *next = [[LoginViewController alloc] init];
-        //[self pushViewController:self.window.rootViewController];
-        //[self.window addSubview: next];
-        self.window.rootViewController = next;
-        [self.window makeKeyAndVisible];
-
-        
-	}		
+    NSLog(@"1");*/
+			
 	
 }
          
