@@ -16,6 +16,7 @@
     NSString *serverURL;
     NSString *userName;
     NSString *userPassword;
+    NSMutableArray *artistList;
 }
 
 @property (nonatomic, strong) IBOutlet UIButton *loginButton;
@@ -25,6 +26,9 @@
 @property (strong, nonatomic) NSString *serverURL;
 @property (strong, nonatomic) NSString *userName;
 @property (strong, nonatomic) NSString *userPassword;
+@property (strong, nonatomic) NSMutableArray *artistList;
 -(void)saveSettings;
 -(IBAction)login:(id)loginButton;
+- (IBAction)textFieldReturn:(id)sender;
+- (IBAction)backgroundTouched:(id)sender;
 @end

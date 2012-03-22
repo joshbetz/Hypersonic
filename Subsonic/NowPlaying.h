@@ -12,12 +12,18 @@
 
 @interface NowPlaying : UIViewController {
     NSString *songID;
+    NSString *serverURL;
+    NSString *userName;
+    NSString *userPassword;
     AVPlayerItem *playerItem;
     AVPlayer *avPlayer;
     UIButton *playButton;
 }
 
 @property (nonatomic, strong) NSString *songID;
+@property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) NSString *userPassword;
+@property (nonatomic, strong) NSString *serverURL;
 @property (nonatomic, strong) AVPlayerItem *playerItem;
 @property (nonatomic, strong) AVPlayer *avPlayer;
 @property (nonatomic, strong) IBOutlet UIButton *playButton;

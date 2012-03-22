@@ -12,16 +12,13 @@
 #import "RSSParser.h"
 @implementation AppDelegate
 
-@synthesize window = _window, userName, userPassword, serverURL;
+@synthesize window = _window, userName, userPassword, serverURL, artistList;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    /*[self loadSettings];
-    NSLog(@"3");
+    [self loadSettings];
     if (serverURL != nil){
-        NSLog(@"2");
-        ArtistTableViewController *next = [[ArtistTableViewController alloc] init];
         NSString *userURL = @"http://";
         userURL = [userURL stringByAppendingString:serverURL];
         userURL = [userURL stringByAppendingString:@"/rest/getIndexes.view?u="];
@@ -30,15 +27,16 @@
         userURL = [userURL stringByAppendingString:userPassword];
         userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp"];
         RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        UINavigationController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Start"]; 
+        UINavigationController *xy = [[vc viewControllers] objectAtIndex:0];
+        ArtistTableViewController *next = [[xy viewControllers] objectAtIndex:0];
         next.artistList = rssParser.artistList;
         next.serverURL = serverURL;
         next.userPassword = userPassword;
         next.userName = userName;
-        //[self pushViewController:self.window.rootViewController];
-        [self.window addSubview: next.view];
-        //self.window.rootViewController = next;
-        [self.window makeKeyAndVisible];
-	}*/
+        self.window.rootViewController = vc;
+	}
     return YES;
 }
 							
@@ -84,12 +82,11 @@
 -(void)loadSettings{
 	
     
-	/*NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	serverURL = [prefs objectForKey:@"serverURL"];
 	userPassword = [prefs objectForKey:@"userPassword"];
 	userName = [prefs objectForKey:@"userName"];
-    NSLog(@"1");*/
-			
+    
 	
 }
          

@@ -9,7 +9,6 @@
 #import "ArtistTableViewController.h"
 #import "RSSParser.h"
 #import "Artist.h"
-#import "AlbumTableViewController.h"
 #import "AlbumSongTableViewController.h"
 #import "LoginViewController.h"
 
@@ -111,9 +110,18 @@
     }
     else if ([[segue identifier] isEqualToString:@"AlbumClick"]) {
         NSString *artistID = [[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] artistID];
-        NSString *userURL = @"http://wilmothighschool.com:4040/rest/getMusicDirectory.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp&id=";
+        NSString *userURL = @"http://";
+        userURL = [userURL stringByAppendingString:serverURL];
+        userURL = [userURL stringByAppendingString:@"/rest/getMusicDirectory.view?u="];
+        userURL = [userURL stringByAppendingString:userName];
+        userURL = [userURL stringByAppendingString:@"&p="];
+        userURL = [userURL stringByAppendingString:userPassword];
+        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp&id="];    //probably want to edit "myapp"
         userURL = [userURL stringByAppendingString:artistID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
+        nextViewController.userName = userName;
+        nextViewController.userPassword = userPassword;
+        nextViewController.serverURL = serverURL;
         nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
     }
 }

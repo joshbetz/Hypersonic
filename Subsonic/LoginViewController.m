@@ -12,7 +12,7 @@
 #import "RSSParser.h"
 
 @implementation LoginViewController
-@synthesize loginButton, password, name, server, userPassword, userName, serverURL;
+@synthesize loginButton, password, name, server, userPassword, userName, serverURL, artistList;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -51,6 +51,7 @@
         nextViewController.serverURL = serverURL;
         nextViewController.userPassword = userPassword;
         nextViewController.userName = userName;
+        [self saveSettings];
     }
 }
 
@@ -97,6 +98,17 @@
 
 -(IBAction)login:(id)loginButton{
     [self saveSettings];
+}
+
+-(IBAction)textFieldReturn:(id)sender
+{
+    [sender resignFirstResponder];
+}
+-(IBAction)backgroundTouched:(id)sender
+{
+    [server resignFirstResponder];
+    [password resignFirstResponder];
+    [name resignFirstResponder];
 }
 
 @end

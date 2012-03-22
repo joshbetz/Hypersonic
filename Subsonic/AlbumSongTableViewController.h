@@ -15,8 +15,14 @@
     NSMutableArray *songList;
     BOOL songs;
     BOOL albums;
+    NSString *userName;
+    NSString *serverURL;
+    NSString *userPassword;
 }
 @property (nonatomic, strong) NSMutableArray *albumList;
 @property (strong, nonatomic) RSSParser *parser;
 @property (strong, nonatomic) NSMutableArray *songList;
+@property (strong, nonatomic) NSString *userName;
+@property (strong, nonatomic) NSString *userPassword;
+@property (strong, nonatomic) NSString *serverURL;
 @end

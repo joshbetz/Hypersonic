@@ -14,7 +14,7 @@
 @end
 
 @implementation NowPlaying
-@synthesize songID, avPlayer, playerItem, playButton;
+@synthesize songID, avPlayer, playerItem, playButton, userName, userPassword, serverURL;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,9 +26,14 @@
 
 - (void)viewDidLoad
 {
-    NSString *userURL = @"http://wilmothighschool.com:4040/rest/stream.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp&id=";
+    NSString *userURL = @"http://";
+    userURL = [userURL stringByAppendingString:serverURL];
+    userURL = [userURL stringByAppendingString:@"/rest/stream.view?u="];
+    userURL = [userURL stringByAppendingString:userName];
+    userURL = [userURL stringByAppendingString:@"&p="];
+    userURL = [userURL stringByAppendingString:userPassword];
+    userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp&id="];
     userURL = [userURL stringByAppendingString:songID];
-    NSLog(userURL);
     NSURL *url=[NSURL URLWithString:userURL];
     playerItem = [AVPlayerItem playerItemWithURL:url];
     avPlayer = [AVPlayer playerWithPlayerItem:playerItem];
