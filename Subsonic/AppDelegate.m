@@ -36,7 +36,11 @@
         next.userPassword = userPassword;
         next.userName = userName;
         self.window.rootViewController = vc;
-	}
+	} else {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        LoginViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Login"];
+        self.window.rootViewController = vc;
+    }
     return YES;
 }
 							

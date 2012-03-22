@@ -54,6 +54,7 @@ static NSString * const kEntryElementName = @"subsonic-response";
 static NSString * const kLinkElementName = @"error";
 static NSString * const kArtistElement = @"artist";
 static NSString * const kAlbumOrSongElement = @"child";
+static NSString * const kAlbumAccess = @"album";
 
 #pragma mark NSXMLParser delegate methods
 
@@ -106,6 +107,21 @@ static NSString * const kAlbumOrSongElement = @"child";
         [currentData setString:[attributeDict objectForKey:@"album"]];
         self.currentSong.albumName = [self.currentData copy];
     }
+    else if ([elementName isEqualToString:kAlbumAccess]) {
+		Album *album = [[Album alloc] init];
+        currentAlbum = album;
+        isDir = true;
+        [currentData setString:[attributeDict objectForKey:@"title"]];
+        self.currentAlbum.albumName = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"id"]];
+        self.currentAlbum.albumID = [self.currentData copy];
+        if ([attributeDict objectForKey:@"artist"] != nil) {
+            [currentData setString:[attributeDict objectForKey:@"artist"]];
+            self.currentAlbum.artistName = [self.currentData copy];
+        }
+        [currentData setString:[attributeDict objectForKey:@"parent"]];
+        self.currentAlbum.parentID = [self.currentData copy];
+    }
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {     
@@ -121,6 +137,9 @@ static NSString * const kAlbumOrSongElement = @"child";
         isDir = false;
     } else if ([elementName isEqualToString:kAlbumOrSongElement] && isDir == false) {
         [self.songList addObject:self.currentSong];
+    } else if ([elementName isEqualToString:kAlbumAccess]) {
+        [self.albumList addObject:self.currentAlbum];
+        isDir = false;
     }
 
     // Stop accumulating parsed character data. We won't start again until specific elements begin.
