@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AlbumMethodsTableViewController : UITableViewController
+@interface AlbumMethodsTableViewController : UITableViewController{
+    NSString *types[2];
+}
 
 @end

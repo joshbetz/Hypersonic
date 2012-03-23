@@ -14,7 +14,7 @@
 @end
 
 @implementation NowPlaying
-@synthesize songID, avPlayer, playerItem, playButton, userName, userPassword, serverURL;
+@synthesize songID, avPlayer, playerItem, playButton, userName, userPassword, serverURL, albumArt, albumArtID;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -35,6 +35,20 @@
     userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp&id="];
     userURL = [userURL stringByAppendingString:songID];
     NSURL *url=[NSURL URLWithString:userURL];
+    if (albumArtID != nil) {
+    userURL = @"http://";
+    userURL = [userURL stringByAppendingString:serverURL];
+    userURL = [userURL stringByAppendingString:@"/rest/getCoverArt.view?u="];
+    userURL = [userURL stringByAppendingString:userName];
+    userURL = [userURL stringByAppendingString:@"&p="];
+    userURL = [userURL stringByAppendingString:userPassword];
+    userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp&id="];
+    userURL = [userURL stringByAppendingString:albumArtID];
+    NSURL *imageURL = [NSURL URLWithString: userURL];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage *image = [UIImage imageWithData:imageData]; 
+    albumArt.image = image;
+    }
     playerItem = [AVPlayerItem playerItemWithURL:url];
     avPlayer = [AVPlayer playerWithPlayerItem:playerItem];
     //AVPlayerLayer *avPlayerLayer = [[AVPlayerLayer playerLayerWithPlayer:avPlayer] retain];

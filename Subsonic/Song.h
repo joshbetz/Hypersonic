@@ -13,6 +13,7 @@
     NSString *songID;
     NSString *artistName;
     NSString *albumName;
+    NSString *albumArg;
 }
 
 
@@ -20,4 +21,5 @@
 @property (nonatomic, strong) NSString *songID;
 @property (nonatomic, strong) NSString *albumName;
 @property (nonatomic, strong) NSString *artistName;
+@property (nonatomic, strong) NSString *albumArt;
 @end

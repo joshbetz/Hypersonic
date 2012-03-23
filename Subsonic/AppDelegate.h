@@ -15,6 +15,10 @@
     NSMutableArray *artistList;
 }
 
+extern NSString *server;
+extern NSString *name;
+extern NSString *password;
+
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSString *serverURL;
 @property (strong, nonatomic) NSString *userName;

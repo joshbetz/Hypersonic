@@ -13,7 +13,9 @@
 @implementation AppDelegate
 
 @synthesize window = _window, userName, userPassword, serverURL, artistList;
-
+NSString *password;
+NSString *name;
+NSString *server;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
@@ -35,6 +37,9 @@
         next.serverURL = serverURL;
         next.userPassword = userPassword;
         next.userName = userName;
+        password = userPassword;
+        name = userName;
+        server = serverURL;
         self.window.rootViewController = vc;
 	} else {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];

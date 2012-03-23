@@ -9,10 +9,11 @@
 #import "RSSParser.h"
 #import "Artist.h"
 #import "Song.h"
+#import "Playlist.h"
 
 @implementation RSSParser
 
-@synthesize articleList, rssURL, currentData, currentError, artistList, currentArtist, currentAlbum, albumList, songList, currentSong;
+@synthesize articleList, rssURL, currentData, currentError, artistList, currentArtist, currentAlbum, albumList, songList, currentSong, playlistList, currentPlaylist;
 
 -(RSSParser*) initWithRSSFeed: (NSString *)anRSSFeed {
     self = [super init];
@@ -23,6 +24,7 @@
         self.albumList = [NSMutableArray array];
         self.artistList = [NSMutableArray array];
         self.songList = [NSMutableArray array];
+        self.playlistList = [NSMutableArray array];
 		NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:anRSSFeed]];
 		
 		if(data != nil)
@@ -55,6 +57,8 @@ static NSString * const kLinkElementName = @"error";
 static NSString * const kArtistElement = @"artist";
 static NSString * const kAlbumOrSongElement = @"child";
 static NSString * const kAlbumAccess = @"album";
+static NSString * const kPlaylist = @"playlist";
+static NSString * const kPlaylistEntry = @"entry";
 
 #pragma mark NSXMLParser delegate methods
 
@@ -93,6 +97,10 @@ static NSString * const kAlbumAccess = @"album";
         }
         [currentData setString:[attributeDict objectForKey:@"parent"]];
         self.currentAlbum.parentID = [self.currentData copy];
+        if ([attributeDict objectForKey:@"coverArt"] != nil){
+            [currentData setString:[attributeDict objectForKey:@"coverArt"]];
+            self.currentSong.albumArt = [self.currentData copy];
+        }
     }
     else if ([elementName isEqualToString:kAlbumOrSongElement] && [[attributeDict objectForKey:@"isDir"] isEqualToString:@"false"]) {
 		Song *song = [[Song alloc] init];
@@ -108,6 +116,46 @@ static NSString * const kAlbumAccess = @"album";
         self.currentSong.albumName = [self.currentData copy];
     }
     else if ([elementName isEqualToString:kAlbumAccess]) {
+		Album *album = [[Album alloc] init];
+        currentAlbum = album;
+        isDir = true;
+        [currentData setString:[attributeDict objectForKey:@"title"]];
+        self.currentAlbum.albumName = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"id"]];
+        self.currentAlbum.albumID = [self.currentData copy];
+        if ([attributeDict objectForKey:@"artist"] != nil) {
+            [currentData setString:[attributeDict objectForKey:@"artist"]];
+            self.currentAlbum.artistName = [self.currentData copy];
+        }
+        [currentData setString:[attributeDict objectForKey:@"parent"]];
+        self.currentAlbum.parentID = [self.currentData copy];
+    }
+    else if ([elementName isEqualToString:kPlaylist]) {
+		Playlist *playlist = [[Playlist alloc] init];
+        currentPlaylist = playlist;
+        [currentData setString:[attributeDict objectForKey:@"name"]];
+        self.currentPlaylist.playlistName = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"id"]];
+        self.currentPlaylist.playlistID = [self.currentData copy];
+    }
+    else if ([elementName isEqualToString:kPlaylistEntry] && [[attributeDict objectForKey:@"isDir"] isEqualToString:@"false"]) {
+		Song *song = [[Song alloc] init];
+        currentSong = song;
+        isDir = false;
+        [currentData setString:[attributeDict objectForKey:@"title"]];
+        self.currentSong.songName = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"id"]];
+        self.currentSong.songID = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"artist"]];
+        self.currentSong.artistName = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"album"]];
+        self.currentSong.albumName = [self.currentData copy];
+        if ([attributeDict objectForKey:@"coverArt"] != nil){
+            [currentData setString:[attributeDict objectForKey:@"coverArt"]];
+            self.currentSong.albumArt = [self.currentData copy];
+        }
+    }
+    else if ([elementName isEqualToString:kPlaylistEntry] && [[attributeDict objectForKey:@"isDir"] isEqualToString:@"true"]) {
 		Album *album = [[Album alloc] init];
         currentAlbum = album;
         isDir = true;
@@ -138,6 +186,13 @@ static NSString * const kAlbumAccess = @"album";
     } else if ([elementName isEqualToString:kAlbumOrSongElement] && isDir == false) {
         [self.songList addObject:self.currentSong];
     } else if ([elementName isEqualToString:kAlbumAccess]) {
+        [self.albumList addObject:self.currentAlbum];
+        isDir = false;
+    } else if ([elementName isEqualToString:kPlaylist]) {
+        [self.playlistList addObject:self.currentPlaylist];
+    } else if ([elementName isEqualToString:kPlaylistEntry] && isDir == false) {
+        [self.songList addObject:self.currentSong];
+    } else if ([elementName isEqualToString:kPlaylistEntry] && isDir == true) {
         [self.albumList addObject:self.currentAlbum];
         isDir = false;
     }

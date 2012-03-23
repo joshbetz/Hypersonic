@@ -1,17 +1,19 @@
 //
-//  AlbumMethodsTableViewController.m
+//  PlaylistTableViewController.m
 //  Subsonic
 //
-//  Created by Erin Rasmussen on 3/22/12.
+//  Created by Erin Rasmussen on 3/23/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "AlbumMethodsTableViewController.h"
+#import "PlaylistTableViewController.h"
 #import "AppDelegate.h"
+#import "Playlist.h"
+#import "RSSParser.h"
 #import "AlbumSongTableViewController.h"
 
-@implementation AlbumMethodsTableViewController
-
+@implementation PlaylistTableViewController
+@synthesize playlistList, serverURL, userPassword, userName;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -33,10 +35,15 @@
 
 - (void)viewDidLoad
 {
-    types[0] = @"Random";
-    //types[1] = @"Newest";  //don't even work in internet browser
-    //types[2] = @"Frequent";
-    types[1] = @"Recent";
+    NSString *userURL = @"http://";
+    userURL = [userURL stringByAppendingString:serverURL];
+    userURL = [userURL stringByAppendingString:@"/rest/getPlaylists.view?u="];
+    userURL = [userURL stringByAppendingString:userName];
+    userURL = [userURL stringByAppendingString:@"&p="];
+    userURL = [userURL stringByAppendingString:userPassword];
+    userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp"];    //probably want to edit "myapp"
+    RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
+    playlistList = parser.playlistList;
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -81,72 +88,21 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"Random"]) {
-        if ([self.tableView indexPathForSelectedRow].row == 0){
-        NSString *albumType = @"random";
+    if ([[segue identifier] isEqualToString:@"SelectPlaylist"]) {
+        NSString *playlistID = [[playlistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] playlistID];
         NSString *userURL = @"http://";
         userURL = [userURL stringByAppendingString:server];
-        userURL = [userURL stringByAppendingString:@"/rest/getAlbumList.view?u="];
+        userURL = [userURL stringByAppendingString:@"/rest/getPlaylist.view?u="];
         userURL = [userURL stringByAppendingString:name];
         userURL = [userURL stringByAppendingString:@"&p="];
         userURL = [userURL stringByAppendingString:password];
-        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp&type="];    //probably want to edit "myapp"
-        userURL = [userURL stringByAppendingString:albumType];
+        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp&id="];    //probably want to edit "myapp"
+        userURL = [userURL stringByAppendingString:playlistID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-        nextViewController.userName = name;
-        nextViewController.userPassword = password;
-        nextViewController.serverURL = server;
-        nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
-        }
-        /*else if ([self.tableView indexPathForSelectedRow].row == 1){
-            NSString *albumType = @"newest";
-            NSString *userURL = @"http://";
-            userURL = [userURL stringByAppendingString:server];
-            userURL = [userURL stringByAppendingString:@"/rest/getAlbumList.view?u="];
-            userURL = [userURL stringByAppendingString:name];
-            userURL = [userURL stringByAppendingString:@"&p="];
-            userURL = [userURL stringByAppendingString:password];
-            userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp&type="];    //probably want to edit "myapp"
-            userURL = [userURL stringByAppendingString:albumType];
-            AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-            nextViewController.userName = name;
-            nextViewController.userPassword = password;
-            nextViewController.serverURL = server;
-            nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
-        }
-        else if ([self.tableView indexPathForSelectedRow].row == 2){
-            NSString *albumType = @"frequent";
-            NSString *userURL = @"http://";
-            userURL = [userURL stringByAppendingString:server];
-            userURL = [userURL stringByAppendingString:@"/rest/getAlbumList.view?u="];
-            userURL = [userURL stringByAppendingString:name];
-            userURL = [userURL stringByAppendingString:@"&p="];
-            userURL = [userURL stringByAppendingString:password];
-            userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp&type="];    //probably want to edit "myapp"
-            userURL = [userURL stringByAppendingString:albumType];
-            NSLog(userURL);
-            AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-            nextViewController.userName = name;
-            nextViewController.userPassword = password;
-            nextViewController.serverURL = server;
-            nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
-        } */
-        else if ([self.tableView indexPathForSelectedRow].row == 1){
-            NSString *albumType = @"recent";
-            NSString *userURL = @"http://";
-            userURL = [userURL stringByAppendingString:server];
-            userURL = [userURL stringByAppendingString:@"/rest/getAlbumList.view?u="];
-            userURL = [userURL stringByAppendingString:name];
-            userURL = [userURL stringByAppendingString:@"&p="];
-            userURL = [userURL stringByAppendingString:password];
-            userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp&type="];    //probably want to edit "myapp"
-            userURL = [userURL stringByAppendingString:albumType];
-            AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-            nextViewController.userName = name;
-            nextViewController.userPassword = password;
-            nextViewController.serverURL = server;
-            nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
-        }
+        nextViewController.userName = userName;
+        nextViewController.userPassword = userPassword;
+        nextViewController.serverURL = serverURL;
+        nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
     }
 }
 
@@ -163,18 +119,19 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 2;
+    return [playlistList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Random";
+    static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = types[[indexPath row]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[playlistList objectAtIndex: indexPath.row] name]];
+
     // Configure the cell...
     
     return cell;

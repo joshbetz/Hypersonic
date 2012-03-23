@@ -11,6 +11,7 @@
 #import "Artist.h"
 #import "AlbumSongTableViewController.h"
 #import "LoginViewController.h"
+#import "AppDelegate.h"
 
 @implementation ArtistTableViewController
 
@@ -54,6 +55,9 @@
     //NSString *userURL = @"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp";
     //RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
     //artistList = rssParser.artistList;
+    server = serverURL;
+    name = userName;
+    password = userPassword;
     [super viewDidLoad];
         
     // Uncomment the following line to preserve selection between presentations.

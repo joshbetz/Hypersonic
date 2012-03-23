@@ -116,6 +116,9 @@
         nextViewController.userName = userName;
         nextViewController.userPassword = userPassword;
         nextViewController.serverURL = serverURL;
+        if ([[songList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumArtID] != nil){
+        nextViewController.albumArtID = [[songList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumArtID];
+        }
     }
 }
 

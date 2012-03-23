@@ -52,6 +52,7 @@
                     <navigationItem key="navigationItem" title="Now Playing" id="Eag-bH-r0m"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="albumArt" destination="nfu-dL-sjS" id="W66-Kq-szn"/>
                         <outlet property="playButton" destination="sUC-UX-5If" id="BKc-k5-nh0"/>
                     </connections>
                 </viewController>
@@ -342,44 +343,6 @@
                                     <segue destination="BtQ-0J-xoL" kind="push" identifier="Random" id="cqm-sj-a0G"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Newest" id="1rS-8m-bmI">
-                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <accessibility key="accessibilityConfiguration" label="Newest"/>
-                                <connections>
-                                    <segue destination="BtQ-0J-xoL" kind="push" identifier="Newest" id="I6l-Du-SFa"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Frequent" id="ndb-d5-GOr">
-                                <rect key="frame" x="0.0" y="110" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <connections>
-                                    <segue destination="BtQ-0J-xoL" kind="push" identifier="Frequent" id="rDa-Ot-y03"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Recent" id="X11-2Z-Dk0">
-                                <rect key="frame" x="0.0" y="154" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <accessibility key="accessibilityConfiguration" label="Recent"/>
-                                <connections>
-                                    <segue destination="BtQ-0J-xoL" kind="push" identifier="Recent" id="1G6-Hh-cRd"/>
-                                </connections>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="upn-zh-CHp" id="jY8-fM-LpS"/>
@@ -394,7 +357,7 @@
         <scene sceneID="tji-60-77c">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SKA-wj-ctS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController title="Playlists" id="jTg-2a-G1F" sceneMemberID="viewController">
+                <tableViewController title="Playlists" id="jTg-2a-G1F" customClass="PlaylistTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Z5H-pi-cNT">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -409,7 +372,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="BtQ-0J-xoL" kind="push" id="BRV-Dn-iWY"/>
+                                    <segue destination="BtQ-0J-xoL" kind="push" identifier="SelectPlaylist" id="BRV-Dn-iWY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -451,8 +414,12 @@
             <relationships>
                 <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="playSong:"/>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
             </relationships>
+        </class>
+        <class className="PlaylistTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaylistTableViewController.h"/>
         </class>
         <class className="Settings" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/Settings.h"/>
@@ -465,6 +432,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="mLk-Mp-Xwr"/>
-        <segue reference="1G6-Hh-cRd"/>
+        <segue reference="BRV-Dn-iWY"/>
     </inferredMetricsTieBreakers>
 </document>
