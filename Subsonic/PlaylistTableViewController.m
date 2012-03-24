@@ -36,12 +36,13 @@
 - (void)viewDidLoad
 {
     NSString *userURL = @"http://";
-    userURL = [userURL stringByAppendingString:serverURL];
+    userURL = [userURL stringByAppendingString:server];
     userURL = [userURL stringByAppendingString:@"/rest/getPlaylists.view?u="];
-    userURL = [userURL stringByAppendingString:userName];
+    userURL = [userURL stringByAppendingString:name];
     userURL = [userURL stringByAppendingString:@"&p="];
-    userURL = [userURL stringByAppendingString:userPassword];
+    userURL = [userURL stringByAppendingString:password];
     userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp"];    //probably want to edit "myapp"
+    NSLog(userURL);
     RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
     playlistList = parser.playlistList;
     [super viewDidLoad];
