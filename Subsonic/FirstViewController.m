@@ -24,10 +24,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    /*NSString *userURL = @"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp";
+    /*NSString *userURL = @"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=Hypersonic";
     RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
     NSMutableArray *artistList = rssParser.artistList;
-    userURL = @"http://wilmothighschool.com:4040/rest/getMusicDirectory.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp&id=";
+    userURL = @"http://wilmothighschool.com:4040/rest/getMusicDirectory.view?u=mobileappdev&p=mobile123&v=1.1.0&c=Hypersonic&id=";
     userURL = [userURL stringByAppendingString:[[artistList objectAtIndex:0] artistID]];
     NSLog([[artistList objectAtIndex:0] artistName]);
     NSLog(userURL);

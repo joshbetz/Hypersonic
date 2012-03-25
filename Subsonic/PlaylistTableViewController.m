@@ -41,7 +41,7 @@
     userURL = [userURL stringByAppendingString:name];
     userURL = [userURL stringByAppendingString:@"&p="];
     userURL = [userURL stringByAppendingString:password];
-    userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp"];    //probably want to edit "myapp"
+    userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic"];
     NSLog(userURL);
     RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
     playlistList = parser.playlistList;
@@ -97,7 +97,7 @@
         userURL = [userURL stringByAppendingString:name];
         userURL = [userURL stringByAppendingString:@"&p="];
         userURL = [userURL stringByAppendingString:password];
-        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp&id="];    //probably want to edit "myapp"
+        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
         userURL = [userURL stringByAppendingString:playlistID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         nextViewController.userName = userName;

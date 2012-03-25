@@ -101,7 +101,7 @@
         userURL = [userURL stringByAppendingString:userName];
         userURL = [userURL stringByAppendingString:@"&p="];
         userURL = [userURL stringByAppendingString:userPassword];
-        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp&id="];    //probably want to edit "myapp"
+        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
          userURL = [userURL stringByAppendingString:albumID];
          AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         nextViewController.userName = userName;

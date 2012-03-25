@@ -52,7 +52,7 @@
         
 	}	*/
     
-    //NSString *userURL = @"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp";
+    //NSString *userURL = @"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=Hypersonic";
     //RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
     //artistList = rssParser.artistList;
     server = serverURL;
@@ -104,7 +104,7 @@
 {
     if ([[segue identifier] isEqualToString:@"ShowAlbums"]) {
         /*NSString *artistID = [[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] artistID];
-        NSString *userURL = @"http://wilmothighschool.com:4040/rest/getMusicDirectory.view?u=mobileappdev&p=mobile123&v=1.1.0&c=myapp&id=";
+        NSString *userURL = @"http://wilmothighschool.com:4040/rest/getMusicDirectory.view?u=mobileappdev&p=mobile123&v=1.1.0&c=Hypersonic&id=";
         userURL = [userURL stringByAppendingString:artistID];
         NSLog(userURL);
         AlbumTableViewController *nextViewController = [segue destinationViewController];
@@ -120,7 +120,7 @@
         userURL = [userURL stringByAppendingString:userName];
         userURL = [userURL stringByAppendingString:@"&p="];
         userURL = [userURL stringByAppendingString:userPassword];
-        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp&id="];    //probably want to edit "myapp"
+        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
         userURL = [userURL stringByAppendingString:artistID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         nextViewController.userName = userName;

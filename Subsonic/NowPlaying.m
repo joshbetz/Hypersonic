@@ -32,7 +32,7 @@
     userURL = [userURL stringByAppendingString:userName];
     userURL = [userURL stringByAppendingString:@"&p="];
     userURL = [userURL stringByAppendingString:userPassword];
-    userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp&id="];
+    userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
     userURL = [userURL stringByAppendingString:songID];
     NSURL *url=[NSURL URLWithString:userURL];
     if (albumArtID != nil) {
@@ -42,7 +42,7 @@
     userURL = [userURL stringByAppendingString:userName];
     userURL = [userURL stringByAppendingString:@"&p="];
     userURL = [userURL stringByAppendingString:userPassword];
-    userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp&id="];
+    userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
     userURL = [userURL stringByAppendingString:albumArtID];
     NSURL *imageURL = [NSURL URLWithString: userURL];
     NSData *imageData = [NSData dataWithContentsOfURL:imageURL];

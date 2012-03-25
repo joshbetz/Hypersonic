@@ -65,7 +65,7 @@
         <scene sceneID="uSM-LA-ld9">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6i-PG-gGT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="cAM-1u-YDi" customClass="Settings" sceneMemberID="viewController">
+                <tableViewController title="Settings" id="cAM-1u-YDi" customClass="Settings" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="lyg-PH-OKb">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -526,7 +526,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="BRV-Dn-iWY"/>
+        <segue reference="r7M-ou-Ied"/>
         <segue reference="RDu-Bv-khE"/>
     </inferredMetricsTieBreakers>
 </document>

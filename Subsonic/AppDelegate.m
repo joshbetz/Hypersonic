@@ -27,7 +27,7 @@ NSString *server;
         userURL = [userURL stringByAppendingString:userName];
         userURL = [userURL stringByAppendingString:@"&p="];
         userURL = [userURL stringByAppendingString:userPassword];
-        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp"];
+        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic"];
         RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
         UINavigationController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Start"]; 

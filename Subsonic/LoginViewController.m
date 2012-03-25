@@ -45,7 +45,7 @@
         userURL = [userURL stringByAppendingString:userName];
         userURL = [userURL stringByAppendingString:@"&p="];
         userURL = [userURL stringByAppendingString:userPassword];
-        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=myapp"];
+        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic"];
         RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
         nextViewController.artistList = rssParser.artistList;
         nextViewController.serverURL = serverURL;
