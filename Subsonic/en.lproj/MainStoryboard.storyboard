@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="10K549" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="48m-cn-VIM">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="48m-cn-VIM">
     <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
+        <!--Now Playing - Music Player-->
         <scene sceneID="isy-Aq-syK">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tfh-8W-dHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -59,6 +61,7 @@
             </objects>
             <point key="canvasLocation" x="657" y="-146"/>
         </scene>
+        <!--Settings - Settings-->
         <scene sceneID="uSM-LA-ld9">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6i-PG-gGT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -104,6 +107,7 @@
             </objects>
             <point key="canvasLocation" x="1103" y="-146"/>
         </scene>
+        <!--Album Song Table View Controller-->
         <scene sceneID="siv-3Q-Jh3">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VtC-JB-1XW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -148,6 +152,7 @@
             </objects>
             <point key="canvasLocation" x="2071" y="538"/>
         </scene>
+        <!--Navigation Controller-->
         <scene sceneID="Vxu-0O-kxg">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Wi-sK-msH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -164,6 +169,7 @@
             </objects>
             <point key="canvasLocation" x="-322" y="188"/>
         </scene>
+        <!--Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
@@ -192,6 +198,7 @@
             </objects>
             <point key="canvasLocation" x="132" y="180"/>
         </scene>
+        <!--Artist Table View Controller - Artists-->
         <scene sceneID="7ax-8p-rRk">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kks-xJ-E4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -230,6 +237,7 @@
             </objects>
             <point key="canvasLocation" x="657" y="455"/>
         </scene>
+        <!--Login View Controller - Root View Controller-->
         <scene sceneID="Cli-z6-rs3">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6V2-fp-HXg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -276,7 +284,7 @@
                                 <rect key="frame" x="112" y="98" width="178" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="textFieldReturn:" destination="yis-JZ-hT9" eventType="editingDidEndOnExit" id="Ox6-px-q5A"/>
                                 </connections>
@@ -319,6 +327,7 @@
             </objects>
             <point key="canvasLocation" x="-257" y="843"/>
         </scene>
+        <!--Album Methods Table View Controller - Albums-->
         <scene sceneID="GRJ-XS-bOn">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXn-N5-RGb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -354,6 +363,7 @@
             </objects>
             <point key="canvasLocation" x="657" y="1037"/>
         </scene>
+        <!--Playlist Table View Controller - Playlists-->
         <scene sceneID="tji-60-77c">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SKA-wj-ctS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -431,7 +441,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mLk-Mp-Xwr"/>
         <segue reference="BRV-Dn-iWY"/>
+        <segue reference="RDu-Bv-khE"/>
     </inferredMetricsTieBreakers>
 </document>
