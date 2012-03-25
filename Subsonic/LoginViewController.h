@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController{
+@interface LoginViewController : UITableViewController
+{
     UIButton *loginButton;
     UITextField *server;
     UITextField *name;

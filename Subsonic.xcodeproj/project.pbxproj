@@ -108,7 +108,6 @@
 		032E6EA114F3F4860072697A = {
 			isa = PBXGroup;
 			children = (
-				762D070A1512444A0015363A /* AVFoundation.framework */,
 				03218B1A150F141C00F7DF82 /* Default@2x.png */,
 				03218B18150F141700F7DF82 /* Default.png */,
 				03218B16150F141100F7DF82 /* Icon@2x.png */,
@@ -130,6 +129,7 @@
 		032E6EAF14F3F4860072697A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				762D070A1512444A0015363A /* AVFoundation.framework */,
 				032E6EB014F3F4860072697A /* UIKit.framework */,
 				032E6EB214F3F4860072697A /* Foundation.framework */,
 				032E6EB414F3F4860072697A /* CoreGraphics.framework */,
