@@ -68,7 +68,13 @@
 {
     [super viewDidLoad];
     
-    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default@2x.png"]];
+    NSString *imageSize = @"Default.png";
+    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2) {
+        imageSize = @"Default@2x.png";
+    }
+    
+    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageSize]];
     [tempImageView setFrame:self.tableView.frame]; 
     
     self.tableView.backgroundView = tempImageView;
