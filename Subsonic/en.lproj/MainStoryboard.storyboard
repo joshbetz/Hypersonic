@@ -530,6 +530,7 @@
         <class className="NowPlaying" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NowPlaying.h"/>
             <relationships>
+                <relationship kind="action" name="adjustVolume"/>
                 <relationship kind="action" name="done:"/>
                 <relationship kind="action" name="nextSong:"/>
                 <relationship kind="action" name="playSong:"/>
@@ -538,6 +539,7 @@
                 <relationship kind="outlet" name="nextButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="prevButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="volumeSlider" candidateClass="UISlider"/>
             </relationships>
         </class>
         <class className="PlaylistTableViewController" superclassName="UITableViewController">

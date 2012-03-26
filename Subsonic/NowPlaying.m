@@ -11,12 +11,12 @@
 #import <AVFoundation/AVPlayerItem.h>
 #import <AVFoundation/AVPlayer.h>
 #import <AVFoundation/AVAudioSession.h>
-
+#import "MediaPlayer/MPVolumeView.h"
 @interface NowPlaying ()
 @end
 
 @implementation NowPlaying
-@synthesize songID, avPlayer, playerItem, playButton, userName, userPassword, serverURL, albumArt, albumArtID, songList, queueList, nextButton, prevButton;
+@synthesize songID, avPlayer, playerItem, playButton, userName, userPassword, serverURL, albumArt, albumArtID, songList, queueList, nextButton, prevButton, itemList, volumeSlider;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     self.queueList = [NSMutableArray array];
+    self.itemList = [NSMutableArray array];
     NSString *userURL;
     NSURL *url;
     for (int i = 0; i < [songList count] - 1; i++){
@@ -63,10 +64,17 @@
     avPlayer = [AVPlayer playerWithPlayerItem:playerItem];
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     [[AVAudioSession sharedInstance] setActive: YES error: nil];
-    
+    for (int i = 0; i < [queueList count] - 1; i++){
+        url = [queueList objectAtIndex:i];
+        [self.itemList addObject:[AVPlayerItem playerItemWithURL:url]];
+    }
     //AVPlayerLayer *avPlayerLayer = [[AVPlayerLayer playerLayerWithPlayer:avPlayer] retain];
     //[avPlayer play];
     //avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+    MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(200,100,100,200)];
+    [volumeView sizeToFit];
+    [self.view addSubview:volumeView];
+
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -109,8 +117,7 @@
     }
     else {
         UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
-        playerItem = [AVPlayerItem playerItemWithURL:[queueList objectAtIndex:currentIndex]];
-        avPlayer = [AVPlayer playerWithPlayerItem:playerItem];
+        avPlayer = [AVPlayer playerWithPlayerItem:[itemList objectAtIndex:currentIndex]];
         [avPlayer play];
         newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
     }
@@ -124,12 +131,19 @@
     }
     else {
         UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
-        playerItem = [AVPlayerItem playerItemWithURL:[queueList objectAtIndex:currentIndex]];
-        avPlayer = [AVPlayer playerWithPlayerItem:playerItem];
+        avPlayer = [AVPlayer playerWithPlayerItem:[itemList objectAtIndex:currentIndex]];
         [avPlayer play];
         newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
 
     }
 }
+
+-(void)adjustVolume
+{
+    if (avPlayer != nil)
+    {
+        //[avPlayer set = volumeSlider.value;
+    }
+} 
 
 @end

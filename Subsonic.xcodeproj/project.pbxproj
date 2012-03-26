@@ -37,6 +37,7 @@
 		9EADDFB2151BA1470082425B /* AlbumMethodsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EADDFB1151BA1470082425B /* AlbumMethodsTableViewController.m */; };
 		9EB97E731517B69B00C18801 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EB97E721517B69B00C18801 /* LoginViewController.m */; };
 		9EBF78F4150E7F4B00672257 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF78F3150E7F4B00672257 /* Song.m */; };
+		9EFB4D0A1520F363006F8EDF /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFB4D091520F363006F8EDF /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		9EB97E721517B69B00C18801 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9EBF78F2150E7F4B00672257 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
 		9EBF78F3150E7F4B00672257 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
+		9EFB4D091520F363006F8EDF /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EFB4D0A1520F363006F8EDF /* MediaPlayer.framework in Frameworks */,
 				762D070B1512444A0015363A /* AVFoundation.framework in Frameworks */,
 				032E6EB114F3F4860072697A /* UIKit.framework in Frameworks */,
 				032E6EB314F3F4860072697A /* Foundation.framework in Frameworks */,
@@ -108,6 +111,7 @@
 		032E6EA114F3F4860072697A = {
 			isa = PBXGroup;
 			children = (
+				9EFB4D091520F363006F8EDF /* MediaPlayer.framework */,
 				03218B1A150F141C00F7DF82 /* Default@2x.png */,
 				03218B18150F141700F7DF82 /* Default.png */,
 				03218B16150F141100F7DF82 /* Icon@2x.png */,
