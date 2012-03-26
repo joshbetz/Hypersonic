@@ -64,13 +64,15 @@
 }
 */
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default@2x.png"]];
+    [tempImageView setFrame:self.tableView.frame]; 
+    
+    self.tableView.backgroundView = tempImageView;
 }
-*/
 
 - (void)viewDidUnload
 {
