@@ -110,15 +110,22 @@
          nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
     }
     if ([[segue identifier] isEqualToString:@"SelectedSong"]) {
-        NSString *song = [[songList objectAtIndex:[self.tableView indexPathForSelectedRow].row] songID];
+        /*NSString *song = [[songList objectAtIndex:[self.tableView indexPathForSelectedRow].row] songID];*/
         NowPlaying *nextViewController = [segue destinationViewController];
-        nextViewController.songID = song;    
+        /*nextViewController.songID = song;    
         nextViewController.userName = userName;
         nextViewController.userPassword = userPassword;
-        nextViewController.serverURL = serverURL;
+        nextViewController.serverURL = serverURL;*/
         if ([[songList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumArt] != nil){
         nextViewController.albumArtID = [[songList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumArt];
         }
+        NSMutableArray *songArray = [[NSMutableArray array] init];
+        int index = [self.tableView indexPathForSelectedRow].row;
+        nextViewController->currentIndex = index;
+        for (int i = 0; i < [songList count] - 1; i++){
+            [songArray addObject:[songList objectAtIndex:i]];
+        }
+        nextViewController.songList = songArray;
     }
 }
 
