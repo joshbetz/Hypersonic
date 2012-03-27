@@ -198,9 +198,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		032E6EAB14F3F4860072697A /* Subsonic */ = {
+		032E6EAB14F3F4860072697A /* Hypersonic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 032E6ED514F3F4870072697A /* Build configuration list for PBXNativeTarget "Subsonic" */;
+			buildConfigurationList = 032E6ED514F3F4870072697A /* Build configuration list for PBXNativeTarget "Hypersonic" */;
 			buildPhases = (
 				032E6EA814F3F4860072697A /* Sources */,
 				032E6EA914F3F4860072697A /* Frameworks */,
@@ -210,7 +210,7 @@
 			);
 			dependencies = (
 			);
-			name = Subsonic;
+			name = Hypersonic;
 			productName = Subsonic;
 			productReference = 032E6EAC14F3F4860072697A /* Subsonic.app */;
 			productType = "com.apple.product-type.application";
@@ -235,7 +235,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				032E6EAB14F3F4860072697A /* Subsonic */,
+				032E6EAB14F3F4860072697A /* Hypersonic */,
 			);
 		};
 /* End PBXProject section */
@@ -385,7 +385,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		032E6ED514F3F4870072697A /* Build configuration list for PBXNativeTarget "Subsonic" */ = {
+		032E6ED514F3F4870072697A /* Build configuration list for PBXNativeTarget "Hypersonic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				032E6ED614F3F4870072697A /* Debug */,
