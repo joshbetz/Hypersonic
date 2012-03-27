@@ -71,7 +71,7 @@
     //AVPlayerLayer *avPlayerLayer = [[AVPlayerLayer playerLayerWithPlayer:avPlayer] retain];
     //[avPlayer play];
     //avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
-    MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(200,100,100,200)];
+    MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(20,420,280,20)];
     [volumeView sizeToFit];
     [self.view addSubview:volumeView];
 
