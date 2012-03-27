@@ -16,7 +16,6 @@
     NSString *userName;
     NSString *userPassword;
     AVPlayerItem *playerItem;
-    AVPlayer *avPlayer;
     UIButton *playButton;
     UIImageView *albumArt;
     NSString *albumArtID;
@@ -39,7 +38,6 @@
 @property (nonatomic, strong) NSString *userPassword;
 @property (nonatomic, strong) NSString *serverURL;
 @property (nonatomic, strong) AVPlayerItem *playerItem;
-@property (nonatomic, strong) AVPlayer *avPlayer;
 @property (nonatomic, strong) IBOutlet UIButton *playButton;
 @property (nonatomic, strong) IBOutlet UIButton *nextButton;
 @property (nonatomic, strong) IBOutlet UIButton *prevButton;

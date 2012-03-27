@@ -16,6 +16,7 @@
 NSString *password;
 NSString *name;
 NSString *server;
+AVPlayer *avPlayer;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.

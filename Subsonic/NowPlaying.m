@@ -16,7 +16,7 @@
 @end
 
 @implementation NowPlaying
-@synthesize songID, avPlayer, playerItem, playButton, userName, userPassword, serverURL, albumArt, albumArtID, songList, queueList, nextButton, prevButton, itemList, volumeSlider;
+@synthesize songID, playerItem, playButton, userName, userPassword, serverURL, albumArt, albumArtID, songList, queueList, nextButton, prevButton, itemList, volumeSlider;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,7 +33,7 @@
     self.itemList = [NSMutableArray array];
     NSString *userURL;
     NSURL *url;
-    for (int i = 0; i < [songList count] - 1; i++){
+    for (int i = 0; i < [songList count]; i++){
         userURL = @"http://";
         userURL = [userURL stringByAppendingString:server];
         userURL = [userURL stringByAppendingString:@"/rest/stream.view?u="];
@@ -64,7 +64,7 @@
     avPlayer = [AVPlayer playerWithPlayerItem:playerItem];
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     [[AVAudioSession sharedInstance] setActive: YES error: nil];
-    for (int i = 0; i < [queueList count] - 1; i++){
+    for (int i = 0; i < [queueList count]; i++){
         url = [queueList objectAtIndex:i];
         [self.itemList addObject:[AVPlayerItem playerItemWithURL:url]];
     }
@@ -137,7 +137,7 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
--(IBAction)playSong:(id)playButton{
+-(IBAction)playSong:(id)sender{
     if ([[(UIButton *)playButton currentTitle] isEqualToString:@"Play"]){
     UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
     [avPlayer play];

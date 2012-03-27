@@ -122,7 +122,7 @@
         NSMutableArray *songArray = [[NSMutableArray array] init];
         int index = [self.tableView indexPathForSelectedRow].row;
         nextViewController->currentIndex = index;
-        for (int i = 0; i < [songList count] - 1; i++){
+        for (int i = 0; i < [songList count]; i++){
             [songArray addObject:[songList objectAtIndex:i]];
         }
         nextViewController.songList = songArray;
@@ -134,14 +134,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     if (songs == true && albums && true){
         // fix this edge case!
