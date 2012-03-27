@@ -111,6 +111,10 @@
             [self playSong:playButton];
         } else if (event.subtype == UIEventSubtypeRemoteControlTogglePlayPause) {
             [self playSong:playButton];
+        } else if (event.subtype == UIEventSubtypeRemoteControlNextTrack) {
+            [self nextSong:nextButton];
+        } else if (event.subtype == UIEventSubtypeRemoteControlPreviousTrack) {
+            [self prevSong:prevButton];
         }
     }
 }
