@@ -77,6 +77,8 @@
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [self playSong:playButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
