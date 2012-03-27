@@ -29,44 +29,47 @@
 
 - (void)viewDidLoad
 {
-    self.queueList = [NSMutableArray array];
-    self.itemList = [NSMutableArray array];
-    NSString *userURL;
-    NSURL *url;
-    for (int i = 0; i < [songList count]; i++){
+    if(avPlayer.rate == 0) {
+        self.queueList = [NSMutableArray array];
+        self.itemList = [NSMutableArray array];
+        NSString *userURL;
+        NSURL *url;
+        for (int i = 0; i < [songList count]; i++){
+            userURL = @"http://";
+            userURL = [userURL stringByAppendingString:server];
+            userURL = [userURL stringByAppendingString:@"/rest/stream.view?u="];
+            userURL = [userURL stringByAppendingString:name];
+            userURL = [userURL stringByAppendingString:@"&p="];
+            userURL = [userURL stringByAppendingString:password];
+            userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
+            userURL = [userURL stringByAppendingString:[[songList objectAtIndex:i] songID]];
+            url = [NSURL URLWithString:userURL];
+            [self.queueList addObject:url];
+        }
+        if (albumArtID != nil) {
         userURL = @"http://";
         userURL = [userURL stringByAppendingString:server];
-        userURL = [userURL stringByAppendingString:@"/rest/stream.view?u="];
+        userURL = [userURL stringByAppendingString:@"/rest/getCoverArt.view?u="];
         userURL = [userURL stringByAppendingString:name];
         userURL = [userURL stringByAppendingString:@"&p="];
         userURL = [userURL stringByAppendingString:password];
         userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
-        userURL = [userURL stringByAppendingString:[[songList objectAtIndex:i] songID]];
-        url = [NSURL URLWithString:userURL];
-        [self.queueList addObject:url];
-    }
-    if (albumArtID != nil) {
-    userURL = @"http://";
-    userURL = [userURL stringByAppendingString:server];
-    userURL = [userURL stringByAppendingString:@"/rest/getCoverArt.view?u="];
-    userURL = [userURL stringByAppendingString:name];
-    userURL = [userURL stringByAppendingString:@"&p="];
-    userURL = [userURL stringByAppendingString:password];
-    userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
-    userURL = [userURL stringByAppendingString:albumArtID];
-    NSURL *imageURL = [NSURL URLWithString: userURL];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage *image = [UIImage imageWithData:imageData]; 
-    albumArt.image = image;
-    }
-    NSLog(@"%d", [queueList count]);
-    playerItem = [AVPlayerItem playerItemWithURL:[queueList objectAtIndex:currentIndex]];
-    avPlayer = [AVPlayer playerWithPlayerItem:playerItem];
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-    [[AVAudioSession sharedInstance] setActive: YES error: nil];
-    for (int i = 0; i < [queueList count]; i++){
-        url = [queueList objectAtIndex:i];
-        [self.itemList addObject:[AVPlayerItem playerItemWithURL:url]];
+        userURL = [userURL stringByAppendingString:albumArtID];
+        NSURL *imageURL = [NSURL URLWithString: userURL];
+        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+        UIImage *image = [UIImage imageWithData:imageData]; 
+        albumArt.image = image;
+        }
+    
+        NSLog(@"%d", [queueList count]);
+        playerItem = [AVPlayerItem playerItemWithURL:[queueList objectAtIndex:currentIndex]];
+        avPlayer = [AVPlayer playerWithPlayerItem:playerItem];
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+        [[AVAudioSession sharedInstance] setActive: YES error: nil];
+        for (int i = 0; i < [queueList count]; i++){
+            url = [queueList objectAtIndex:i];
+            [self.itemList addObject:[AVPlayerItem playerItemWithURL:url]];
+        }
     }
     //AVPlayerLayer *avPlayerLayer = [[AVPlayerLayer playerLayerWithPlayer:avPlayer] retain];
     //[avPlayer play];
