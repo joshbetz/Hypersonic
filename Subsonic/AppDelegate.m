@@ -24,30 +24,15 @@ UIImage *art;
 int currentIndex;
 BOOL differentAlbum = false;
 NSMutableArray *artistList;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     [self loadSettings];
     if (server != nil){
-        NSString *userURL = @"http://";
-        userURL = [userURL stringByAppendingString:server];
-        userURL = [userURL stringByAppendingString:@"/rest/getIndexes.view?u="];
-        userURL = [userURL stringByAppendingString:name];
-        userURL = [userURL stringByAppendingString:@"&p="];
-        userURL = [userURL stringByAppendingString:password];
-        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic"];
+        [self updateArtists];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
         UINavigationController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Start"]; 
-        //UINavigationController *xy = [[vc viewControllers] objectAtIndex:0];
-        //ArtistTableViewController *next = [[xy viewControllers] objectAtIndex:0];
-        if (artistList == nil){
-        RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
-        NSLog(@"%d", [rssParser.artistList count]);
-        artistList = rssParser.artistList;
-        artistListProperty = rssParser.artistList;
-        NSLog(@"%d", [artistList count]);
-        [self saveSettings];
-        }
         self.window.rootViewController = vc;
 	} else {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
@@ -55,6 +40,25 @@ NSMutableArray *artistList;
         self.window.rootViewController = vc;
     }
     return YES;
+}
+
+- (void)updateArtists
+{
+    NSString *userURL = @"http://";
+    userURL = [userURL stringByAppendingString:server];
+    userURL = [userURL stringByAppendingString:@"/rest/getIndexes.view?u="];
+    userURL = [userURL stringByAppendingString:name];
+    userURL = [userURL stringByAppendingString:@"&p="];
+    userURL = [userURL stringByAppendingString:password];
+    userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic"];
+    if (artistList == nil){
+        RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+        NSLog(@"%d", [rssParser.artistList count]);
+        artistList = rssParser.artistList;
+        artistListProperty = rssParser.artistList;
+        NSLog(@"%d", [artistList count]);
+        [self saveSettings];
+    } 
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

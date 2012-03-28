@@ -29,4 +29,5 @@ extern BOOL differentAlbum;
 
 -(void)loadSettings;
 -(void)saveSettings;
+-(void)updateArtists;
 @end
