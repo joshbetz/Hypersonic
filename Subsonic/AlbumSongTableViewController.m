@@ -97,17 +97,14 @@
     if ([[segue identifier] isEqualToString:@"ShowAlbums"]) {
         NSString *albumID = [[albumList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumID];
         NSString *userURL = @"http://";
-        userURL = [userURL stringByAppendingString:serverURL];
+        userURL = [userURL stringByAppendingString:server];
         userURL = [userURL stringByAppendingString:@"/rest/getMusicDirectory.view?u="];
-        userURL = [userURL stringByAppendingString:userName];
+        userURL = [userURL stringByAppendingString:name];
         userURL = [userURL stringByAppendingString:@"&p="];
-        userURL = [userURL stringByAppendingString:userPassword];
+        userURL = [userURL stringByAppendingString:password];
         userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
          userURL = [userURL stringByAppendingString:albumID];
          AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-        nextViewController.userName = userName;
-        nextViewController.userPassword = userPassword;
-        nextViewController.serverURL = serverURL;
          nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
     }
     if ([[segue identifier] isEqualToString:@"SelectedSong"]) {
