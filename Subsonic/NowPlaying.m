@@ -177,7 +177,9 @@
     if ([itemList count] > 0){
         currentIndex++;
         if (currentIndex == [queueList count]){
-            currentIndex--;
+            [avPlayer pause];
+            currentIndex = 0;
+            [self.navigationController popViewControllerAnimated:YES];
         }
         else {
             UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
@@ -195,16 +197,14 @@
     if ([itemList count] > 0){
         currentIndex--;
         if (currentIndex < 0){
-            currentIndex++;
+            currentIndex = 0;
         }
-        else {
-            UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
-            avPlayer = [AVPlayer playerWithPlayerItem:[itemList objectAtIndex:currentIndex]];
-            [avPlayer play];
-            newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
-            avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone; 
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:[avPlayer currentItem]];
-        }
+        UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
+        avPlayer = [AVPlayer playerWithPlayerItem:[itemList objectAtIndex:currentIndex]];
+        [avPlayer play];
+        newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
+        avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone; 
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:[avPlayer currentItem]];
     }
 }
 
