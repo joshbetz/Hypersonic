@@ -22,6 +22,12 @@ extern NSString *server;
 extern NSString *name;
 extern NSString *password;
 extern AVPlayer *avPlayer;
+extern NSMutableArray *songList;
+extern NSMutableArray *queueList;
+extern NSMutableArray *itemList;
+extern int currentIndex;
+extern UIImage *art;
+extern BOOL differentAlbum;
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSString *serverURL;

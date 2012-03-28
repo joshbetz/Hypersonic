@@ -12,7 +12,6 @@
 @interface AlbumSongTableViewController : UITableViewController{
     NSMutableArray *albumList;
     RSSParser *parser;
-    NSMutableArray *songList;
     BOOL songs;
     BOOL albums;
     NSString *userName;
@@ -21,7 +20,6 @@
 }
 @property (nonatomic, strong) NSMutableArray *albumList;
 @property (strong, nonatomic) RSSParser *parser;
-@property (strong, nonatomic) NSMutableArray *songList;
 @property (strong, nonatomic) NSString *userName;
 @property (strong, nonatomic) NSString *userPassword;
 @property (strong, nonatomic) NSString *serverURL;

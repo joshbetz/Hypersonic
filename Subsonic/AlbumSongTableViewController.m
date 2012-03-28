@@ -11,9 +11,10 @@
 #import "Album.h"
 #import "Song.h"
 #import "NowPlaying.h"
+#import "AppDelegate.h"
 
 @implementation AlbumSongTableViewController
-@synthesize songList, albumList, parser, userPassword, userName, serverURL;
+@synthesize albumList, parser, userPassword, userName, serverURL;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -116,16 +117,18 @@
         nextViewController.userName = userName;
         nextViewController.userPassword = userPassword;
         nextViewController.serverURL = serverURL;*/
+        art = nil;
         if ([[songList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumArt] != nil){
         nextViewController.albumArtID = [[songList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumArt];
         }
         NSMutableArray *songArray = [[NSMutableArray array] init];
         int index = [self.tableView indexPathForSelectedRow].row;
-        nextViewController->currentIndex = index;
+        currentIndex = index;
         for (int i = 0; i < [songList count]; i++){
             [songArray addObject:[songList objectAtIndex:i]];
         }
-        nextViewController.songList = songArray;
+        songList = songArray;
+        differentAlbum = true;
     }
 }
 

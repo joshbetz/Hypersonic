@@ -17,6 +17,12 @@ NSString *password;
 NSString *name;
 NSString *server;
 AVPlayer *avPlayer;
+NSMutableArray *songList;
+NSMutableArray *queueList;
+NSMutableArray *itemList;
+UIImage *art;
+int currentIndex;
+BOOL differentAlbum = false;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.

@@ -42,7 +42,6 @@
     userURL = [userURL stringByAppendingString:@"&p="];
     userURL = [userURL stringByAppendingString:password];
     userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic"];
-    NSLog(userURL);
     RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
     playlistList = parser.playlistList;
     [super viewDidLoad];
@@ -111,14 +110,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [playlistList count];
 }

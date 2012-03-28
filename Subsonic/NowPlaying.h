@@ -17,22 +17,14 @@
     NSString *userPassword;
     AVPlayerItem *playerItem;
     UIButton *playButton;
-    UIImageView *albumArt;
     NSString *albumArtID;
-    NSMutableArray *songList;
-    NSMutableArray *queueList;
-    NSMutableArray *itemList;
+    UIImageView *albumArt;
     UIButton *nextButton;
     UIButton *prevButton;
     UISlider *volumeSlider;
-    @public 
-    int currentIndex;
 }
 
 @property (nonatomic, strong) NSString *songID;
-@property (nonatomic, strong) NSMutableArray *songList;
-@property (nonatomic, strong) NSMutableArray *queueList;
-@property (nonatomic, strong) NSMutableArray *itemList;
 @property (nonatomic, strong) NSString *albumArtID;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *userPassword;
