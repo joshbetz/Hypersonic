@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EGORefreshTableHeaderView.h"
 
-@interface ArtistTableViewController : UITableViewController{
-
+@interface ArtistTableViewController : UITableViewController <EGORefreshTableHeaderDelegate>
+{
+	EGORefreshTableHeaderView *_refreshHeaderView;
+	
+	//  Reloading var should really be your tableviews datasource
+	//  Putting it here for demo purposes 
+	BOOL _reloading;
 }
 
+- (void)reloadTableViewDataSource;
+- (void)doneLoadingTableViewData;
 @end
