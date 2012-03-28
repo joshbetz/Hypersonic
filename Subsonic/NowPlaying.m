@@ -141,13 +141,13 @@
 }
 
 -(IBAction)playSong:(id)sender{
-    if ([[(UIButton *)playButton currentTitle] isEqualToString:@"Play"]){
-    UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
-    [avPlayer play];
-    newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
-    [playButton setTitle:@"Pause" forState:UIControlStateNormal];
+    if (avPlayer.rate == 0.0){
+        UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
+        [avPlayer play];
+        newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
+        [playButton setTitle:@"Pause" forState:UIControlStateNormal];
     }   
-    else if ([[(UIButton *)playButton currentTitle] isEqualToString:@"Pause"]){
+    else {
         [avPlayer pause];
         [playButton setTitle:@"Play" forState:UIControlStateNormal];
     }

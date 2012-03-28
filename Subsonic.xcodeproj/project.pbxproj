@@ -45,7 +45,7 @@
 		03218B16150F141100F7DF82 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		03218B18150F141700F7DF82 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		03218B1A150F141C00F7DF82 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		032E6EAC14F3F4860072697A /* Subsonic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Subsonic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		032E6EAC14F3F4860072697A /* Hypersonic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hypersonic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		032E6EB014F3F4860072697A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		032E6EB214F3F4860072697A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		032E6EB414F3F4860072697A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -124,7 +124,7 @@
 		032E6EAD14F3F4860072697A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				032E6EAC14F3F4860072697A /* Subsonic.app */,
+				032E6EAC14F3F4860072697A /* Hypersonic.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,7 +212,7 @@
 			);
 			name = Hypersonic;
 			productName = Subsonic;
-			productReference = 032E6EAC14F3F4860072697A /* Subsonic.app */;
+			productReference = 032E6EAC14F3F4860072697A /* Hypersonic.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
