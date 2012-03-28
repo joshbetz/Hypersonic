@@ -12,7 +12,7 @@
 #import "RSSParser.h"
 
 @implementation LoginViewController
-@synthesize loginButton, password, name, server, userPassword, userName, serverURL, artistList;
+@synthesize loginButton, passwordText, nameText, serverText, userPassword, userName, serverURL, artistListProperty;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,12 +33,15 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"Login"]) {
-        userName = name.text;
-        serverURL = server.text;
-        userPassword = password.text;
+        userName = nameText.text;
+        serverURL = serverText.text;
+        userPassword = passwordText.text;
         UINavigationController *navigationController = segue.destinationViewController;
         navigationController = [[navigationController viewControllers] objectAtIndex:0];
-        ArtistTableViewController *nextViewController = [[navigationController viewControllers] objectAtIndex:0];
+        //ArtistTableViewController *nextViewController = [[navigationController viewControllers] objectAtIndex:0];
+        name = userName;
+        password = userPassword;
+        server = serverURL;
         NSString *userURL = @"http://";
         userURL = [userURL stringByAppendingString:serverURL];
         userURL = [userURL stringByAppendingString:@"/rest/getIndexes.view?u="];
@@ -47,10 +50,8 @@
         userURL = [userURL stringByAppendingString:userPassword];
         userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic"];
         RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
-        nextViewController.artistList = rssParser.artistList;
-        nextViewController.serverURL = serverURL;
-        nextViewController.userPassword = userPassword;
-        nextViewController.userName = userName;
+        artistList = rssParser.artistList;
+        artistListProperty = rssParser.artistList;
         [self saveSettings];
     }
 }
@@ -100,6 +101,8 @@
 	[prefs setObject:userName  forKey:@"userName"];
 	[prefs setObject:userPassword forKey:@"userPassword"];
 	[prefs setObject:serverURL forKey:@"serverURL"];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:artistListProperty];
+	[prefs setObject:data  forKey:@"artistList"];
     [prefs synchronize];
 	
 }
@@ -114,9 +117,9 @@
 }
 -(IBAction)backgroundTouched:(id)sender
 {
-    [server resignFirstResponder];
-    [password resignFirstResponder];
-    [name resignFirstResponder];
+    [serverText resignFirstResponder];
+    [passwordText resignFirstResponder];
+    [nameText resignFirstResponder];
 }
 
 @end

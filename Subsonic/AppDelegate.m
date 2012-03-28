@@ -12,7 +12,7 @@
 #import "RSSParser.h"
 @implementation AppDelegate
 
-@synthesize window = _window, userName, userPassword, serverURL, artistList;
+@synthesize window = _window, artistListProperty;
 NSString *password;
 NSString *name;
 NSString *server;
@@ -23,30 +23,31 @@ NSMutableArray *itemList;
 UIImage *art;
 int currentIndex;
 BOOL differentAlbum = false;
+NSMutableArray *artistList;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     [self loadSettings];
-    if (serverURL != nil){
+    if (server != nil){
         NSString *userURL = @"http://";
-        userURL = [userURL stringByAppendingString:serverURL];
+        userURL = [userURL stringByAppendingString:server];
         userURL = [userURL stringByAppendingString:@"/rest/getIndexes.view?u="];
-        userURL = [userURL stringByAppendingString:userName];
+        userURL = [userURL stringByAppendingString:name];
         userURL = [userURL stringByAppendingString:@"&p="];
-        userURL = [userURL stringByAppendingString:userPassword];
+        userURL = [userURL stringByAppendingString:password];
         userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic"];
-        RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
         UINavigationController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Start"]; 
-        UINavigationController *xy = [[vc viewControllers] objectAtIndex:0];
-        ArtistTableViewController *next = [[xy viewControllers] objectAtIndex:0];
-        next.artistList = rssParser.artistList;
-        next.serverURL = serverURL;
-        next.userPassword = userPassword;
-        next.userName = userName;
-        password = userPassword;
-        name = userName;
-        server = serverURL;
+        //UINavigationController *xy = [[vc viewControllers] objectAtIndex:0];
+        //ArtistTableViewController *next = [[xy viewControllers] objectAtIndex:0];
+        if (artistList == nil){
+        RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+        NSLog(@"%d", [rssParser.artistList count]);
+        artistList = rssParser.artistList;
+        artistListProperty = rssParser.artistList;
+        NSLog(@"%d", [artistList count]);
+        [self saveSettings];
+        }
         self.window.rootViewController = vc;
 	} else {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
@@ -96,14 +97,19 @@ BOOL differentAlbum = false;
 }
 
 -(void)loadSettings{
-	
-    
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	serverURL = [prefs objectForKey:@"serverURL"];
-	userPassword = [prefs objectForKey:@"userPassword"];
-	userName = [prefs objectForKey:@"userName"];
-    
-	
+	server = [prefs objectForKey:@"serverURL"];
+	password = [prefs objectForKey:@"userPassword"];
+	name = [prefs objectForKey:@"userName"];
+    NSData *data = [prefs objectForKey:@"artistList"];
+    artistList = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
+}
+
+-(void)saveSettings{
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:artistListProperty];
+	[prefs setObject:data  forKey:@"artistList"];
+    [prefs synchronize];
 }
          
 @end

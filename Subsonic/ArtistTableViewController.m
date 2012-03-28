@@ -15,8 +15,6 @@
 
 @implementation ArtistTableViewController
 
-@synthesize artistList, serverURL, userName,userPassword;
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -38,26 +36,7 @@
 
 - (void)viewDidLoad
 {
-   /* NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	serverURL = [prefs objectForKey:@"serverURL"];
-	userPassword = [prefs objectForKey:@"userPassword"];
-	userName = [prefs objectForKey:@"userName"];
-    NSLog(@"1");
-	if (serverURL == nil){
-        NSLog(@"2");
-        LoginViewController *next = [[LoginViewController alloc] init];
-        //[self pushViewController:self.window.rootViewController];
-        //[self.window addSubview: next];
-        [self presentModalViewController:next animated:YES];
-        
-	}	*/
-    
-    //NSString *userURL = @"http://wilmothighschool.com:4040/rest/getIndexes.view?u=mobileappdev&p=mobile123&v=1.1.0&c=Hypersonic";
-    //RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
-    //artistList = rssParser.artistList;
-    server = serverURL;
-    name = userName;
-    password = userPassword;
+    NSLog(@"%d", [artistList count]);
     [super viewDidLoad];
         
     // Uncomment the following line to preserve selection between presentations.
@@ -102,30 +81,17 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"ShowAlbums"]) {
-        /*NSString *artistID = [[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] artistID];
-        NSString *userURL = @"http://wilmothighschool.com:4040/rest/getMusicDirectory.view?u=mobileappdev&p=mobile123&v=1.1.0&c=Hypersonic&id=";
-        userURL = [userURL stringByAppendingString:artistID];
-        NSLog(userURL);
-        AlbumTableViewController *nextViewController = [segue destinationViewController];
-        nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
-        nextViewController.albumList = nextViewController.parser.albumList;
-        NSLog([NSString stringWithFormat:@"%d", [nextViewController.albumList count]]); */
-    }
-    else if ([[segue identifier] isEqualToString:@"AlbumClick"]) {
+    if ([[segue identifier] isEqualToString:@"AlbumClick"]) {
         NSString *artistID = [[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] artistID];
         NSString *userURL = @"http://";
-        userURL = [userURL stringByAppendingString:serverURL];
+        userURL = [userURL stringByAppendingString:server];
         userURL = [userURL stringByAppendingString:@"/rest/getMusicDirectory.view?u="];
-        userURL = [userURL stringByAppendingString:userName];
+        userURL = [userURL stringByAppendingString:name];
         userURL = [userURL stringByAppendingString:@"&p="];
-        userURL = [userURL stringByAppendingString:userPassword];
+        userURL = [userURL stringByAppendingString:password];
         userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
         userURL = [userURL stringByAppendingString:artistID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-        nextViewController.userName = userName;
-        nextViewController.userPassword = userPassword;
-        nextViewController.serverURL = serverURL;
         nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
     }
 }

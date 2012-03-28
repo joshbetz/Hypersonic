@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="48m-cn-VIM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="10K549" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="48m-cn-VIM">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
+        <deployment defaultVersion="1280" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
     </dependencies>
     <scenes>
-        <!--Now Playing - Music Player-->
         <scene sceneID="isy-Aq-syK">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tfh-8W-dHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -93,7 +92,6 @@
             </objects>
             <point key="canvasLocation" x="657" y="-146"/>
         </scene>
-        <!--Settings - Settings-->
         <scene sceneID="uSM-LA-ld9">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6i-PG-gGT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -134,7 +132,7 @@
                                         <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="skO-Cj-aav">
@@ -159,7 +157,7 @@
                                         <rect key="frame" x="0.0" y="99" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="we8-g6-MaQ">
@@ -193,7 +191,6 @@
             </objects>
             <point key="canvasLocation" x="1103" y="-146"/>
         </scene>
-        <!--Album Song Table View Controller-->
         <scene sceneID="siv-3Q-Jh3">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VtC-JB-1XW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -238,7 +235,6 @@
             </objects>
             <point key="canvasLocation" x="1484" y="764"/>
         </scene>
-        <!--Navigation Controller-->
         <scene sceneID="Vxu-0O-kxg">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Wi-sK-msH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -256,7 +252,6 @@
             </objects>
             <point key="canvasLocation" x="-319" y="180"/>
         </scene>
-        <!--Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
@@ -285,7 +280,6 @@
             </objects>
             <point key="canvasLocation" x="132" y="180"/>
         </scene>
-        <!--Artist Table View Controller - Artists-->
         <scene sceneID="7ax-8p-rRk">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kks-xJ-E4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -324,7 +318,6 @@
             </objects>
             <point key="canvasLocation" x="657" y="455"/>
         </scene>
-        <!--Login View Controller-->
         <scene sceneID="oWe-LO-9w1">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uEa-Gg-xQS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -360,7 +353,7 @@
                                         <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Login" minimumFontSize="17" id="cjw-Lx-OUg">
@@ -380,7 +373,7 @@
                                         <rect key="frame" x="0.0" y="99" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="zY0-rZ-WgW">
@@ -437,15 +430,14 @@
                     </tableView>
                     <connections>
                         <outlet property="loginButton" destination="WdK-er-mn4" id="WZy-b2-uvE"/>
-                        <outlet property="name" destination="cjw-Lx-OUg" id="Y5P-L4-z9z"/>
-                        <outlet property="password" destination="zY0-rZ-WgW" id="n2w-Kz-15k"/>
-                        <outlet property="server" destination="8ol-XG-PCt" id="okf-Xn-irv"/>
+                        <outlet property="nameText" destination="cjw-Lx-OUg" id="KMS-E1-peC"/>
+                        <outlet property="passwordText" destination="zY0-rZ-WgW" id="Fn8-Eg-LcO"/>
+                        <outlet property="serverText" destination="8ol-XG-PCt" id="83d-G1-vvT"/>
                     </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="-752" y="180"/>
         </scene>
-        <!--Album Methods Table View Controller - Albums-->
         <scene sceneID="GRJ-XS-bOn">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXn-N5-RGb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -481,7 +473,6 @@
             </objects>
             <point key="canvasLocation" x="657" y="1037"/>
         </scene>
-        <!--Playlist Table View Controller - Playlists-->
         <scene sceneID="tji-60-77c">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SKA-wj-ctS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -532,9 +523,9 @@
                 <relationship kind="action" name="login:"/>
                 <relationship kind="action" name="textFieldReturn:"/>
                 <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="name" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="server" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nameText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="serverText" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="NowPlaying" superclassName="UIViewController">

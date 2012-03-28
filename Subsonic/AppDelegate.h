@@ -11,12 +11,9 @@
 #import <AVFoundation/AVPlayer.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
-    NSString *serverURL;
-    NSString *userName;
-    NSString *userPassword;
-    NSMutableArray *artistList;
-    
+    NSMutableArray *artistListProperty;
 }
+@property (nonatomic, strong) NSMutableArray *artistListProperty;
 
 extern NSString *server;
 extern NSString *name;
@@ -26,13 +23,10 @@ extern NSMutableArray *songList;
 extern NSMutableArray *queueList;
 extern NSMutableArray *itemList;
 extern int currentIndex;
+extern NSMutableArray *artistList;
 extern UIImage *art;
 extern BOOL differentAlbum;
 
-@property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) NSString *serverURL;
-@property (strong, nonatomic) NSString *userName;
-@property (strong, nonatomic) NSString *userPassword;
-@property (strong, nonatomic) NSMutableArray *artistList;
 -(void)loadSettings;
+-(void)saveSettings;
 @end

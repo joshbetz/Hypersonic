@@ -11,23 +11,23 @@
 @interface LoginViewController : UITableViewController
 {
     UIButton *loginButton;
-    UITextField *server;
-    UITextField *name;
-    UITextField *password;
+    UITextField *serverText;
+    UITextField *nameText;
+    UITextField *passwordText;
     NSString *serverURL;
     NSString *userName;
     NSString *userPassword;
-    NSMutableArray *artistList;
+    NSMutableArray *artistListProperty;
 }
 
 @property (nonatomic, strong) IBOutlet UIButton *loginButton;
-@property (nonatomic, strong) IBOutlet UITextField *server;
-@property (nonatomic, strong) IBOutlet UITextField *name;
-@property (nonatomic, strong) IBOutlet UITextField *password;
-@property (strong, nonatomic) NSString *serverURL;
-@property (strong, nonatomic) NSString *userName;
-@property (strong, nonatomic) NSString *userPassword;
-@property (strong, nonatomic) NSMutableArray *artistList;
+@property (nonatomic, strong) IBOutlet UITextField *serverText;
+@property (nonatomic, strong) IBOutlet UITextField *nameText;
+@property (nonatomic, strong) IBOutlet UITextField *passwordText;
+@property (nonatomic, strong) NSString *serverURL;
+@property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) NSString *userPassword;
+@property (nonatomic, strong) NSMutableArray *artistListProperty; 
 -(void)saveSettings;
 -(IBAction)login:(id)loginButton;
 - (IBAction)textFieldReturn:(id)sender;
