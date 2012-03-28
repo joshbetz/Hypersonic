@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad
 {
-    if(avPlayer.rate == 0) {
+    if([songList count] > 0) {
         self.queueList = [NSMutableArray array];
         self.itemList = [NSMutableArray array];
         NSString *userURL;
@@ -81,7 +81,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [self playSong:playButton];
+    if(avPlayer.rate == 0.0)
+        [self playSong:playButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

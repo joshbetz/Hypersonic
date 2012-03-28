@@ -43,6 +43,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *prevButton;
 @property (nonatomic, strong) IBOutlet UIImageView *albumArt;
 @property (nonatomic, strong) IBOutlet UISlider *volumeSlider;
+
 - (IBAction)done:(id)sender;
 -(IBAction)playSong:(id)playButton;
 -(IBAction)nextSong:(id)nextButton;

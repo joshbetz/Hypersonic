@@ -12,25 +12,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tfh-8W-dHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Music Player" id="fw5-hh-zK0" customClass="NowPlaying" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ia9-bz-Bvx">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" id="LxV-VA-FLs">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <items>
-                                    <navigationItem id="5IO-0H-toc">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="ojB-HY-wyv">
-                                            <connections>
-                                                <action selector="done:" destination="fw5-hh-zK0" id="H30-Rr-oaU"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="nfu-dL-sjS">
-                                <rect key="frame" x="0.0" y="44" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sUC-UX-5If">
@@ -88,8 +74,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Now Playing" id="Eag-bH-r0m"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationItem key="navigationItem" id="Eag-bH-r0m"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="albumArt" destination="nfu-dL-sjS" id="W66-Kq-szn"/>
                         <outlet property="nextButton" destination="mH7-9J-KBa" id="MvE-hV-90I"/>
@@ -231,7 +217,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="fw5-hh-zK0" kind="modal" identifier="SelectedSong" id="RDu-Bv-khE"/>
+                                    <segue destination="fw5-hh-zK0" kind="push" identifier="SelectedSong" id="RDu-Bv-khE"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -243,7 +229,7 @@
                     <navigationItem key="navigationItem" id="XhB-hW-DT3"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="2071" y="538"/>
+            <point key="canvasLocation" x="1484" y="764"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Vxu-0O-kxg">
@@ -261,7 +247,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-322" y="188"/>
+            <point key="canvasLocation" x="-319" y="180"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
@@ -272,7 +258,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Now Playing" id="BcF-L4-ZGw">
                             <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
-                                <segue destination="fw5-hh-zK0" kind="modal" modalTransitionStyle="flipHorizontal" id="mLk-Mp-Xwr"/>
+                                <segue destination="fw5-hh-zK0" kind="push" id="mLk-Mp-Xwr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -450,7 +436,7 @@
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="-214" y="848"/>
+            <point key="canvasLocation" x="-752" y="180"/>
         </scene>
         <!--Album Methods Table View Controller - Albums-->
         <scene sceneID="GRJ-XS-bOn">
@@ -522,13 +508,57 @@
             <point key="canvasLocation" x="657" y="1633"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="AlbumMethodsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumMethodsTableViewController.h"/>
+        </class>
+        <class className="AlbumSongTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumSongTableViewController.h"/>
+        </class>
+        <class className="ArtistTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ArtistTableViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTouched:"/>
+                <relationship kind="action" name="login:"/>
+                <relationship kind="action" name="textFieldReturn:"/>
+                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="name" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="server" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NowPlaying" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NowPlaying.h"/>
+            <relationships>
+                <relationship kind="action" name="adjustVolume"/>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="nextSong:"/>
+                <relationship kind="action" name="playSong:"/>
+                <relationship kind="action" name="prevSong:"/>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nextButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="prevButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="volumeSlider" candidateClass="UISlider"/>
+            </relationships>
+        </class>
+        <class className="PlaylistTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaylistTableViewController.h"/>
+        </class>
+        <class className="Settings" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Settings.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mLk-Mp-Xwr"/>
         <segue reference="r7M-ou-Ied"/>
+        <segue reference="RDu-Bv-khE"/>
     </inferredMetricsTieBreakers>
 </document>
