@@ -72,6 +72,9 @@
             [itemList addObject:[AVPlayerItem playerItemWithURL:url]];
         }
         differentAlbum = false;
+        
+        avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone; 
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:[avPlayer currentItem]];
     }
     else if (differentAlbum == false) {
         if (art != nil){
@@ -130,6 +133,11 @@
             [self prevSong:prevButton];
         }
     }
+}
+
+- (void)playerItemDidReachEnd:(NSNotification *)notification
+{
+    [self nextSong:nextButton];
 }
 
 - (void)viewDidUnload
