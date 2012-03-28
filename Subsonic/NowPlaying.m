@@ -184,6 +184,8 @@
             avPlayer = [AVPlayer playerWithPlayerItem:[itemList objectAtIndex:currentIndex]];
             [avPlayer play];
             newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
+            avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone; 
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:[avPlayer currentItem]];
         }
     }
 }
@@ -200,8 +202,9 @@
             avPlayer = [AVPlayer playerWithPlayerItem:[itemList objectAtIndex:currentIndex]];
             [avPlayer play];
             newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
-
-    }
+            avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone; 
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:[avPlayer currentItem]];
+        }
     }
 }
 
