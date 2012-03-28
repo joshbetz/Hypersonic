@@ -71,6 +71,13 @@
                                     <navigationItem id="Gft-cm-O8h"/>
                                 </items>
                             </navigationBar>
+                            <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" id="Z9l-Ea-dNj">
+                                <rect key="frame" x="0.0" y="372" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem id="pr7-7y-Kbx"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>

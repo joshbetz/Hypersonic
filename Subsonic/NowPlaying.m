@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad
 {
-    if([songList count] > 0) {
+    if(songList.count > 0) {
         self.queueList = [NSMutableArray array];
         self.itemList = [NSMutableArray array];
         NSString *userURL;
@@ -74,14 +74,14 @@
     //AVPlayerLayer *avPlayerLayer = [[AVPlayerLayer playerLayerWithPlayer:avPlayer] retain];
     //[avPlayer play];
     //avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
-    MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(20,420,280,20)];
+    MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(20,376,280,20)];
     [volumeView sizeToFit];
     [self.view addSubview:volumeView];
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    if(avPlayer.rate == 0.0)
+    if( avPlayer.rate == 0 )
         [self playSong:playButton];
 }
 
