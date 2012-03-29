@@ -37,6 +37,9 @@
         avPlayer = [[AVQueuePlayer alloc] initWithItems:itemList];
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
         [[AVAudioSession sharedInstance] setActive: YES error: nil];
+        
+        for ( int i=0; i < currentIndex; i++ )
+            [avPlayer removeItem:[itemList objectAtIndex:i]];
                 
         [self playSong:playButton];
         differentAlbum = false;
@@ -210,10 +213,11 @@
     
     UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
     avPlayer = [[AVQueuePlayer alloc] initWithItems:itemList];
-    [avPlayer play];
     
     for ( int i=0; i < currentIndex; i++ )
-        [avPlayer advanceToNextItem];
+        [avPlayer removeItem:[itemList objectAtIndex:i]];
+    
+    [avPlayer play];
     
     newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
 }
