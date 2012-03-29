@@ -74,6 +74,8 @@
             url = [queueList objectAtIndex:i];
             [itemList addObject:[AVPlayerItem playerItemWithURL:url]];
         }
+        
+        [self playSong:playButton];
         differentAlbum = false;
         
         avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone; 
@@ -94,9 +96,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    if( avPlayer.rate == 0 || (differentAlbum == true && [itemList count] > 0))
-        [self playSong:playButton];
-    else if (avPlayer.rate > 0)
+    if (avPlayer.rate > 0)
         [playButton setTitle:@"Pause" forState:UIControlStateNormal];
 }
 
