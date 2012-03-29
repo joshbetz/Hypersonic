@@ -34,6 +34,28 @@
 {
     if(songList.count > 0 && differentAlbum == true) {
         [self buildPlaylist];
+        
+        if (albumArtID != nil) {
+            userURL = @"http://";
+            userURL = [userURL stringByAppendingString:server];
+            userURL = [userURL stringByAppendingString:@"/rest/getCoverArt.view?u="];
+            userURL = [userURL stringByAppendingString:name];
+            userURL = [userURL stringByAppendingString:@"&p="];
+            userURL = [userURL stringByAppendingString:password];
+            userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
+            userURL = [userURL stringByAppendingString:albumArtID];
+            
+            NSURL *imageURL = [NSURL URLWithString: userURL];
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            UIImage *image = [UIImage imageWithData:imageData]; 
+            albumArt.image = image;
+            art = image;
+            
+            NSUInteger reflectionHeight = albumArt.bounds.size.height * 0.65;
+            reflectionImage.image = [self reflectedImage:albumArt withHeight:reflectionHeight];
+            reflectionImage.alpha = 0.60;
+        }
+        
         avPlayer = [[AVQueuePlayer alloc] initWithItems:itemList];
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
         [[AVAudioSession sharedInstance] setActive: YES error: nil];
@@ -47,6 +69,10 @@
     else if (differentAlbum == false) {
         if (art != nil){
             albumArt.image = art;
+            
+            NSUInteger reflectionHeight = albumArt.bounds.size.height * 0.65;
+            reflectionImage.image = [self reflectedImage:albumArt withHeight:reflectionHeight];
+            reflectionImage.alpha = 0.60;
         }
     }
     //AVPlayerLayer *avPlayerLayer = [[AVPlayerLayer playerLayerWithPlayer:avPlayer] retain];
@@ -142,8 +168,7 @@
 - (void)buildPlaylist {
     queueList = [NSMutableArray array];
     itemList = [NSMutableArray array];
-    NSString *userURL;
-    NSURL *url;
+    
     for (int i = 0; i < [songList count]; i++){
         userURL = @"http://";
         userURL = [userURL stringByAppendingString:server];
@@ -155,26 +180,6 @@
         userURL = [userURL stringByAppendingString:[[songList objectAtIndex:i] songID]];
         url = [NSURL URLWithString:userURL];
         [queueList addObject:url];
-    }
-    if (albumArtID != nil) {
-        userURL = @"http://";
-        userURL = [userURL stringByAppendingString:server];
-        userURL = [userURL stringByAppendingString:@"/rest/getCoverArt.view?u="];
-        userURL = [userURL stringByAppendingString:name];
-        userURL = [userURL stringByAppendingString:@"&p="];
-        userURL = [userURL stringByAppendingString:password];
-        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
-        userURL = [userURL stringByAppendingString:albumArtID];
-        
-        NSURL *imageURL = [NSURL URLWithString: userURL];
-        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-        UIImage *image = [UIImage imageWithData:imageData]; 
-        albumArt.image = image;
-        art = image;
-        
-        NSUInteger reflectionHeight = albumArt.bounds.size.height * 0.65;
-        reflectionImage.image = [self reflectedImage:albumArt withHeight:reflectionHeight];
-        reflectionImage.alpha = 0.60;
     }
     
     NSLog(@"%d", [queueList count]);

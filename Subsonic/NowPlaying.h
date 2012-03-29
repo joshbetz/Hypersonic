@@ -23,6 +23,9 @@
     UIButton *nextButton;
     UIButton *prevButton;
     UISlider *volumeSlider;
+    
+    NSString *userURL;
+    NSURL *url;
 }
 
 @property (nonatomic, strong) NSString *songID;
