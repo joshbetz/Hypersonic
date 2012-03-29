@@ -19,6 +19,7 @@
     UIButton *playButton;
     NSString *albumArtID;
     UIImageView *albumArt;
+    UIImageView *reflectionImage;
     UIButton *nextButton;
     UIButton *prevButton;
     UISlider *volumeSlider;
@@ -34,6 +35,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *nextButton;
 @property (nonatomic, strong) IBOutlet UIButton *prevButton;
 @property (nonatomic, strong) IBOutlet UIImageView *albumArt;
+@property (nonatomic, strong) IBOutlet UIImageView *reflectionImage;
 @property (nonatomic, strong) IBOutlet UISlider *volumeSlider;
 
 - (IBAction)done:(id)sender;

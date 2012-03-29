@@ -19,6 +19,10 @@
 		032E6ECB14F3F4860072697A /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6ECA14F3F4860072697A /* first@2x.png */; };
 		032E6ED014F3F4860072697A /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6ECF14F3F4860072697A /* second.png */; };
 		032E6ED214F3F4860072697A /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6ED114F3F4860072697A /* second@2x.png */; };
+		038DDB3E1524BB2F0003490B /* albumArt.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB3C1524BB2F0003490B /* albumArt.png */; };
+		038DDB3F1524BB2F0003490B /* albumArt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB3D1524BB2F0003490B /* albumArt@2x.png */; };
+		038DDB591524C45F0003490B /* reflectionmask.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB571524C45F0003490B /* reflectionmask.png */; };
+		038DDB5A1524C45F0003490B /* reflectionmask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB581524C45F0003490B /* reflectionmask@2x.png */; };
 		03A9B72E151F6DA1002ECD97 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A9B72D151F6DA1002ECD97 /* Settings.m */; };
 		03D8A0ED1502B54C00DA09D4 /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D8A0EC1502B54C00DA09D4 /* RSSParser.m */; };
 		03EDBDBF1509800D0093C55C /* NowPlaying.m in Sources */ = {isa = PBXBuildFile; fileRef = 03EDBDBE1509800D0093C55C /* NowPlaying.m */; };
@@ -71,6 +75,10 @@
 		032E6ECA14F3F4860072697A /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
 		032E6ECF14F3F4860072697A /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		032E6ED114F3F4860072697A /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		038DDB3C1524BB2F0003490B /* albumArt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = albumArt.png; path = Resources/albumArt.png; sourceTree = "<group>"; };
+		038DDB3D1524BB2F0003490B /* albumArt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "albumArt@2x.png"; path = "Resources/albumArt@2x.png"; sourceTree = "<group>"; };
+		038DDB571524C45F0003490B /* reflectionmask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reflectionmask.png; path = Resources/reflectionmask.png; sourceTree = "<group>"; };
+		038DDB581524C45F0003490B /* reflectionmask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reflectionmask@2x.png"; path = "Resources/reflectionmask@2x.png"; sourceTree = "<group>"; };
 		03A9B72C151F6DA1002ECD97 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		03A9B72D151F6DA1002ECD97 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		03D8A0EB1502B54C00DA09D4 /* RSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSParser.h; sourceTree = "<group>"; };
@@ -225,6 +233,10 @@
 		03FAD29F152392DB006FFB40 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				038DDB571524C45F0003490B /* reflectionmask.png */,
+				038DDB581524C45F0003490B /* reflectionmask@2x.png */,
+				038DDB3C1524BB2F0003490B /* albumArt.png */,
+				038DDB3D1524BB2F0003490B /* albumArt@2x.png */,
 				03FAD2D91523EBF6006FFB40 /* iTunesArtwork */,
 				03FAD2A0152393AE006FFB40 /* Default.png */,
 				03FAD2A1152393AE006FFB40 /* Default@2x.png */,
@@ -348,6 +360,10 @@
 				03FAD2CD1523CA90006FFB40 /* whiteArrow.png in Resources */,
 				03FAD2CE1523CA90006FFB40 /* whiteArrow@2x.png in Resources */,
 				03FAD2DA1523EBF6006FFB40 /* iTunesArtwork in Resources */,
+				038DDB3E1524BB2F0003490B /* albumArt.png in Resources */,
+				038DDB3F1524BB2F0003490B /* albumArt@2x.png in Resources */,
+				038DDB591524C45F0003490B /* reflectionmask.png in Resources */,
+				038DDB5A1524C45F0003490B /* reflectionmask@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

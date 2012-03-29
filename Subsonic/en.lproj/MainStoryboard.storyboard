@@ -15,8 +15,16 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="nfu-dL-sjS">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="reflectionmask.png" id="Y2k-KX-4N3">
+                                <rect key="frame" x="0.0" y="316" width="325" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="l96-To-pF0">
+                                <rect key="frame" x="-5" y="316" width="325" height="104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="albumArt.png" id="nfu-dL-sjS">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="316"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <navigationBar contentMode="bottom" barStyle="blackTranslucent" id="41M-Fn-X7N">
@@ -85,6 +93,7 @@
                         <outlet property="nextButton" destination="mH7-9J-KBa" id="MvE-hV-90I"/>
                         <outlet property="playButton" destination="sUC-UX-5If" id="BKc-k5-nh0"/>
                         <outlet property="prevButton" destination="HeO-Zm-4n8" id="0U7-iU-40Z"/>
+                        <outlet property="reflectionImage" destination="l96-To-pF0" id="NUt-fT-31t"/>
                     </connections>
                 </viewController>
             </objects>
@@ -513,7 +522,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="albumArt.png" width="320" height="320"/>
         <image name="controlbar.png" width="320" height="97"/>
+        <image name="reflectionmask.png" width="150" height="150"/>
     </resources>
     <classes>
         <class className="AlbumMethodsTableViewController" superclassName="UITableViewController">
@@ -549,6 +560,7 @@
                 <relationship kind="outlet" name="nextButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="prevButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="reflectionImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="volumeSlider" candidateClass="UISlider"/>
             </relationships>
         </class>
