@@ -33,53 +33,13 @@
 - (void)viewDidLoad
 {
     if(songList.count > 0 && differentAlbum == true) {
-        queueList = [NSMutableArray array];
-        itemList = [NSMutableArray array];
-        NSString *userURL;
-        NSURL *url;
-        for (int i = 0; i < [songList count]; i++){
-            userURL = @"http://";
-            userURL = [userURL stringByAppendingString:server];
-            userURL = [userURL stringByAppendingString:@"/rest/stream.view?u="];
-            userURL = [userURL stringByAppendingString:name];
-            userURL = [userURL stringByAppendingString:@"&p="];
-            userURL = [userURL stringByAppendingString:password];
-            userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
-            userURL = [userURL stringByAppendingString:[[songList objectAtIndex:i] songID]];
-            url = [NSURL URLWithString:userURL];
-            [queueList addObject:url];
-        }
-        if (albumArtID != nil) {
-            userURL = @"http://";
-            userURL = [userURL stringByAppendingString:server];
-            userURL = [userURL stringByAppendingString:@"/rest/getCoverArt.view?u="];
-            userURL = [userURL stringByAppendingString:name];
-            userURL = [userURL stringByAppendingString:@"&p="];
-            userURL = [userURL stringByAppendingString:password];
-            userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
-            userURL = [userURL stringByAppendingString:albumArtID];
-            NSURL *imageURL = [NSURL URLWithString: userURL];
-            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-            UIImage *image = [UIImage imageWithData:imageData]; 
-            albumArt.image = image;
-            art = image;
-        }
-    
-        NSLog(@"%d", [queueList count]);
-        playerItem = [AVPlayerItem playerItemWithURL:[queueList objectAtIndex:currentIndex]];
-        avPlayer = [AVPlayer playerWithPlayerItem:playerItem];
+        [self buildPlaylist];
+        avPlayer = [[AVQueuePlayer alloc] initWithItems:itemList];
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
         [[AVAudioSession sharedInstance] setActive: YES error: nil];
-        for (int i = 0; i < [queueList count]; i++){
-            url = [queueList objectAtIndex:i];
-            [itemList addObject:[AVPlayerItem playerItemWithURL:url]];
-        }
-        
+                
         [self playSong:playButton];
         differentAlbum = false;
-        
-        avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone; 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:[avPlayer currentItem]];
     }
     else if (differentAlbum == false) {
         if (art != nil){
@@ -176,6 +136,46 @@
     }
 }
 
+- (void)buildPlaylist {
+    queueList = [NSMutableArray array];
+    itemList = [NSMutableArray array];
+    NSString *userURL;
+    NSURL *url;
+    for (int i = 0; i < [songList count]; i++){
+        userURL = @"http://";
+        userURL = [userURL stringByAppendingString:server];
+        userURL = [userURL stringByAppendingString:@"/rest/stream.view?u="];
+        userURL = [userURL stringByAppendingString:name];
+        userURL = [userURL stringByAppendingString:@"&p="];
+        userURL = [userURL stringByAppendingString:password];
+        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
+        userURL = [userURL stringByAppendingString:[[songList objectAtIndex:i] songID]];
+        url = [NSURL URLWithString:userURL];
+        [queueList addObject:url];
+    }
+    if (albumArtID != nil) {
+        userURL = @"http://";
+        userURL = [userURL stringByAppendingString:server];
+        userURL = [userURL stringByAppendingString:@"/rest/getCoverArt.view?u="];
+        userURL = [userURL stringByAppendingString:name];
+        userURL = [userURL stringByAppendingString:@"&p="];
+        userURL = [userURL stringByAppendingString:password];
+        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
+        userURL = [userURL stringByAppendingString:albumArtID];
+        NSURL *imageURL = [NSURL URLWithString: userURL];
+        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+        UIImage *image = [UIImage imageWithData:imageData]; 
+        albumArt.image = image;
+        art = image;
+    }
+    
+    NSLog(@"%d", [queueList count]);
+    for (int i = 0; i < [queueList count]; i++){
+        url = [queueList objectAtIndex:i];
+        [itemList addObject:[AVPlayerItem playerItemWithURL:url]];
+    }
+}
+
 - (IBAction)done:(id)sender
 {  
     [self dismissModalViewControllerAnimated:YES];
@@ -198,38 +198,24 @@
 }
 
 -(IBAction)nextSong:(id)nextButton{
-    if ([itemList count] > 0){
-        currentIndex++;
-        if (currentIndex == [queueList count]){
-            [avPlayer pause];
-            currentIndex = 0;
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-        else {
-            UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
-            avPlayer = [AVPlayer playerWithPlayerItem:[itemList objectAtIndex:currentIndex]];
-            [avPlayer play];
-            newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
-            avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone; 
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:[avPlayer currentItem]];
-        }
-    }
+    [avPlayer advanceToNextItem];
+    currentIndex++;
 }
 
 
 -(IBAction)prevSong:(id)prevButton{
-    if ([itemList count] > 0){
-        currentIndex--;
-        if (currentIndex < 0){
-            currentIndex = 0;
-        }
-        UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
-        avPlayer = [AVPlayer playerWithPlayerItem:[itemList objectAtIndex:currentIndex]];
-        [avPlayer play];
-        newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
-        avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone; 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:[avPlayer currentItem]];
-    }
+    currentIndex--;
+    
+    [self buildPlaylist];
+    
+    UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
+    avPlayer = [[AVQueuePlayer alloc] initWithItems:itemList];
+    [avPlayer play];
+    
+    for ( int i=0; i < currentIndex; i++ )
+        [avPlayer advanceToNextItem];
+    
+    newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
 }
 
 -(void)adjustVolume

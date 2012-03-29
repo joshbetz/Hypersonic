@@ -16,7 +16,7 @@
 NSString *password;
 NSString *name;
 NSString *server;
-AVPlayer *avPlayer;
+AVQueuePlayer *avPlayer;
 NSMutableArray *songList;
 NSMutableArray *queueList;
 NSMutableArray *itemList;

@@ -18,7 +18,7 @@
 extern NSString *server;
 extern NSString *name;
 extern NSString *password;
-extern AVPlayer *avPlayer;
+extern AVQueuePlayer *avPlayer;
 extern NSMutableArray *songList;
 extern NSMutableArray *queueList;
 extern NSMutableArray *itemList;
