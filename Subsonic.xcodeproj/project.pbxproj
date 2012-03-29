@@ -38,6 +38,7 @@
 		03FAD2CD1523CA90006FFB40 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FAD2C41523CA90006FFB40 /* whiteArrow.png */; };
 		03FAD2CE1523CA90006FFB40 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FAD2C51523CA90006FFB40 /* whiteArrow@2x.png */; };
 		03FAD2D11523CC10006FFB40 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FAD2D01523CC10006FFB40 /* QuartzCore.framework */; };
+		03FAD2DA1523EBF6006FFB40 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 03FAD2D91523EBF6006FFB40 /* iTunesArtwork */; };
 		762D070B1512444A0015363A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762D070A1512444A0015363A /* AVFoundation.framework */; };
 		76C8D312151CBDCC00A91966 /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C8D311151CBDCC00A91966 /* Playlist.m */; };
 		76C8D317151CBF7000A91966 /* PlaylistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C8D315151CBF6F00A91966 /* PlaylistTableViewController.m */; };
@@ -93,6 +94,7 @@
 		03FAD2C41523CA90006FFB40 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		03FAD2C51523CA90006FFB40 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		03FAD2D01523CC10006FFB40 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		03FAD2D91523EBF6006FFB40 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Resources/iTunesArtwork; sourceTree = "<group>"; };
 		762D070A1512444A0015363A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		76C8D310151CBDCB00A91966 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
 		76C8D311151CBDCC00A91966 /* Playlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playlist.m; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		03FAD29F152392DB006FFB40 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				03FAD2D91523EBF6006FFB40 /* iTunesArtwork */,
 				03FAD2A0152393AE006FFB40 /* Default.png */,
 				03FAD2A1152393AE006FFB40 /* Default@2x.png */,
 				03FAD2A2152393AE006FFB40 /* Icon.png */,
@@ -344,6 +347,7 @@
 				03FAD2CC1523CA90006FFB40 /* grayArrow@2x.png in Resources */,
 				03FAD2CD1523CA90006FFB40 /* whiteArrow.png in Resources */,
 				03FAD2CE1523CA90006FFB40 /* whiteArrow@2x.png in Resources */,
+				03FAD2DA1523EBF6006FFB40 /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
