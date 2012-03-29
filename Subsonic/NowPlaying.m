@@ -11,7 +11,10 @@
 #import <AVFoundation/AVPlayerItem.h>
 #import <AVFoundation/AVPlayer.h>
 #import <AVFoundation/AVAudioSession.h>
-#import "MediaPlayer/MPVolumeView.h"
+#import <MediaPlayer/MPVolumeView.h>
+#import <MediaPlayer/MPNowPlayingInfoCenter.h>
+#import <MediaPlayer/MPMediaItemCollection.h>
+
 @interface NowPlaying ()
 @end
 
@@ -153,6 +156,23 @@
 
 #pragma mark - Actions
 
+// iOS5 Only
+- (void) setMediaInfo {
+    Class playingInfoCenter = NSClassFromString(@"MPNowPlayingInfoCenter");
+    
+    if (playingInfoCenter) {
+        MPNowPlayingInfoCenter *center = [MPNowPlayingInfoCenter defaultCenter];
+        MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithImage:art];
+        NSDictionary *songInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  @"Some artist", MPMediaItemPropertyArtist,
+                                  @"Some title", MPMediaItemPropertyTitle,
+                                  @"Some Album", MPMediaItemPropertyAlbumTitle,
+                                  artwork, MPMediaItemPropertyArtwork,
+                                  nil];
+        center.nowPlayingInfo = songInfo;
+    }
+}
+
 - (IBAction)done:(id)sender
 {  
     [self dismissModalViewControllerAnimated:YES];
@@ -171,6 +191,7 @@
             [playButton setTitle:@"Play" forState:UIControlStateNormal];
         }
     }
+    [self setMediaInfo];
 }
 
 -(IBAction)nextSong:(id)nextButton{
