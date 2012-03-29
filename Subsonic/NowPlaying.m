@@ -56,14 +56,16 @@
             reflectionImage.alpha = 0.60;
         }
         
-        avPlayer = [[AVQueuePlayer alloc] initWithItems:itemList];
+        avPlayer = [[AVQueuePlayer alloc] initWithPlayerItem:[itemList objectAtIndex:currentIndex]];
+        
+        [self playSong:playButton];
+        
+        for ( int i=currentIndex+1; i < [itemList count]; i++ )
+            [avPlayer insertItem:[itemList objectAtIndex:i] afterItem:nil];
+        
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
         [[AVAudioSession sharedInstance] setActive: YES error: nil];
         
-        for ( int i=0; i < currentIndex; i++ )
-            [avPlayer removeItem:[itemList objectAtIndex:i]];
-                
-        [self playSong:playButton];
         differentAlbum = false;
     }
     else if (differentAlbum == false) {
@@ -218,16 +220,17 @@
 
 -(IBAction)prevSong:(id)prevButton{
     currentIndex--;
-    
-    [self buildPlaylist];
+    if( currentIndex < 0 )
+        currentIndex = 0;
     
     UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
-    avPlayer = [[AVQueuePlayer alloc] initWithItems:itemList];
     
-    for ( int i=0; i < currentIndex; i++ )
-        [avPlayer removeItem:[itemList objectAtIndex:i]];
-    
+    avPlayer = [[AVQueuePlayer alloc] initWithPlayerItem:[AVPlayerItem playerItemWithURL:[queueList objectAtIndex:currentIndex]]];
     [avPlayer play];
+    
+    [self buildPlaylist];
+    for ( int i=currentIndex+1; i < [itemList count]; i++ )
+        [avPlayer insertItem:[AVPlayerItem playerItemWithURL:[queueList objectAtIndex:i]] afterItem:nil];
     
     newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
 }
