@@ -15,10 +15,6 @@
 		032E6EC114F3F4860072697A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 032E6EC014F3F4860072697A /* AppDelegate.m */; };
 		032E6EC414F3F4860072697A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 032E6EC214F3F4860072697A /* MainStoryboard.storyboard */; };
 		032E6EC714F3F4860072697A /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 032E6EC614F3F4860072697A /* FirstViewController.m */; };
-		032E6EC914F3F4860072697A /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6EC814F3F4860072697A /* first.png */; };
-		032E6ECB14F3F4860072697A /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6ECA14F3F4860072697A /* first@2x.png */; };
-		032E6ED014F3F4860072697A /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6ECF14F3F4860072697A /* second.png */; };
-		032E6ED214F3F4860072697A /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 032E6ED114F3F4860072697A /* second@2x.png */; };
 		038DDB3E1524BB2F0003490B /* albumArt.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB3C1524BB2F0003490B /* albumArt.png */; };
 		038DDB3F1524BB2F0003490B /* albumArt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB3D1524BB2F0003490B /* albumArt@2x.png */; };
 		038DDB591524C45F0003490B /* reflectionmask.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB571524C45F0003490B /* reflectionmask.png */; };
@@ -71,10 +67,6 @@
 		032E6EC314F3F4860072697A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		032E6EC514F3F4860072697A /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		032E6EC614F3F4860072697A /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		032E6EC814F3F4860072697A /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		032E6ECA14F3F4860072697A /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		032E6ECF14F3F4860072697A /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		032E6ED114F3F4860072697A /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		038DDB3C1524BB2F0003490B /* albumArt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = albumArt.png; path = Resources/albumArt.png; sourceTree = "<group>"; };
 		038DDB3D1524BB2F0003490B /* albumArt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "albumArt@2x.png"; path = "Resources/albumArt@2x.png"; sourceTree = "<group>"; };
 		038DDB571524C45F0003490B /* reflectionmask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reflectionmask.png; path = Resources/reflectionmask.png; sourceTree = "<group>"; };
@@ -196,24 +188,11 @@
 				9EA29E65150FBC8100C55A81 /* AlbumSongTableViewController.m */,
 				032E6EC514F3F4860072697A /* FirstViewController.h */,
 				032E6EC614F3F4860072697A /* FirstViewController.m */,
-				9E8ADD3715028CA7009EA4AA /* Error.h */,
-				9E8ADD3815028CA7009EA4AA /* Error.m */,
 				76C8D314151CBF6F00A91966 /* PlaylistTableViewController.h */,
 				76C8D315151CBF6F00A91966 /* PlaylistTableViewController.m */,
 				03D8A0EB1502B54C00DA09D4 /* RSSParser.h */,
 				03D8A0EC1502B54C00DA09D4 /* RSSParser.m */,
-				76C8D310151CBDCB00A91966 /* Playlist.h */,
-				76C8D311151CBDCC00A91966 /* Playlist.m */,
-				9EBF78F2150E7F4B00672257 /* Song.h */,
-				9EBF78F3150E7F4B00672257 /* Song.m */,
-				9E63E09C1509046E00DF04A0 /* Album.h */,
-				9E63E09D1509046E00DF04A0 /* Album.m */,
-				9E63E098150900B200DF04A0 /* Artist.h */,
-				9E63E099150900B200DF04A0 /* Artist.m */,
-				032E6EC814F3F4860072697A /* first.png */,
-				032E6ECA14F3F4860072697A /* first@2x.png */,
-				032E6ECF14F3F4860072697A /* second.png */,
-				032E6ED114F3F4860072697A /* second@2x.png */,
+				038DDB601524F5810003490B /* Objects */,
 				032E6EB714F3F4860072697A /* Supporting Files */,
 			);
 			path = Subsonic;
@@ -228,6 +207,23 @@
 				032E6EBE14F3F4860072697A /* Subsonic-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		038DDB601524F5810003490B /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				9E8ADD3715028CA7009EA4AA /* Error.h */,
+				9E8ADD3815028CA7009EA4AA /* Error.m */,
+				76C8D310151CBDCB00A91966 /* Playlist.h */,
+				76C8D311151CBDCC00A91966 /* Playlist.m */,
+				9EBF78F2150E7F4B00672257 /* Song.h */,
+				9EBF78F3150E7F4B00672257 /* Song.m */,
+				9E63E09C1509046E00DF04A0 /* Album.h */,
+				9E63E09D1509046E00DF04A0 /* Album.m */,
+				9E63E098150900B200DF04A0 /* Artist.h */,
+				9E63E099150900B200DF04A0 /* Artist.m */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 		03FAD29F152392DB006FFB40 /* Resources */ = {
@@ -341,10 +337,6 @@
 			files = (
 				032E6EBB14F3F4860072697A /* InfoPlist.strings in Resources */,
 				032E6EC414F3F4860072697A /* MainStoryboard.storyboard in Resources */,
-				032E6EC914F3F4860072697A /* first.png in Resources */,
-				032E6ECB14F3F4860072697A /* first@2x.png in Resources */,
-				032E6ED014F3F4860072697A /* second.png in Resources */,
-				032E6ED214F3F4860072697A /* second@2x.png in Resources */,
 				03FAD29C152392D2006FFB40 /* controlbar.png in Resources */,
 				03FAD29D152392D2006FFB40 /* controlbar@2x.png in Resources */,
 				03FAD2A4152393AE006FFB40 /* Default.png in Resources */,
