@@ -10,10 +10,7 @@
 #import <AVFoundation/AVPlayerItem.h>
 #import <AVFoundation/AVPlayer.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>{
-    NSMutableArray *artistListProperty;
-}
-@property (nonatomic, strong) NSMutableArray *artistListProperty;
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 extern NSString *server;
 extern NSString *name;
@@ -29,5 +26,5 @@ extern BOOL differentAlbum;
 
 -(void)loadSettings;
 -(void)saveSettings;
--(void)updateArtists;
++ (void)updateArtists;
 @end

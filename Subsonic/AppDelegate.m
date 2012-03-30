@@ -12,7 +12,7 @@
 #import "RSSParser.h"
 @implementation AppDelegate
 
-@synthesize window = _window, artistListProperty;
+@synthesize window = _window;
 NSString *password;
 NSString *name;
 NSString *server;
@@ -30,7 +30,9 @@ NSMutableArray *artistList;
     // Override point for customization after application launch.
     [self loadSettings];
     if (server != nil){
-        [self updateArtists];
+        if ( artistList == nil )
+            [AppDelegate updateArtists];
+        
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
         UINavigationController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Start"]; 
         self.window.rootViewController = vc;
@@ -42,8 +44,8 @@ NSMutableArray *artistList;
     return YES;
 }
 
-- (void)updateArtists
-{
++ (void)updateArtists
+{   
     NSString *userURL = @"http://";
     userURL = [userURL stringByAppendingString:server];
     userURL = [userURL stringByAppendingString:@"/rest/getIndexes.view?u="];
@@ -51,14 +53,11 @@ NSMutableArray *artistList;
     userURL = [userURL stringByAppendingString:@"&p="];
     userURL = [userURL stringByAppendingString:password];
     userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic"];
-    if (artistList == nil){
-        RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
-        NSLog(@"%d", [rssParser.artistList count]);
-        artistList = rssParser.artistList;
-        artistListProperty = rssParser.artistList;
-        NSLog(@"%d", [artistList count]);
-        [self saveSettings];
-    } 
+
+    RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+    artistList = rssParser.artistList;
+    NSLog(@"%d", [artistList count]);
+    [self saveSettings:rssParser.artistList];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -109,7 +108,7 @@ NSMutableArray *artistList;
     artistList = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
 }
 
--(void)saveSettings{
++(void)saveSettings:(NSMutableArray *)artistListProperty{
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:artistListProperty];
 	[prefs setObject:data  forKey:@"artistList"];

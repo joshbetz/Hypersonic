@@ -138,8 +138,10 @@
 	
 	//  should be calling your tableviews data source model to reload
 	//  put here just for demo
+    [AppDelegate updateArtists];
+    
 	_reloading = YES;
-	
+    
 }
 
 - (void)doneLoadingTableViewData{
