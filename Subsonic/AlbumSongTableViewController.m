@@ -38,18 +38,21 @@
 {
     albumList = parser.albumList;
     songList  = parser.songList;
+    if ([songList count] > 0){
+        songs = true;
+        self.title = @"Album Name";
+    }
+    else {
+        songs = false;
+    }    
     if ([albumList count] > 0) {
         albums = true;
+        self.title = @"Artist Name";
     }
     else {
         albums = false;
     }
-    if ([songList count] > 0){
-        songs = true;
-    }
-    else {
-        songs = false;
-    }
+    
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -153,7 +156,7 @@
 {
     
     // Edge case with songs and albums mixed - need a way to fill the table in an organized way.
-    if (songs == true && albums && true){
+    if ( songs && albums ) {
         static NSString *CellIdentifier = @"Albums";
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -164,16 +167,17 @@
         // Configure the cell...
         
         return cell;
-    } else if (songs == true){
+    }
+    else if ( songs ) {
         static NSString *CellIdentifier = @"Songs";
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
+
         cell.textLabel.text = [NSString stringWithFormat:@"%@", [[songList objectAtIndex: indexPath.row] songName] ];
-        // Configure the cell...
-        
+               
         return cell;
     }
     else {
@@ -184,9 +188,19 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         
-        cell.textLabel.text = [NSString stringWithFormat:@"%@", [[albumList objectAtIndex: indexPath.row] albumName] ];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", [[albumList objectAtIndex: indexPath.row] albumName]];
+        cell.detailTextLabel.text = @"Artist Name";
+        //cell.imageView.image = ;
         
         return cell;
+    }
+}
+
+- (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath
+{
+    if ( songs && !albums ) {
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = indexPath.row % 2 ? [UIColor colorWithRed: 248.0/255.0 green: 248.0/255.0 blue: 248.0/255.0 alpha: 1.0] : [UIColor whiteColor];
     }
 }
 

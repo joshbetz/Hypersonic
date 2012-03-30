@@ -23,4 +23,6 @@
 @property (strong, nonatomic) NSString *userName;
 @property (strong, nonatomic) NSString *userPassword;
 @property (strong, nonatomic) NSString *serverURL;
+
+
 @end
