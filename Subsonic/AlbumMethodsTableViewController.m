@@ -56,6 +56,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    self.parentViewController.title = @"Albums";
 }
 
 - (void)viewDidAppear:(BOOL)animated

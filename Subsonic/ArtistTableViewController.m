@@ -64,6 +64,8 @@
 {
     [super viewWillAppear:animated];
     
+    self.parentViewController.title = @"Artists";
+    
     if ( [avPlayer currentItem] == nil )
         self.parentViewController.navigationItem.rightBarButtonItem = nil;
     else {

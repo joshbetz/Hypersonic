@@ -268,14 +268,7 @@
                             <outlet property="delegate" destination="BtQ-0J-xoL" id="3H2-ys-NRL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="XhB-hW-DT3">
-                        <barButtonItem key="rightBarButtonItem" title="Now Playing" id="CJs-0x-sUh">
-                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <connections>
-                                <segue destination="fw5-hh-zK0" kind="push" id="7y5-dM-7Gn"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="XhB-hW-DT3"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1484" y="764"/>
@@ -303,14 +296,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
                 <tabBarController id="4" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="2uc-7T-ovE">
-                        <barButtonItem key="rightBarButtonItem" title="Now Playing" id="BcF-L4-ZGw">
-                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <connections>
-                                <segue destination="fw5-hh-zK0" kind="push" id="mLk-Mp-Xwr"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="2uc-7T-ovE"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
@@ -621,6 +607,5 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="cqm-sj-a0G"/>
-        <segue reference="RDu-Bv-khE"/>
     </inferredMetricsTieBreakers>
 </document>
