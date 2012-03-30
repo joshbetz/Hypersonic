@@ -86,63 +86,16 @@
     if ([[segue identifier] isEqualToString:@"Random"]) {
         if ([self.tableView indexPathForSelectedRow].row == 0){
         NSString *albumType = @"random";
-        NSString *userURL = @"http://";
-        userURL = [userURL stringByAppendingString:server];
-        userURL = [userURL stringByAppendingString:@"/rest/getAlbumList.view?v=1.1.0&c=Hypersonic&u="];
-        userURL = [userURL stringByAppendingString:name];
-        userURL = [userURL stringByAppendingString:@"&p="];
-        userURL = [userURL stringByAppendingString:password];
-        userURL = [userURL stringByAppendingString:@"&type="];
-        userURL = [userURL stringByAppendingString:albumType];
+        NSString *userURL = [NSString stringWithFormat:@"%@&type=%@", endpoint, albumType];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         nextViewController.userName = name;
         nextViewController.userPassword = password;
         nextViewController.serverURL = server;
         nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
         }
-        /*else if ([self.tableView indexPathForSelectedRow].row == 1){
-            NSString *albumType = @"newest";
-            NSString *userURL = @"http://";
-            userURL = [userURL stringByAppendingString:server];
-            userURL = [userURL stringByAppendingString:@"/rest/getAlbumList.view?u="];
-            userURL = [userURL stringByAppendingString:name];
-            userURL = [userURL stringByAppendingString:@"&p="];
-            userURL = [userURL stringByAppendingString:password];
-            userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&type="];
-            userURL = [userURL stringByAppendingString:albumType];
-            AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-            nextViewController.userName = name;
-            nextViewController.userPassword = password;
-            nextViewController.serverURL = server;
-            nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
-        }
-        else if ([self.tableView indexPathForSelectedRow].row == 2){
-            NSString *albumType = @"frequent";
-            NSString *userURL = @"http://";
-            userURL = [userURL stringByAppendingString:server];
-            userURL = [userURL stringByAppendingString:@"/rest/getAlbumList.view?u="];
-            userURL = [userURL stringByAppendingString:name];
-            userURL = [userURL stringByAppendingString:@"&p="];
-            userURL = [userURL stringByAppendingString:password];
-            userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&type="];
-            userURL = [userURL stringByAppendingString:albumType];
-            NSLog(userURL);
-            AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-            nextViewController.userName = name;
-            nextViewController.userPassword = password;
-            nextViewController.serverURL = server;
-            nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
-        } */
         else if ([self.tableView indexPathForSelectedRow].row == 1){
             NSString *albumType = @"recent";
-            NSString *userURL = @"http://";
-            userURL = [userURL stringByAppendingString:server];
-            userURL = [userURL stringByAppendingString:@"/rest/getAlbumList.view?u="];
-            userURL = [userURL stringByAppendingString:name];
-            userURL = [userURL stringByAppendingString:@"&p="];
-            userURL = [userURL stringByAppendingString:password];
-            userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&type="];
-            userURL = [userURL stringByAppendingString:albumType];
+            NSString *userURL = [NSString stringWithFormat:@"%@&type=%@", endpoint, albumType];
             AlbumSongTableViewController *nextViewController = [segue destinationViewController];
             nextViewController.userName = name;
             nextViewController.userPassword = password;

@@ -36,15 +36,7 @@
         [self buildPlaylist];
         
         if (albumArtID != nil) {
-            userURL = @"http://";
-            userURL = [userURL stringByAppendingString:server];
-            userURL = [userURL stringByAppendingString:@"/rest/getCoverArt.view?u="];
-            userURL = [userURL stringByAppendingString:name];
-            userURL = [userURL stringByAppendingString:@"&p="];
-            userURL = [userURL stringByAppendingString:password];
-            userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
-            userURL = [userURL stringByAppendingString:albumArtID];
-            
+            userURL = [NSString stringWithFormat:@"%@&id=%@", endpoint, albumArtID];          
             NSURL *imageURL = [NSURL URLWithString: userURL];
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
             UIImage *image = [UIImage imageWithData:imageData]; 
@@ -170,14 +162,7 @@
     itemList = [NSMutableArray array];
     
     for (int i = 0; i < [songList count]; i++){
-        userURL = @"http://";
-        userURL = [userURL stringByAppendingString:server];
-        userURL = [userURL stringByAppendingString:@"/rest/stream.view?v=1.1.0&c=Hypersonic&u="];
-        userURL = [userURL stringByAppendingString:name];
-        userURL = [userURL stringByAppendingString:@"&p="];
-        userURL = [userURL stringByAppendingString:password];
-        userURL = [userURL stringByAppendingString:@"&id="];
-        userURL = [userURL stringByAppendingString:[[songList objectAtIndex:i] songID]];
+        userURL = [NSString stringWithFormat:@"%@&id=%@", endpoint, [[songList objectAtIndex:i] songID]];
         url = [NSURL URLWithString:userURL];
         [queueList addObject:url];
     }

@@ -108,14 +108,7 @@
 {
     if ([[segue identifier] isEqualToString:@"AlbumClick"]) {
         NSString *artistID = [[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] artistID];
-        NSString *userURL = @"http://";
-        userURL = [userURL stringByAppendingString:server];
-        userURL = [userURL stringByAppendingString:@"/rest/getMusicDirectory.view?v=1.1.0&c=Hypersonic&u="];
-        userURL = [userURL stringByAppendingString:name];
-        userURL = [userURL stringByAppendingString:@"&p="];
-        userURL = [userURL stringByAppendingString:password];
-        userURL = [userURL stringByAppendingString:@"&id="];
-        userURL = [userURL stringByAppendingString:artistID];
+        NSString *userURL = [NSString stringWithFormat:@"%@&id=%@", endpoint, artistID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
     }
