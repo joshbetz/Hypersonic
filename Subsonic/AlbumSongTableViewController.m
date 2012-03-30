@@ -111,7 +111,7 @@
 {
     if ([[segue identifier] isEqualToString:@"ShowAlbums"]) {
         NSString *albumID = [[albumList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumID];
-        NSString *userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"method"], albumID];
+        NSString *userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], albumID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
     }

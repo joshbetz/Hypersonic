@@ -86,7 +86,7 @@
     if ([[segue identifier] isEqualToString:@"Random"]) {
         if ([self.tableView indexPathForSelectedRow].row == 0){
         NSString *albumType = @"random";
-        NSString *userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"method"], albumType];
+        NSString *userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], albumType];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         nextViewController.userName = name;
         nextViewController.userPassword = password;
@@ -95,7 +95,7 @@
         }
         else if ([self.tableView indexPathForSelectedRow].row == 1){
             NSString *albumType = @"recent";
-            NSString *userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"method"], albumType];
+            NSString *userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], albumType];
             AlbumSongTableViewController *nextViewController = [segue destinationViewController];
             nextViewController.userName = name;
             nextViewController.userPassword = password;

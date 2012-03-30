@@ -36,7 +36,7 @@
         [self buildPlaylist];
         
         if (albumArtID != nil) {
-            userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"method"], albumArtID];          
+            userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getCoverArt"], albumArtID];          
             NSURL *imageURL = [NSURL URLWithString: userURL];
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
             UIImage *image = [UIImage imageWithData:imageData]; 
@@ -162,7 +162,7 @@
     itemList = [NSMutableArray array];
     
     for (int i = 0; i < [songList count]; i++){
-        userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"method"], [[songList objectAtIndex:i] songID]];
+        userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"stream"], [[songList objectAtIndex:i] songID]];
         url = [NSURL URLWithString:userURL];
         [queueList addObject:url];
     }

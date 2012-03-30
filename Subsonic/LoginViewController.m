@@ -42,7 +42,7 @@
         name = userName;
         password = userPassword;
         server = serverURL;
-        NSString *userURL = [AppDelegate getEndpoint:@"method"];
+        NSString *userURL = [AppDelegate getEndpoint:@"getIndexes"];
         RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
         artistList = rssParser.artistList;
         artistListProperty = rssParser.artistList;
