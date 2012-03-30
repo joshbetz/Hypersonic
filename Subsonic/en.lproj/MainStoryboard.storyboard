@@ -194,7 +194,7 @@
                             <outlet property="delegate" destination="cAM-1u-YDi" id="BHY-pa-Xcd"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Settings" id="sx7-4t-g0M"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings.png" id="sx7-4t-g0M"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1103" y="-146"/>
@@ -331,7 +331,7 @@
                             <outlet property="delegate" destination="Nqi-oT-6uF" id="8AF-RI-MN2"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Artists" id="QDl-3n-MMW"/>
+                    <tabBarItem key="tabBarItem" title="Artists" image="artist.png" id="QDl-3n-MMW"/>
                     <navigationItem key="navigationItem" id="i3d-lj-qdo"/>
                 </tableViewController>
             </objects>
@@ -489,7 +489,7 @@
                             <outlet property="delegate" destination="upn-zh-CHp" id="BqF-gw-Hl1"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Albums" id="0Lm-dA-Vc9"/>
+                    <tabBarItem key="tabBarItem" title="Albums" image="albums.png" id="0Lm-dA-Vc9"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="657" y="1037"/>
@@ -522,7 +522,7 @@
                             <outlet property="delegate" destination="jTg-2a-G1F" id="YhT-6C-M4F"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Playlists" id="ddP-bM-qWi"/>
+                    <tabBarItem key="tabBarItem" title="Playlists" image="playlist.png" id="ddP-bM-qWi"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="657" y="1633"/>
@@ -530,8 +530,12 @@
     </scenes>
     <resources>
         <image name="albumArt.png" width="320" height="320"/>
+        <image name="albums.png" width="30" height="30"/>
+        <image name="artist.png" width="30" height="30"/>
         <image name="controlbar.png" width="320" height="97"/>
+        <image name="playlist.png" width="30" height="30"/>
         <image name="reflectionmask.png" width="150" height="150"/>
+        <image name="settings.png" width="30" height="30"/>
     </resources>
     <classes>
         <class className="AlbumMethodsTableViewController" superclassName="UITableViewController">
@@ -584,7 +588,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="cqm-sj-a0G"/>
-        <segue reference="7y5-dM-7Gn"/>
+        <segue reference="mLk-Mp-Xwr"/>
+        <segue reference="BRV-Dn-iWY"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -19,6 +19,14 @@
 		038DDB3F1524BB2F0003490B /* albumArt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB3D1524BB2F0003490B /* albumArt@2x.png */; };
 		038DDB591524C45F0003490B /* reflectionmask.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB571524C45F0003490B /* reflectionmask.png */; };
 		038DDB5A1524C45F0003490B /* reflectionmask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB581524C45F0003490B /* reflectionmask@2x.png */; };
+		038DDB71152541B90003490B /* albums.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB69152541B90003490B /* albums.png */; };
+		038DDB72152541B90003490B /* albums@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB6A152541B90003490B /* albums@2x.png */; };
+		038DDB73152541B90003490B /* artist.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB6B152541B90003490B /* artist.png */; };
+		038DDB74152541B90003490B /* artist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB6C152541B90003490B /* artist@2x.png */; };
+		038DDB75152541B90003490B /* playlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB6D152541B90003490B /* playlist.png */; };
+		038DDB76152541B90003490B /* playlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB6E152541B90003490B /* playlist@2x.png */; };
+		038DDB77152541B90003490B /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB6F152541B90003490B /* settings.png */; };
+		038DDB78152541B90003490B /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB70152541B90003490B /* settings@2x.png */; };
 		03A9B72E151F6DA1002ECD97 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A9B72D151F6DA1002ECD97 /* Settings.m */; };
 		03D8A0ED1502B54C00DA09D4 /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D8A0EC1502B54C00DA09D4 /* RSSParser.m */; };
 		03EDBDBF1509800D0093C55C /* NowPlaying.m in Sources */ = {isa = PBXBuildFile; fileRef = 03EDBDBE1509800D0093C55C /* NowPlaying.m */; };
@@ -71,6 +79,14 @@
 		038DDB3D1524BB2F0003490B /* albumArt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "albumArt@2x.png"; path = "Resources/albumArt@2x.png"; sourceTree = "<group>"; };
 		038DDB571524C45F0003490B /* reflectionmask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reflectionmask.png; path = Resources/reflectionmask.png; sourceTree = "<group>"; };
 		038DDB581524C45F0003490B /* reflectionmask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reflectionmask@2x.png"; path = "Resources/reflectionmask@2x.png"; sourceTree = "<group>"; };
+		038DDB69152541B90003490B /* albums.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = albums.png; path = Resources/albums.png; sourceTree = "<group>"; };
+		038DDB6A152541B90003490B /* albums@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "albums@2x.png"; path = "Resources/albums@2x.png"; sourceTree = "<group>"; };
+		038DDB6B152541B90003490B /* artist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = artist.png; path = Resources/artist.png; sourceTree = "<group>"; };
+		038DDB6C152541B90003490B /* artist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "artist@2x.png"; path = "Resources/artist@2x.png"; sourceTree = "<group>"; };
+		038DDB6D152541B90003490B /* playlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playlist.png; path = Resources/playlist.png; sourceTree = "<group>"; };
+		038DDB6E152541B90003490B /* playlist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "playlist@2x.png"; path = "Resources/playlist@2x.png"; sourceTree = "<group>"; };
+		038DDB6F152541B90003490B /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings.png; path = Resources/settings.png; sourceTree = "<group>"; };
+		038DDB70152541B90003490B /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings@2x.png"; path = "Resources/settings@2x.png"; sourceTree = "<group>"; };
 		03A9B72C151F6DA1002ECD97 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		03A9B72D151F6DA1002ECD97 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		03D8A0EB1502B54C00DA09D4 /* RSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSParser.h; sourceTree = "<group>"; };
@@ -229,6 +245,14 @@
 		03FAD29F152392DB006FFB40 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				038DDB69152541B90003490B /* albums.png */,
+				038DDB6A152541B90003490B /* albums@2x.png */,
+				038DDB6B152541B90003490B /* artist.png */,
+				038DDB6C152541B90003490B /* artist@2x.png */,
+				038DDB6D152541B90003490B /* playlist.png */,
+				038DDB6E152541B90003490B /* playlist@2x.png */,
+				038DDB6F152541B90003490B /* settings.png */,
+				038DDB70152541B90003490B /* settings@2x.png */,
 				038DDB571524C45F0003490B /* reflectionmask.png */,
 				038DDB581524C45F0003490B /* reflectionmask@2x.png */,
 				038DDB3C1524BB2F0003490B /* albumArt.png */,
@@ -356,6 +380,14 @@
 				038DDB3F1524BB2F0003490B /* albumArt@2x.png in Resources */,
 				038DDB591524C45F0003490B /* reflectionmask.png in Resources */,
 				038DDB5A1524C45F0003490B /* reflectionmask@2x.png in Resources */,
+				038DDB71152541B90003490B /* albums.png in Resources */,
+				038DDB72152541B90003490B /* albums@2x.png in Resources */,
+				038DDB73152541B90003490B /* artist.png in Resources */,
+				038DDB74152541B90003490B /* artist@2x.png in Resources */,
+				038DDB75152541B90003490B /* playlist.png in Resources */,
+				038DDB76152541B90003490B /* playlist@2x.png in Resources */,
+				038DDB77152541B90003490B /* settings.png in Resources */,
+				038DDB78152541B90003490B /* settings@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
