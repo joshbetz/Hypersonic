@@ -48,11 +48,10 @@ NSMutableArray *artistList;
 {   
     NSString *userURL = @"http://";
     userURL = [userURL stringByAppendingString:server];
-    userURL = [userURL stringByAppendingString:@"/rest/getIndexes.view?u="];
+    userURL = [userURL stringByAppendingString:@"/rest/getIndexes.view?v=1.1.0&c=Hypersonic&u="];
     userURL = [userURL stringByAppendingString:name];
     userURL = [userURL stringByAppendingString:@"&p="];
     userURL = [userURL stringByAppendingString:password];
-    userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic"];
 
     RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
     artistList = rssParser.artistList;

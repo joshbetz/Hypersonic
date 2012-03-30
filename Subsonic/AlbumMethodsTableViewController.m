@@ -86,11 +86,11 @@
         NSString *albumType = @"random";
         NSString *userURL = @"http://";
         userURL = [userURL stringByAppendingString:server];
-        userURL = [userURL stringByAppendingString:@"/rest/getAlbumList.view?u="];
+        userURL = [userURL stringByAppendingString:@"/rest/getAlbumList.view?v=1.1.0&c=Hypersonic&u="];
         userURL = [userURL stringByAppendingString:name];
         userURL = [userURL stringByAppendingString:@"&p="];
         userURL = [userURL stringByAppendingString:password];
-        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&type="];
+        userURL = [userURL stringByAppendingString:@"&type="];
         userURL = [userURL stringByAppendingString:albumType];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         nextViewController.userName = name;

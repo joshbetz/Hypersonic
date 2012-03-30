@@ -92,11 +92,11 @@
         NSString *playlistID = [[playlistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] playlistID];
         NSString *userURL = @"http://";
         userURL = [userURL stringByAppendingString:server];
-        userURL = [userURL stringByAppendingString:@"/rest/getPlaylist.view?u="];
+        userURL = [userURL stringByAppendingString:@"/rest/getPlaylist.view?v=1.1.0&c=Hypersonic&u="];
         userURL = [userURL stringByAppendingString:name];
         userURL = [userURL stringByAppendingString:@"&p="];
         userURL = [userURL stringByAppendingString:password];
-        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
+        userURL = [userURL stringByAppendingString:@"&id="];
         userURL = [userURL stringByAppendingString:playlistID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         nextViewController.userName = userName;

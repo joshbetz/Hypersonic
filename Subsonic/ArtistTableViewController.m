@@ -91,11 +91,11 @@
         NSString *artistID = [[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] artistID];
         NSString *userURL = @"http://";
         userURL = [userURL stringByAppendingString:server];
-        userURL = [userURL stringByAppendingString:@"/rest/getMusicDirectory.view?u="];
+        userURL = [userURL stringByAppendingString:@"/rest/getMusicDirectory.view?v=1.1.0&c=Hypersonic&u="];
         userURL = [userURL stringByAppendingString:name];
         userURL = [userURL stringByAppendingString:@"&p="];
         userURL = [userURL stringByAppendingString:password];
-        userURL = [userURL stringByAppendingString:@"&v=1.1.0&c=Hypersonic&id="];
+        userURL = [userURL stringByAppendingString:@"&id="];
         userURL = [userURL stringByAppendingString:artistID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
