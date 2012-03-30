@@ -25,6 +25,6 @@ extern UIImage *art;
 extern BOOL differentAlbum;
 
 -(void)loadSettings;
--(void)saveSettings;
-+ (void)updateArtists;
++(void)saveSettings;
++(void)updateArtists;
 @end
