@@ -88,7 +88,8 @@
 	// Do any additional setup after loading the view.
     
     if (avPlayer.rate > 0)
-        [playButton setTitle:@"Pause" forState:UIControlStateNormal];
+        [playButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
+        
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -202,11 +203,11 @@
             UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
             [avPlayer play];
             newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
-            [playButton setTitle:@"Pause" forState:UIControlStateNormal];
+            [playButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
         }   
         else {
             [avPlayer pause];
-            [playButton setTitle:@"Play" forState:UIControlStateNormal];
+            [playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
         }
     }
     [self setMediaInfo];

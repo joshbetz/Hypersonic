@@ -38,11 +38,11 @@
                                 <rect key="frame" x="0.0" y="316" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sUC-UX-5If">
-                                <rect key="frame" x="124" y="324" width="72" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sUC-UX-5If">
+                                <rect key="frame" x="142" y="328" width="30" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Play">
+                                <state key="normal" image="play.png">
                                     <color key="titleColor" red="0.19607843458652496" green="0.30980393290519714" blue="0.5215686559677124" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -53,11 +53,11 @@
                                     <action selector="playSong:" destination="fw5-hh-zK0" eventType="touchUpInside" id="QdP-1o-oPz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mH7-9J-KBa">
-                                <rect key="frame" x="204" y="324" width="72" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mH7-9J-KBa">
+                                <rect key="frame" x="206" y="328" width="31" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Next">
+                                <state key="normal" image="next.png">
                                     <color key="titleColor" red="0.19607843458652496" green="0.30980393290519714" blue="0.5215686559677124" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -68,11 +68,11 @@
                                     <action selector="nextSong:" destination="fw5-hh-zK0" eventType="touchUpInside" id="OIZ-uJ-AUO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HeO-Zm-4n8">
-                                <rect key="frame" x="44" y="324" width="72" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HeO-Zm-4n8">
+                                <rect key="frame" x="71" y="328" width="31" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Prev">
+                                <state key="normal" image="prev.png">
                                     <color key="titleColor" red="0.19607843458652496" green="0.30980393290519714" blue="0.5215686559677124" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -533,7 +533,10 @@
         <image name="albums.png" width="30" height="30"/>
         <image name="artist.png" width="30" height="30"/>
         <image name="controlbar.png" width="320" height="97"/>
+        <image name="next.png" width="31" height="25"/>
+        <image name="play.png" width="30" height="26"/>
         <image name="playlist.png" width="30" height="30"/>
+        <image name="prev.png" width="31" height="25"/>
         <image name="reflectionmask.png" width="150" height="150"/>
         <image name="settings.png" width="30" height="30"/>
     </resources>
