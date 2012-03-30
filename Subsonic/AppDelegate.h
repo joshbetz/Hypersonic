@@ -28,4 +28,5 @@ extern BOOL differentAlbum;
 -(void)loadSettings;
 +(void)saveSettings;
 +(void)updateArtists;
++(NSString *)getEndpoint:(NSString *)method;
 @end

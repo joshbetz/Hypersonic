@@ -37,8 +37,7 @@ NSMutableArray *artistList;
             server = [NSString stringWithFormat:@"http://%@", server];
         }
         
-        endpoint = [NSString stringWithFormat:@"%@/rest/getIndexes.view?v=1.1.0&c=Hypersonic&u=%@&p=%@", server, name, password];
-        endpoint = [endpoint stringByAppendingFormat:@"/rest/getIndexes.view?v=1.1.0&c=Hypersonic"];
+        endpoint = [AppDelegate getEndpoint:@"getIndexes"];
         
         if ( artistList == nil )
             [AppDelegate updateArtists];
@@ -53,6 +52,10 @@ NSMutableArray *artistList;
     }
     
     return YES;
+}
+
++(NSString *)getEndpoint:(NSString *)method {
+    return [NSString stringWithFormat:@"%@/rest/%@.view?v=1.1.0&c=Hypersonic&u=%@&p=%@", server, method, name, password];
 }
 
 + (void)updateArtists

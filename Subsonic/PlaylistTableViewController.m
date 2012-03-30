@@ -36,7 +36,7 @@
 - (void)viewDidLoad
 {
     //getPlaylists.view
-    NSString *userURL = [NSString stringWithFormat:@"%@", endpoint];
+    NSString *userURL = [NSString stringWithFormat:@"%@", [AppDelegate getEndpoint:@"method"]];
     RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
     playlistList = parser.playlistList;
     [super viewDidLoad];
@@ -88,7 +88,7 @@
     if ([[segue identifier] isEqualToString:@"SelectPlaylist"]) {
         NSString *playlistID = [[playlistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] playlistID];
         //getPlaylist.view
-        NSString *userURL = [NSString stringWithFormat:@"%@&id=%@", endpoint, playlistID];
+        NSString *userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"method"], playlistID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         nextViewController.userName = userName;
         nextViewController.userPassword = userPassword;
