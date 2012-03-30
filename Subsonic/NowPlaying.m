@@ -89,6 +89,8 @@
     
     if (avPlayer.rate > 0)
         [playButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
+    else
+        [playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
         
 }
 
