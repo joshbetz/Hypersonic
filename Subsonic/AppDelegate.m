@@ -16,6 +16,7 @@
 NSString *password;
 NSString *name;
 NSString *server;
+NSString *endpoint;
 AVQueuePlayer *avPlayer;
 NSMutableArray *songList;
 NSMutableArray *queueList;
@@ -27,9 +28,18 @@ NSMutableArray *artistList;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    
+    
     [self loadSettings];
+    
     if (server != nil){
+        if ([server substringToIndex:7] != @"http://" || [server substringToIndex:8] != @"https://") {
+            server = [NSString stringWithFormat:@"http://%@", server];
+        }
+        
+        endpoint = [NSString stringWithFormat:@"%@/rest/getIndexes.view?v=1.1.0&c=Hypersonic&u=%@&p=%@", server, name, password];
+        endpoint = [endpoint stringByAppendingFormat:@"/rest/getIndexes.view?v=1.1.0&c=Hypersonic"];
+        
         if ( artistList == nil )
             [AppDelegate updateArtists];
         
@@ -41,17 +51,13 @@ NSMutableArray *artistList;
         LoginViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"Login"];
         self.window.rootViewController = vc;
     }
+    
     return YES;
 }
 
 + (void)updateArtists
 {   
-    NSString *userURL = @"http://";
-    userURL = [userURL stringByAppendingString:server];
-    userURL = [userURL stringByAppendingString:@"/rest/getIndexes.view?v=1.1.0&c=Hypersonic&u="];
-    userURL = [userURL stringByAppendingString:name];
-    userURL = [userURL stringByAppendingString:@"&p="];
-    userURL = [userURL stringByAppendingString:password];
+    NSString *userURL = endpoint;
 
     RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
     artistList = rssParser.artistList;

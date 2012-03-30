@@ -42,12 +42,7 @@
         name = userName;
         password = userPassword;
         server = serverURL;
-        NSString *userURL = @"http://";
-        userURL = [userURL stringByAppendingString:serverURL];
-        userURL = [userURL stringByAppendingString:@"/rest/getIndexes.view?v=1.1.0&c=Hypersonic&u="];
-        userURL = [userURL stringByAppendingString:userName];
-        userURL = [userURL stringByAppendingString:@"&p="];
-        userURL = [userURL stringByAppendingString:userPassword];
+        NSString *userURL = endpoint;
         RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
         artistList = rssParser.artistList;
         artistListProperty = rssParser.artistList;
