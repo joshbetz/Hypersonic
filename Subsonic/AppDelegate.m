@@ -33,10 +33,6 @@ NSMutableArray *artistList;
     [self loadSettings];
     
     if (server != nil){
-        if ([server substringToIndex:7] != @"http://" || [server substringToIndex:8] != @"https://") {
-            server = [NSString stringWithFormat:@"http://%@", server];
-        }
-        
         endpoint = [AppDelegate getEndpoint:@"getIndexes"];
         
         if ( artistList == nil )
@@ -55,7 +51,7 @@ NSMutableArray *artistList;
 }
 
 +(NSString *)getEndpoint:(NSString *)method {
-    return [NSString stringWithFormat:@"%@/rest/%@.view?v=1.1.0&c=Hypersonic&u=%@&p=%@", server, method, name, password];
+    return [NSString stringWithFormat:@"http://%@/rest/%@.view?v=1.1.0&c=Hypersonic&u=%@&p=%@", server, method, name, password];
 }
 
 + (void)updateArtists
