@@ -35,8 +35,18 @@
     if(songList.count > 0 && differentAlbum == true) {
         [self buildPlaylist];
         
+        NSString *artSize;
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2){
+            //Retina
+            artSize = @"640";
+        }
+        else {
+            //Not Retina
+            artSize = @"320";
+        }
+        
         if (albumArtID != nil) {
-            userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getCoverArt"], albumArtID];          
+            userURL = [NSString stringWithFormat:@"%@&id=%@&size=%@", [AppDelegate getEndpoint:@"getCoverArt"], albumArtID, artSize];
             NSURL *imageURL = [NSURL URLWithString: userURL];
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
             UIImage *image = [UIImage imageWithData:imageData]; 
