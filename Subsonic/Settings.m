@@ -15,7 +15,7 @@
 
 @implementation Settings
 
-@synthesize loginLabel, localServerLabel, serverLabel, passwordLabel;
+@synthesize loginLabel, localServerLabel, serverLabel, passwordLabel, localModeSwitch, hqModeSwitch;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
