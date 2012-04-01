@@ -124,7 +124,13 @@ NSMutableArray *artistList;
 }
 
 +(NSString *)getEndpoint:(NSString *)method {
-    return [NSString stringWithFormat:@"http://%@/rest/%@.view?v=1.1.0&c=Hypersonic&u=%@&p=%@", server, method, name, password];
+    NSString *serverURL;
+    if ( localMode )
+        serverURL = localServer;
+    else
+        serverURL = server;
+    
+    return [NSString stringWithFormat:@"http://%@/rest/%@.view?v=1.1.0&c=Hypersonic&u=%@&p=%@", serverURL, method, name, password];
 }
 
 + (void)updateArtists

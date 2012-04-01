@@ -40,9 +40,7 @@
 		}
 		else 
 		{
-			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" 
-																message:@"Unable to download RSS feed. Please check your network connection" 
-															   delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",nil];
+			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Unable to find server. Please check your network connection" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",nil];
 			[alertView show];
 			return nil;
 		}
