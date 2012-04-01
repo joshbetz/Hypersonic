@@ -13,7 +13,7 @@
 
 @implementation RSSParser
 
-@synthesize articleList, rssURL, currentData, currentError, artistList, currentArtist, currentAlbum, albumList, songList, currentSong, playlistList, currentPlaylist;
+@synthesize articleList, rssURL, currentData, currentError, artistList, currentArtist, currentAlbum, albumList, songList, currentSong, playlistList, currentPlaylist, currentLetter;
 
 -(RSSParser*) initWithRSSFeed: (NSString *)anRSSFeed {
     self = [super init];
@@ -23,6 +23,9 @@
 		self.articleList = [NSMutableArray array];
         self.albumList = [NSMutableArray array];
         self.artistList = [NSMutableArray array];
+        for (int i = 0; i < 25; i++){       //X-Z is one and # is also one
+            [artistList addObject:[NSMutableArray array]];
+        }
         self.songList = [NSMutableArray array];
         self.playlistList = [NSMutableArray array];
 		NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:anRSSFeed]];
@@ -57,7 +60,7 @@ static NSString * const kAlbumOrSongElement = @"child";
 static NSString * const kAlbumAccess = @"album";
 static NSString * const kPlaylist = @"playlist";
 static NSString * const kPlaylistEntry = @"entry";
-
+static NSString * const kLetter = @"index";
 #pragma mark NSXMLParser delegate methods
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
@@ -66,7 +69,13 @@ static NSString * const kPlaylistEntry = @"entry";
         Error *error = [[Error alloc] init];
         self.currentError = error;
 		inItemTag = YES;
-    } else if ([elementName isEqualToString:kLinkElementName]) {
+    } 
+    else if ([elementName isEqualToString:kLetter]) {
+        NSString *letter = [attributeDict objectForKey:@"name"];
+        currentLetter = letter;
+		inItemTag = YES;
+    }
+    else if ([elementName isEqualToString:kLinkElementName]) {
 		[currentData setString:[attributeDict objectForKey:@"message"]];
         //self.currentError.message = [self.currentData copy];
         /*if (inItemTag) {
@@ -189,7 +198,82 @@ static NSString * const kPlaylistEntry = @"entry";
     } else if ([elementName isEqualToString:kLinkElementName]) {
         self.currentError.message = [self.currentData copy];
     } else if ([elementName isEqualToString:kArtistElement]) {
-        [self.artistList addObject:self.currentArtist];
+        if ([currentLetter isEqualToString:@"A"]){
+            [[self.artistList objectAtIndex:0]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"B"]){
+            [[self.artistList objectAtIndex:1]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"C"]){
+            [[self.artistList objectAtIndex:2]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"D"]){
+            [[self.artistList objectAtIndex:3]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"E"]){
+            [[self.artistList objectAtIndex:4]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"F"]){
+            [[self.artistList objectAtIndex:5]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"G"]){
+            [[self.artistList objectAtIndex:6]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"H"]){
+            [[self.artistList objectAtIndex:7]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"I"]){
+            [[self.artistList objectAtIndex:8]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"J"]){
+            [[self.artistList objectAtIndex:9]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"K"]){
+            [[self.artistList objectAtIndex:10]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"L"]){
+            [[self.artistList objectAtIndex:11]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"M"]){
+            [[self.artistList objectAtIndex:12]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"N"]){
+            [[self.artistList objectAtIndex:13]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"O"]){
+            [[self.artistList objectAtIndex:14]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"P"]){
+            [[self.artistList objectAtIndex:15]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"Q"]){
+            [[self.artistList objectAtIndex:16]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"R"]){
+            [[self.artistList objectAtIndex:17]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"S"]){
+            [[self.artistList objectAtIndex:18]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"T"]){
+            [[self.artistList objectAtIndex:19]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"U"]){
+            [[self.artistList objectAtIndex:20]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"V"]){
+            [[self.artistList objectAtIndex:21]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"W"]){
+            [[self.artistList objectAtIndex:22]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"X-Z"]){
+            [[self.artistList objectAtIndex:23]addObject:self.currentArtist];
+        }
+        else if ([currentLetter isEqualToString:@"#"]){
+            [[self.artistList objectAtIndex:24]addObject:self.currentArtist];
+        }
+        
     } else if ([elementName isEqualToString:kAlbumOrSongElement] && isDir == true) {
         [self.albumList addObject:self.currentAlbum];
         isDir = false;

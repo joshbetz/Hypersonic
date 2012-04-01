@@ -28,6 +28,7 @@
     Album *currentAlbum;
     Song *currentSong;
     Playlist *currentPlaylist;
+    NSString *currentLetter;
 	BOOL accumulatingParsedCharacterData;
 	BOOL inItemTag;
     BOOL isDir;
@@ -37,6 +38,7 @@
 
 @property (nonatomic, strong) NSMutableArray *articleList;
 @property (nonatomic, strong) NSString *rssURL;
+@property (nonatomic, strong) NSString *currentLetter;
 @property (nonatomic, strong) NSMutableString *currentData;
 @property (nonatomic, strong) Error *currentError;
 @property (nonatomic, strong) Artist *currentArtist;

@@ -37,7 +37,6 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"%d", [artistList count]);
     [super viewDidLoad];
     
     if (_refreshHeaderView == nil) {
@@ -107,7 +106,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"AlbumClick"]) {
-        NSString *artistID = [[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] artistID];
+        NSString *artistID = [[[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].section]objectAtIndex:[self.tableView indexPathForSelectedRow].row ] artistID];
         NSString *userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], artistID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
@@ -119,13 +118,131 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return [artistList count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [artistList count];
+    return [[artistList objectAtIndex:section] count];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    NSMutableArray *temp = [NSMutableArray array];
+    [temp addObject:@"A"];
+    [temp addObject:@"B"];
+    [temp addObject:@"C"];
+    [temp addObject:@"D"];
+    [temp addObject:@"E"];
+    [temp addObject:@"F"];
+    [temp addObject:@"G"];
+    [temp addObject:@"H"];
+    [temp addObject:@"I"];
+    [temp addObject:@"J"];
+    [temp addObject:@"K"];
+    [temp addObject:@"L"];
+    [temp addObject:@"M"];
+    [temp addObject:@"N"];
+    [temp addObject:@"O"];
+    [temp addObject:@"P"];
+    [temp addObject:@"Q"];
+    [temp addObject:@"R"];
+    [temp addObject:@"S"];
+    [temp addObject:@"T"];
+    [temp addObject:@"U"];
+    [temp addObject:@"V"];
+    [temp addObject:@"W"];
+    [temp addObject:@"X-Z"];
+    [temp addObject:@"#"];
+    return temp;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    NSMutableArray *temp = [NSMutableArray array];
+    [temp addObject:@"A"];
+    [temp addObject:@"B"];
+    [temp addObject:@"C"];
+    [temp addObject:@"D"];
+    [temp addObject:@"E"];
+    [temp addObject:@"F"];
+    [temp addObject:@"G"];
+    [temp addObject:@"H"];
+    [temp addObject:@"I"];
+    [temp addObject:@"J"];
+    [temp addObject:@"K"];
+    [temp addObject:@"L"];
+    [temp addObject:@"M"];
+    [temp addObject:@"N"];
+    [temp addObject:@"O"];
+    [temp addObject:@"P"];
+    [temp addObject:@"Q"];
+    [temp addObject:@"R"];
+    [temp addObject:@"S"];
+    [temp addObject:@"T"];
+    [temp addObject:@"U"];
+    [temp addObject:@"V"];
+    [temp addObject:@"W"];
+    [temp addObject:@"X-Z"];
+    [temp addObject:@"#"];
+    return [temp indexOfObject:title];
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    // The header for the section is the region name -- get this from the region at the section index.
+    switch (section) {
+        case 0: return @"A";
+            break;
+        case 1: return @"B";
+            break;
+        case 2: return @"C";
+            break;
+        case 3: return @"D";
+            break;
+        case 4: return @"E";
+            break;
+        case 5: return @"F";
+            break;
+        case 6: return @"G";
+            break;
+        case 7: return @"H";
+            break;
+        case 8: return @"I";
+            break;
+        case 9: return @"J";
+            break;
+        case 10: return @"K";
+            break;
+        case 11: return @"L";
+            break;
+        case 12: return @"M";
+            break;
+        case 13: return @"N";
+            break;
+        case 14: return @"O";
+            break;
+        case 15: return @"P";
+            break;
+        case 16: return @"Q";
+            break;
+        case 17: return @"R";
+            break;
+        case 18: return @"S";
+            break;
+        case 19: return @"T";
+            break;
+        case 20: return @"U";
+            break;
+        case 21: return @"V";
+            break;
+        case 22: return @"W";
+            break;
+        case 23: return @"X-Z";
+            break;
+        case 24: return @"#";
+            break;
+    }
+    return @"";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -138,7 +255,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[artistList objectAtIndex: indexPath.row] artistName] ];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[[artistList objectAtIndex: indexPath.section]objectAtIndex:indexPath.row] artistName] ];
     // Configure the cell...
     
     return cell;
