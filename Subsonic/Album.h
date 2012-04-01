@@ -13,6 +13,7 @@
     NSString *albumID;
     NSString *artistName;
     NSString *parentID;
+    NSString *coverArt;
     NSMutableArray *songList;
 }
 
@@ -21,5 +22,5 @@
 @property (nonatomic, strong) NSMutableArray *songList;
 @property (nonatomic, strong) NSString *albumName;
 @property (nonatomic, strong) NSString *parentID;
-
+@property (nonatomic, strong) NSString *coverArt;
 @end

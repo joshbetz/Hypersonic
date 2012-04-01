@@ -95,10 +95,10 @@ static NSString * const kPlaylistEntry = @"entry";
         }
         [currentData setString:[attributeDict objectForKey:@"parent"]];
         self.currentAlbum.parentID = [self.currentData copy];
-        /*if ([attributeDict objectForKey:@"coverArt"] != nil){
+        if ([attributeDict objectForKey:@"coverArt"] != nil){
             [currentData setString:[attributeDict objectForKey:@"coverArt"]];
-            self.currentAlbum.albumArt = [self.currentData copy];
-        }*/
+            self.currentAlbum.coverArt = [self.currentData copy];
+        }
     }
     else if ([elementName isEqualToString:kAlbumOrSongElement] && [[attributeDict objectForKey:@"isDir"] isEqualToString:@"false"]) {
 		Song *song = [[Song alloc] init];
@@ -131,6 +131,10 @@ static NSString * const kPlaylistEntry = @"entry";
         }
         [currentData setString:[attributeDict objectForKey:@"parent"]];
         self.currentAlbum.parentID = [self.currentData copy];
+        if ([attributeDict objectForKey:@"coverArt"] != nil){
+            [currentData setString:[attributeDict objectForKey:@"coverArt"]];
+            self.currentAlbum.coverArt = [self.currentData copy];
+        }
     }
     else if ([elementName isEqualToString:kPlaylist]) {
 		Playlist *playlist = [[Playlist alloc] init];
@@ -171,6 +175,10 @@ static NSString * const kPlaylistEntry = @"entry";
         }
         [currentData setString:[attributeDict objectForKey:@"parent"]];
         self.currentAlbum.parentID = [self.currentData copy];
+        if ([attributeDict objectForKey:@"coverArt"] != nil){
+            [currentData setString:[attributeDict objectForKey:@"coverArt"]];
+            self.currentAlbum.coverArt = [self.currentData copy];
+        }
     }
 }
 

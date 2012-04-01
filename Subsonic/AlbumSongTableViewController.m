@@ -194,9 +194,19 @@
         }
         
         cell.textLabel.text = [NSString stringWithFormat:@"%@", [[albumList objectAtIndex: indexPath.row] albumName]];
-        cell.detailTextLabel.text = @"Artist Name";
-        //cell.imageView.image = ;
-        
+        if ([[albumList objectAtIndex: indexPath.row] artistName] != nil){
+            cell.detailTextLabel.text = [[albumList objectAtIndex: indexPath.row] artistName];
+        }
+        else{
+            cell.detailTextLabel.text = @"";
+        }
+        if ([[albumList objectAtIndex: indexPath.row] coverArt] != nil){
+            NSString *userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getCoverArt"], [[albumList objectAtIndex: indexPath.row] coverArt]];
+            NSURL *imageURL = [NSURL URLWithString: userURL];
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            UIImage *image = [UIImage imageWithData:imageData]; 
+            cell.imageView.image = image;
+        }
         return cell;
     }
 }

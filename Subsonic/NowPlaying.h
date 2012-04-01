@@ -46,4 +46,6 @@
 -(IBAction)nextSong:(id)nextButton;
 -(IBAction)prevSong:(id)prevButton;
 -(IBAction) adjustVolume;
+- (void)buildPlaylist;
+- (UIImage *)reflectedImage:(UIImageView *)fromImage withHeight:(NSUInteger)height;
 @end

@@ -9,5 +9,5 @@
 #import "Album.h"
 
 @implementation Album
-@synthesize artistName, albumID, albumName, songList, parentID;
+@synthesize artistName, albumID, albumName, songList, parentID, coverArt;
 @end
