@@ -241,8 +241,11 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Settings" image="settings.png" id="sx7-4t-g0M"/>
                     <connections>
+                        <outlet property="hqModeSwitch" destination="naW-NQ-Cc9" id="AN9-OH-OIa"/>
+                        <outlet property="localModeSwitch" destination="wOl-Vm-gl3" id="mdZ-H8-k17"/>
                         <outlet property="localServerLabel" destination="t6M-ub-STf" id="ohc-gF-iHq"/>
                         <outlet property="loginLabel" destination="kG4-Dc-nNz" id="Nu9-UC-dF3"/>
+                        <outlet property="passwordLabel" destination="RUw-C6-6Gu" id="NM5-Y9-kvq"/>
                         <outlet property="serverLabel" destination="4rp-ul-MPv" id="fuw-Y9-s1N"/>
                     </connections>
                 </tableViewController>
@@ -649,6 +652,8 @@
         <class className="Settings" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/Settings.h"/>
             <relationships>
+                <relationship kind="outlet" name="hqModeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="localModeSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="localServerLabel" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="loginLabel" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordLabel" candidateClass="UITextField"/>

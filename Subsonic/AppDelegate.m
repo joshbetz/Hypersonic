@@ -13,9 +13,14 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
+
 NSString *password;
 NSString *name;
 NSString *server;
+NSString *localServer;
+BOOL localMode;
+BOOL hqMode;
+
 NSString *endpoint;
 AVQueuePlayer *avPlayer;
 NSMutableArray *songList;
@@ -49,20 +54,6 @@ NSMutableArray *artistList;
     
     return YES;
 }
-
-+(NSString *)getEndpoint:(NSString *)method {
-    return [NSString stringWithFormat:@"http://%@/rest/%@.view?v=1.1.0&c=Hypersonic&u=%@&p=%@", server, method, name, password];
-}
-
-+ (void)updateArtists
-{   
-    NSString *userURL = endpoint;
-
-    RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
-    artistList = rssParser.artistList;
-    NSLog(@"%d", [artistList count]);
-    [self saveSettings:rssParser.artistList];
-}
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -78,6 +69,8 @@ NSMutableArray *artistList;
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
+    
+    [self saveSettings];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -103,18 +96,47 @@ NSMutableArray *artistList;
      */
 }
 
--(void)loadSettings{
+-(void)loadSettings {
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
 	server = [prefs objectForKey:@"serverURL"];
 	password = [prefs objectForKey:@"userPassword"];
 	name = [prefs objectForKey:@"userName"];
+    localServer = [prefs objectForKey:@"localServerURL"];
+    localMode = [prefs boolForKey:@"localMode"];
+    hqMode = [prefs boolForKey:@"hqMode"];
+    
     NSData *data = [prefs objectForKey:@"artistList"];
     artistList = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
 }
 
-+(void)saveSettings:(NSMutableArray *)artistListProperty{
+-(void)saveSettings {
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:artistListProperty];
+
+	[prefs setObject:server forKey:@"serverURL"];
+    [prefs setObject:password forKey:@"userPassword"];
+    [prefs setObject:name forKey:@"userName"];
+    [prefs setObject:localServer forKey:@"localServerURL"];
+    [prefs setBool:localMode forKey:@"localMode"];
+    [prefs setBool:hqMode forKey:@"hqMode"];
+    
+    [prefs synchronize];
+}
+
++(NSString *)getEndpoint:(NSString *)method {
+    return [NSString stringWithFormat:@"http://%@/rest/%@.view?v=1.1.0&c=Hypersonic&u=%@&p=%@", server, method, name, password];
+}
+
++ (void)updateArtists
+{   
+    NSString *userURL = endpoint;
+    
+    RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+    artistList = rssParser.artistList;
+    NSLog(@"%d", [artistList count]);
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:rssParser.artistList];
 	[prefs setObject:data  forKey:@"artistList"];
     [prefs synchronize];
 }

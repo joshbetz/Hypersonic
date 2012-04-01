@@ -15,6 +15,10 @@
 extern NSString *server;
 extern NSString *name;
 extern NSString *password;
+extern NSString *localServer;
+extern BOOL localMode;
+extern BOOL hqMode;
+
 extern NSString *endpoint;
 extern AVQueuePlayer *avPlayer;
 extern NSMutableArray *songList;
@@ -26,7 +30,7 @@ extern UIImage *art;
 extern BOOL differentAlbum;
 
 -(void)loadSettings;
-+(void)saveSettings;
+-(void)saveSettings;
 +(void)updateArtists;
 +(NSString *)getEndpoint:(NSString *)method;
 @end

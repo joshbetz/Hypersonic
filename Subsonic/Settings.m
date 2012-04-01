@@ -7,6 +7,7 @@
 //
 
 #import "Settings.h"
+#import "AppDelegate.h"
 
 @interface Settings ()
 
@@ -14,7 +15,7 @@
 
 @implementation Settings
 
-@synthesize login, loginLabel, localServer, localServerLabel, server, serverLabel,  password, passwordLabel;
+@synthesize loginLabel, localServerLabel, serverLabel, passwordLabel;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,11 +30,8 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [self.tableView addGestureRecognizer:gestureRecognizer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -42,9 +40,24 @@
     
     self.parentViewController.title = @"Settings";
     
-    [self loadSettings];
     serverLabel.text = server;
-    loginLabel.text = login;
+    loginLabel.text = name;
+    localServerLabel.text = localServer;
+    localModeSwitch.on = localMode;
+    hqModeSwitch.on = hqMode;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    server = serverLabel.text;
+    name = loginLabel.text;
+    localServer = localServerLabel.text;
+    localMode = localModeSwitch.on;
+    hqMode = hqModeSwitch.on;
+    
+    if( [passwordLabel.text length] > 0 )
+        password = passwordLabel.text;
 }
 
 - (void)viewDidUnload
@@ -72,17 +85,8 @@
      */
 }
 
--(void)loadSettings{
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	server = [prefs objectForKey:@"serverURL"];
-	login = [prefs objectForKey:@"userName"];
-}
-
--(void)saveSettings{
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    
-	//[prefs setObject:data  forKey:@"artistList"];
-    [prefs synchronize];
+- (void) hideKeyboard {
+    [[self.tableView superview] endEditing:YES];
 }
 
 @end
