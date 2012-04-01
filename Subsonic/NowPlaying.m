@@ -161,8 +161,14 @@
     queueList = [NSMutableArray array];
     itemList = [NSMutableArray array];
     
+    NSString *maxBitRate;
+    if ( hqMode )
+        maxBitRate = @"256";
+    else
+        maxBitRate = @"128";
+    
     for (int i = 0; i < [songList count]; i++){
-        userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"stream"], [[songList objectAtIndex:i] songID]];
+        userURL = [NSString stringWithFormat:@"%@&id=%@&maxBitRate=%@", [AppDelegate getEndpoint:@"stream"], [[songList objectAtIndex:i] songID], maxBitRate];
         url = [NSURL URLWithString:userURL];
         [queueList addObject:url];
     }
