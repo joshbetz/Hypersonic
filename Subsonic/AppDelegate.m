@@ -129,8 +129,11 @@ NSMutableArray *artistList;
         serverURL = localServer;
     else
         serverURL = server;
+        
+    if ( ![[serverURL substringToIndex:7] isEqualToString:@"http://"] && ![[serverURL substringToIndex:8] isEqualToString:@"https://"] )
+        serverURL = [NSString stringWithFormat:@"http://%@", serverURL];
     
-    return [NSString stringWithFormat:@"http://%@/rest/%@.view?v=1.1.0&c=Hypersonic&u=%@&p=%@", serverURL, method, name, password];
+    return [NSString stringWithFormat:@"%@/rest/%@.view?v=1.1.0&c=Hypersonic&u=%@&p=%@", serverURL, method, name, password];
 }
 
 + (void)updateArtists
