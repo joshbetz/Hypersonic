@@ -8,6 +8,7 @@
 
 #import "NowPlaying.h"
 #import "AppDelegate.h"
+#import "Song.h"
 #import <AVFoundation/AVPlayerItem.h>
 #import <AVFoundation/AVPlayer.h>
 #import <AVFoundation/AVAudioSession.h>
@@ -32,6 +33,7 @@
 
 - (void)viewDidLoad
 {
+    
     if ([[songList objectAtIndex:currentIndex] albumArt] != nil){
         albumArtID = [[songList objectAtIndex:currentIndex] albumArt];
     }
@@ -68,12 +70,24 @@
         }
         
         avPlayer = [[AVQueuePlayer alloc] initWithPlayerItem:[itemList objectAtIndex:currentIndex]];
-        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
+        label.backgroundColor = [UIColor clearColor];
+        label.numberOfLines = 2;
+        label.font = [UIFont boldSystemFontOfSize: 14.0f];
+        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        label.textAlignment = UITextAlignmentLeft;
+        label.textColor = [UIColor whiteColor];
+        NSString *songData;
+        songData = [[songList objectAtIndex:currentIndex] songName];
+        songData = [songData stringByAppendingString:@"\n"];
+        songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] albumName]];
+        label.text = songData;
+        self.navigationItem.titleView = label;
+
         [self playSong:playButton];
         
         for ( int i=currentIndex+1; i < [itemList count]; i++ )
             [avPlayer insertItem:[itemList objectAtIndex:i] afterItem:nil];
-        
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
         [[AVAudioSession sharedInstance] setActive: YES error: nil];
         
