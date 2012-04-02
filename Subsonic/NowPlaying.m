@@ -183,10 +183,11 @@
         if( albumArtID != nil) {
             artwork = [[MPMediaItemArtwork alloc] initWithImage:art];
         }
+        
         NSDictionary *songInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  @"Some artist", MPMediaItemPropertyArtist,
-                                  @"Some title", MPMediaItemPropertyTitle,
-                                  @"Some Album", MPMediaItemPropertyAlbumTitle,
+                                  [[songList objectAtIndex:currentIndex] artistName], MPMediaItemPropertyArtist,
+                                  [[songList objectAtIndex:currentIndex] songName], MPMediaItemPropertyTitle,
+                                  [[songList objectAtIndex:currentIndex] albumName], MPMediaItemPropertyAlbumTitle,
                                   artwork, MPMediaItemPropertyArtwork,
                                   nil];
         center.nowPlayingInfo = songInfo;
