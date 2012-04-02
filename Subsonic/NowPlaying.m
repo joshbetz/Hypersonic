@@ -95,13 +95,15 @@
     //UI Label for multiline title
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
     label.backgroundColor = [UIColor clearColor];
-    label.numberOfLines = 2;
-    label.font = [UIFont boldSystemFontOfSize: 14.0f];
+    label.numberOfLines = 3;
+    label.font = [UIFont boldSystemFontOfSize: 12.0f];
     label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     label.textAlignment = UITextAlignmentLeft;
     label.textColor = [UIColor whiteColor];
     NSString *songData;
-    songData = [[songList objectAtIndex:currentIndex] songName];
+    songData = [[songList objectAtIndex:currentIndex] artistName];
+    songData = [songData stringByAppendingString:@"\n"];
+    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] songName]];
     songData = [songData stringByAppendingString:@"\n"];
     songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] albumName]];
     label.text = songData;
