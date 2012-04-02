@@ -40,14 +40,14 @@
     songList  = parser.songList;
     if ([songList count] > 0){
         songs = true;
-        self.title = @"Album Name";
+        self.title = [[songList objectAtIndex:0] albumName];
     }
     else {
         songs = false;
     }    
     if ([albumList count] > 0) {
         albums = true;
-        self.title = @"Artist Name";
+        self.title = [[albumList objectAtIndex:0] artistName];
     }
     else {
         albums = false;
