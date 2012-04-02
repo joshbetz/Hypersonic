@@ -43,6 +43,7 @@
     
     serverLabel.text = server;
     loginLabel.text = name;
+    passwordLabel.text = @"";
     localServerLabel.text = localServer;
     localModeSwitch.on = localMode;
     hqModeSwitch.on = hqMode;
@@ -50,6 +51,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
     if ([loginLabel.text length] == 0 || [serverLabel.text length] == 0){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"Please enter a server URL, username, and password!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",nil];
         [alertView show];
@@ -86,9 +88,6 @@
             }
         }
     }
-    
-    
-    
 }
 
 - (void)viewDidUnload
