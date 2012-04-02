@@ -85,22 +85,16 @@
 {
     if ([[segue identifier] isEqualToString:@"Random"]) {
         if ([self.tableView indexPathForSelectedRow].row == 0){
-        NSString *albumType = @"random";
-        NSString *userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], albumType];
-        AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-        nextViewController.userName = name;
-        nextViewController.userPassword = password;
-        nextViewController.serverURL = server;
-        nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
+            NSString *albumType = @"random";
+            NSString *userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], albumType];
+            AlbumSongTableViewController *nextViewController = [segue destinationViewController];
+            //nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
         }
         else if ([self.tableView indexPathForSelectedRow].row == 1){
             NSString *albumType = @"recent";
             NSString *userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], albumType];
             AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-            nextViewController.userName = name;
-            nextViewController.userPassword = password;
-            nextViewController.serverURL = server;
-            nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
+            //nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
         }
     }
 }
