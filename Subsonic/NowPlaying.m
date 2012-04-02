@@ -70,19 +70,6 @@
         }
         
         avPlayer = [[AVQueuePlayer alloc] initWithPlayerItem:[itemList objectAtIndex:currentIndex]];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
-        label.backgroundColor = [UIColor clearColor];
-        label.numberOfLines = 2;
-        label.font = [UIFont boldSystemFontOfSize: 14.0f];
-        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-        label.textAlignment = UITextAlignmentLeft;
-        label.textColor = [UIColor whiteColor];
-        NSString *songData;
-        songData = [[songList objectAtIndex:currentIndex] songName];
-        songData = [songData stringByAppendingString:@"\n"];
-        songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] albumName]];
-        label.text = songData;
-        self.navigationItem.titleView = label;
 
         [self playSong:playButton];
         
@@ -105,6 +92,20 @@
     //AVPlayerLayer *avPlayerLayer = [[AVPlayerLayer playerLayerWithPlayer:avPlayer] retain];
     //[avPlayer play];
     //avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+    //UI Label for multiline title
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
+    label.backgroundColor = [UIColor clearColor];
+    label.numberOfLines = 2;
+    label.font = [UIFont boldSystemFontOfSize: 14.0f];
+    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    label.textAlignment = UITextAlignmentLeft;
+    label.textColor = [UIColor whiteColor];
+    NSString *songData;
+    songData = [[songList objectAtIndex:currentIndex] songName];
+    songData = [songData stringByAppendingString:@"\n"];
+    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] albumName]];
+    label.text = songData;
+    self.navigationItem.titleView = label;
     MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(20,380,280,20)];
     [volumeView sizeToFit];
     [self.view addSubview:volumeView];
