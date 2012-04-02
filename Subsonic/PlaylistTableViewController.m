@@ -90,10 +90,7 @@
         //getPlaylist.view
         NSString *userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getPlaylist"], playlistID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-        nextViewController.userName = userName;
-        nextViewController.userPassword = userPassword;
-        nextViewController.serverURL = serverURL;
-        nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
+        //nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
     }
 }
 

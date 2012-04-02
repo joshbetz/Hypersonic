@@ -32,6 +32,15 @@
 
 - (void)viewDidLoad
 {
+    if ([[songList objectAtIndex:currentIndex] albumArt] != nil){
+        albumArtID = [[songList objectAtIndex:currentIndex] albumArt];
+    }
+    NSMutableArray *songArray = [[NSMutableArray array] init];
+    for (int i = 0; i < [songList count]; i++){
+        [songArray addObject:[songList objectAtIndex:i]];
+    }
+    songList = songArray;
+    
     if(songList.count > 0 && differentAlbum == true) {
         [self buildPlaylist];
         

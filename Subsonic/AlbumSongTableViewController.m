@@ -14,7 +14,7 @@
 #import "AppDelegate.h"
 
 @implementation AlbumSongTableViewController
-@synthesize albumList, parser, userPassword, userName, serverURL;
+@synthesize albumList, directoryID, userPassword, userName, serverURL;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -36,18 +36,21 @@
 
 - (void)viewDidLoad
 {
+    NSString *userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
+    RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
+    
     albumList = parser.albumList;
     songList  = parser.songList;
     if ([songList count] > 0){
         songs = true;
-        self.title = @"Album Name";
+        self.title = [[songList objectAtIndex:0] albumName];
     }
     else {
         songs = false;
     }    
     if ([albumList count] > 0) {
         albums = true;
-        self.title = @"Artist Name";
+        self.title = [[albumList objectAtIndex:0] artistName];
     }
     else {
         albums = false;
@@ -110,26 +113,14 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"ShowAlbums"]) {
-        NSString *albumID = [[albumList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumID];
-        NSString *userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], albumID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-        nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
+        nextViewController.directoryID = [[albumList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumID];    
     }
     if ([[segue identifier] isEqualToString:@"SelectedSong"]) {
-        /*NSString *song = [[songList objectAtIndex:[self.tableView indexPathForSelectedRow].row] songID];*/
         NowPlaying *nextViewController = [segue destinationViewController];
-        /*nextViewController.songID = song;*/
+        
         art = nil;
-        if ([[songList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumArt] != nil){
-        nextViewController.albumArtID = [[songList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumArt];
-        }
-        NSMutableArray *songArray = [[NSMutableArray array] init];
-        int index = [self.tableView indexPathForSelectedRow].row;
-        currentIndex = index;
-        for (int i = 0; i < [songList count]; i++){
-            [songArray addObject:[songList objectAtIndex:i]];
-        }
-        songList = songArray;
+        currentIndex = [self.tableView indexPathForSelectedRow].row;
         differentAlbum = true;
     }
 }

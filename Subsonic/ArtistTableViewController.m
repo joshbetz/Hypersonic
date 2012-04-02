@@ -106,10 +106,8 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"AlbumClick"]) {
-        NSString *artistID = [[[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].section]objectAtIndex:[self.tableView indexPathForSelectedRow].row ] artistID];
-        NSString *userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], artistID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-        nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
+        nextViewController.directoryID = [[[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].section]objectAtIndex:[self.tableView indexPathForSelectedRow].row ] artistID];
     }
 }
 
