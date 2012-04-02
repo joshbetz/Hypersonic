@@ -107,7 +107,8 @@
 {
     if ([[segue identifier] isEqualToString:@"AlbumClick"]) {
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-        nextViewController.directoryID = [[[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].section]objectAtIndex:[self.tableView indexPathForSelectedRow].row ] artistID];
+        NSString *directoryID = [[[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].section]objectAtIndex:[self.tableView indexPathForSelectedRow].row ] artistID];
+        nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
     }
 }
 
