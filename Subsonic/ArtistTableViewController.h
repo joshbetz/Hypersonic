@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
 
-@interface ArtistTableViewController : UITableViewController <EGORefreshTableHeaderDelegate>
+@interface ArtistTableViewController : UITableViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource>
 {
 	EGORefreshTableHeaderView *_refreshHeaderView;
 	

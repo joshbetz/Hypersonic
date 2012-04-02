@@ -262,11 +262,16 @@
 
 #pragma mark Data Source Loading / Reloading Methods
 
+- (void)reload{
+    [AppDelegate updateArtists];
+    [self doneLoadingTableViewData];
+}
+
 - (void)reloadTableViewDataSource{
 	
 	//  should be calling your tableviews data source model to reload
 	//  put here just for demo
-    [AppDelegate updateArtists];
+    [self reload];
     
 	_reloading = YES;
     
@@ -313,19 +318,6 @@
 	
 	return [NSDate date]; // should return date data source was last changed
 	
-}
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
 }
 
 @end
