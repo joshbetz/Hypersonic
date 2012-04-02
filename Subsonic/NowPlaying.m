@@ -9,6 +9,7 @@
 #import "NowPlaying.h"
 #import "AppDelegate.h"
 #import "Song.h"
+#import "RSSParser.h"
 #import <AVFoundation/AVPlayerItem.h>
 #import <AVFoundation/AVPlayer.h>
 #import <AVFoundation/AVAudioSession.h>
@@ -192,6 +193,16 @@
                                   nil];
         center.nowPlayingInfo = songInfo;
     }
+    
+    [self scrobble:NO withID:[[songList objectAtIndex:currentIndex] songID]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:[avPlayer currentItem]];
+}
+
+- (void)playerItemDidReachEnd:(NSNotification *)notification {
+    [self scrobble:YES withID:[[songList objectAtIndex:currentIndex] songID]];
+    
+    if ( [songList count] >= currentIndex )
+        [self scrobble:YES withID:[[songList objectAtIndex:currentIndex+1] songID]];
 }
 
 - (void)buildPlaylist {
@@ -284,11 +295,23 @@
     avPlayer = [[AVQueuePlayer alloc] initWithPlayerItem:[AVPlayerItem playerItemWithURL:[queueList objectAtIndex:currentIndex]]];
     [avPlayer play];
     
+    [self scrobble:NO withID:[[songList objectAtIndex:currentIndex] songID]];
+    
     [self buildPlaylist];
     for ( int i=currentIndex+1; i < [itemList count]; i++ )
         [avPlayer insertItem:[AVPlayerItem playerItemWithURL:[queueList objectAtIndex:i]] afterItem:nil];
     
     newTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:NULL];
+}
+
+-(BOOL)scrobble:(BOOL)submission withID:(NSString *)id {
+    NSString *scrobbleURL = [NSString stringWithFormat:@"%@&id=%@&submission=%@", [AppDelegate getEndpoint:@"scrobble"], id, (submission ? @"true" : @"false") ];
+    RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: scrobbleURL];
+
+    if ( parser != nil )
+        return true;
+
+    return false;
 }
 
 -(void)adjustVolume
