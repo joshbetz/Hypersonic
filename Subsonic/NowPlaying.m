@@ -200,9 +200,6 @@
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification {
     [self scrobble:YES withID:[[songList objectAtIndex:currentIndex] songID]];
-    
-    if ( [songList count] >= currentIndex )
-        [self scrobble:YES withID:[[songList objectAtIndex:currentIndex+1] songID]];
 }
 
 - (void)buildPlaylist {
@@ -251,8 +248,9 @@
 
 -(IBAction)nextSong:(id)nextButton{
     [avPlayer advanceToNextItem];
-    [self setMediaInfo];
     currentIndex++;
+    [self setMediaInfo];
+    
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
     label.backgroundColor = [UIColor clearColor];
     label.numberOfLines = 3;
