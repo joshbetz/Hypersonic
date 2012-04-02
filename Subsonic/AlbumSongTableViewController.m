@@ -14,7 +14,7 @@
 #import "AppDelegate.h"
 
 @implementation AlbumSongTableViewController
-@synthesize albumList, directoryID, userPassword, userName, serverURL;
+@synthesize albumList, userURL, userPassword, userName, serverURL;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -36,7 +36,6 @@
 
 - (void)viewDidLoad
 {
-    NSString *userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
     RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
     
     albumList = parser.albumList;
@@ -114,7 +113,8 @@
 {
     if ([[segue identifier] isEqualToString:@"ShowAlbums"]) {
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-        nextViewController.directoryID = [[albumList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumID];    
+        NSString *directoryID = [[albumList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumID];
+        nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
     }
     if ([[segue identifier] isEqualToString:@"SelectedSong"]) {
         NowPlaying *nextViewController = [segue destinationViewController];

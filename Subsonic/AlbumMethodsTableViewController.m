@@ -84,17 +84,13 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"Random"]) {
+        AlbumSongTableViewController *nextViewController = [segue destinationViewController];
+        
         if ([self.tableView indexPathForSelectedRow].row == 0){
-            NSString *albumType = @"random";
-            NSString *userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], albumType];
-            AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-            //nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
+            nextViewController.userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], @"random"];
         }
         else if ([self.tableView indexPathForSelectedRow].row == 1){
-            NSString *albumType = @"recent";
-            NSString *userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], albumType];
-            AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-            //nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];
+            nextViewController.userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], @"recent"];
         }
     }
 }

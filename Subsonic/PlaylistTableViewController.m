@@ -86,11 +86,10 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"SelectPlaylist"]) {
-        NSString *playlistID = [[playlistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] playlistID];
-        //getPlaylist.view
-        NSString *userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getPlaylist"], playlistID];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-        //nextViewController.parser = [[RSSParser alloc] initWithRSSFeed: userURL];    
+        
+        NSString *playlistID = [[playlistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] playlistID];
+        nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getPlaylist"], playlistID];
     }
 }
 
