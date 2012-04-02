@@ -20,7 +20,7 @@ NSString *server;
 NSString *localServer;
 BOOL localMode;
 BOOL hqMode;
-
+BOOL connectionProblem = false;
 NSString *endpoint;
 AVQueuePlayer *avPlayer;
 NSMutableArray *songList;
@@ -69,8 +69,14 @@ NSMutableArray *artistList;
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
-    
-    [self saveSettings];
+    if (server != nil && password != nil && name != nil){
+    NSString *userURL = [AppDelegate getEndpoint:@"ping"];
+    RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+    NSMutableArray *errors = rssParser.errorList;
+    if (![errors count] > 0 && !connectionProblem){
+        [self saveSettings];
+    }
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -130,7 +136,7 @@ NSMutableArray *artistList;
     else
         serverURL = server;
         
-    if ( ![[serverURL substringToIndex:7] isEqualToString:@"http://"] && ![[serverURL substringToIndex:8] isEqualToString:@"https://"] )
+    if ( [serverURL length] > 8 && ![[serverURL substringToIndex:7] isEqualToString:@"http://"] && ![[serverURL substringToIndex:8] isEqualToString:@"https://"] )
         serverURL = [NSString stringWithFormat:@"http://%@", serverURL];
     
     return [NSString stringWithFormat:@"%@/rest/%@.view?v=1.1.0&c=Hypersonic&u=%@&p=%@", serverURL, method, name, password];

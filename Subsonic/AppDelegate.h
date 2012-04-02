@@ -18,7 +18,7 @@ extern NSString *password;
 extern NSString *localServer;
 extern BOOL localMode;
 extern BOOL hqMode;
-
+extern BOOL connectionProblem;
 extern NSString *endpoint;
 extern AVQueuePlayer *avPlayer;
 extern NSMutableArray *songList;

@@ -434,7 +434,7 @@
                                         <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Login" minimumFontSize="17" id="cjw-Lx-OUg">
@@ -454,7 +454,7 @@
                                         <rect key="frame" x="0.0" y="99" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="zY0-rZ-WgW">
@@ -494,7 +494,6 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="login:" destination="mhq-4u-kqK" eventType="touchUpInside" id="2By-5Q-Y4t"/>
-                                                        <segue destination="48m-cn-VIM" kind="modal" identifier="Login" id="aiF-jY-QGl"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -514,6 +513,7 @@
                         <outlet property="nameText" destination="cjw-Lx-OUg" id="KMS-E1-peC"/>
                         <outlet property="passwordText" destination="zY0-rZ-WgW" id="Fn8-Eg-LcO"/>
                         <outlet property="serverText" destination="8ol-XG-PCt" id="83d-G1-vvT"/>
+                        <segue destination="48m-cn-VIM" kind="modal" identifier="Login" id="GRn-6t-gLx"/>
                     </connections>
                 </tableViewController>
             </objects>

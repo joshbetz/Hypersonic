@@ -9,6 +9,6 @@
 #import "Error.h"
 
 @implementation Error
-@synthesize message;
+@synthesize message, code;
 
 @end

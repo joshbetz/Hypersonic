@@ -15,7 +15,7 @@
 
 @interface RSSParser : NSObject <NSXMLParserDelegate> {
 @public
-	NSMutableArray *articleList;
+	NSMutableArray *errorList;
     NSMutableArray *artistList;
     NSMutableArray *albumList;
     NSMutableArray *songList;
@@ -36,7 +36,7 @@
 
 -(RSSParser*) initWithRSSFeed: (NSString *)anRSSFeed;
 
-@property (nonatomic, strong) NSMutableArray *articleList;
+@property (nonatomic, strong) NSMutableArray *errorList;
 @property (nonatomic, strong) NSString *rssURL;
 @property (nonatomic, strong) NSString *currentLetter;
 @property (nonatomic, strong) NSMutableString *currentData;

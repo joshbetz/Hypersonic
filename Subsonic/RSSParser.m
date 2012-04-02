@@ -10,17 +10,18 @@
 #import "Artist.h"
 #import "Song.h"
 #import "Playlist.h"
+#import "AppDelegate.h"
 
 @implementation RSSParser
 
-@synthesize articleList, rssURL, currentData, currentError, artistList, currentArtist, currentAlbum, albumList, songList, currentSong, playlistList, currentPlaylist, currentLetter;
+@synthesize errorList, rssURL, currentData, currentError, artistList, currentArtist, currentAlbum, albumList, songList, currentSong, playlistList, currentPlaylist, currentLetter;
 
 -(RSSParser*) initWithRSSFeed: (NSString *)anRSSFeed {
     self = [super init];
 	
     if ( self ) {
         self.rssURL = anRSSFeed;
-		self.articleList = [NSMutableArray array];
+		self.errorList = [NSMutableArray array];
         self.albumList = [NSMutableArray array];
         self.artistList = [NSMutableArray array];
         for (int i = 0; i < 25; i++){       //X-Z is one and # is also one
@@ -43,7 +44,8 @@
 		}
 		else 
 		{
-			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Unable to find server. Please check your network connection" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",nil];
+			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Unable to find server. Please check your network connection and/or server URL" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",nil];
+            connectionProblem = true;
 			[alertView show];
 			return nil;
 		}
@@ -66,9 +68,7 @@ static NSString * const kLetter = @"index";
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     isDir = false;
     if ([elementName isEqualToString:kEntryElementName]) {
-        Error *error = [[Error alloc] init];
-        self.currentError = error;
-		inItemTag = YES;
+        
     } 
     else if ([elementName isEqualToString:kLetter]) {
         NSString *letter = [attributeDict objectForKey:@"name"];
@@ -76,13 +76,13 @@ static NSString * const kLetter = @"index";
 		inItemTag = YES;
     }
     else if ([elementName isEqualToString:kLinkElementName]) {
-		[currentData setString:[attributeDict objectForKey:@"message"]];
-        //self.currentError.message = [self.currentData copy];
-        /*if (inItemTag) {
-         accumulatingParsedCharacterData = YES;
-         // The mutable string needs to be reset to empty.
-         [currentData setString:@""];
-         }*/
+		Error *error = [[Error alloc] init];
+        currentError = error;
+        [currentData setString:[attributeDict objectForKey:@"message"]];
+        self.currentError.message = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"code"]];
+        self.currentError.code = [self.currentData copy];
+       
     } else if ([elementName isEqualToString:kArtistElement]) {
 		Artist *artist = [[Artist alloc] init];
         currentArtist = artist;
@@ -193,10 +193,9 @@ static NSString * const kLetter = @"index";
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {     
     if ([elementName isEqualToString:kEntryElementName]) {
-        [self.articleList addObject:self.currentError];
 		inItemTag = NO;
     } else if ([elementName isEqualToString:kLinkElementName]) {
-        self.currentError.message = [self.currentData copy];
+        [self.errorList addObject:self.currentError];
     } else if ([elementName isEqualToString:kArtistElement]) {
         if ([currentLetter isEqualToString:@"A"]){
             [[self.artistList objectAtIndex:0]addObject:self.currentArtist];
@@ -297,7 +296,10 @@ static NSString * const kLetter = @"index";
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
 	NSLog(@"Parse error occurred: %@", [parseError localizedDescription]);
-	self.articleList = nil;
+    Error *error = [[Error alloc] init];
+    error.message = @"Problem with the URL!";
+    error.code = @"404";
+	[self.errorList addObject:error];
 }
 
 // This method is called by the parser when it find parsed character data ("PCDATA") in an element. The parser is not

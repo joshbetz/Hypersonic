@@ -38,7 +38,6 @@
         userPassword = passwordText.text;
         UINavigationController *navigationController = segue.destinationViewController;
         navigationController = [[navigationController viewControllers] objectAtIndex:0];
-        //ArtistTableViewController *nextViewController = [[navigationController viewControllers] objectAtIndex:0];
         name = userName;
         password = userPassword;
         server = serverURL;
@@ -101,8 +100,33 @@
 	
 }
 
--(IBAction)login:(id)loginButton{
+-(IBAction)login:(id)sender{
+    if ([nameText.text length] == 0 || [serverText.text length] == 0 || [passwordText.text length] == 0){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"Please enter a server URL, username, and password!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",nil];
+        [alertView show];
+    }
+    else{
+    name = nameText.text;
+    server = serverText.text;
+    password = passwordText.text;
+    NSString *userURL = [AppDelegate getEndpoint:@"ping"];
+    NSURL *temp = [NSURL URLWithString:userURL];
+    if (temp != nil) {
+    RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+    NSMutableArray *errors = rssParser.errorList;
+    if ([errors count] > 0 || connectionProblem){
+        if ([errors count] > 0){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Login Error" message:[[errors objectAtIndex:0] message] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",nil];
+        [alertView show];
+        }
+        connectionProblem = false;
+    }
+    else{
     [self saveSettings];
+    [self performSegueWithIdentifier:@"Login" sender:sender];
+    }
+    }
+    }
 }
 
 -(IBAction)textFieldReturn:(id)sender

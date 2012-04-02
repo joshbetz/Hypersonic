@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface Error : NSObject{
-	NSMutableString *message;
+	NSString *message;
+    NSString *code;
 }
 
-@property (nonatomic, strong) NSMutableString *message;
+@property (nonatomic, strong) NSString *message;
+@property (nonatomic, strong) NSString *code;
 
 @end
 
