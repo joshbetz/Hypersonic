@@ -39,10 +39,6 @@
 {
     [super viewDidLoad];
     
-    [self.tableView reloadData];
-    NSIndexPath *scrollToPath = [NSIndexPath indexPathForRow:0 inSection:0]; 
-    [self.tableView scrollToRowAtIndexPath:scrollToPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    
     if (_refreshHeaderView == nil) {
 		
 		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height) arrowImageName:@"grayArrow.png" textColor:[UIColor colorWithRed:128.0/255.0 green:128.0/255.0 blue:128.0/255.0 alpha:1.0] ];
@@ -69,7 +65,9 @@
     
     self.parentViewController.title = @"Artists";
     
-    
+    [self.tableView reloadData];
+    NSIndexPath *scrollToPath = [NSIndexPath indexPathForRow:0 inSection:0]; 
+    [self.tableView scrollToRowAtIndexPath:scrollToPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
     
     if ( [avPlayer currentItem] == nil )
         self.parentViewController.navigationItem.rightBarButtonItem = nil;
