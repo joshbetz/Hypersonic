@@ -217,6 +217,7 @@
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification {
     [self scrobble:YES withID:[[songList objectAtIndex:currentIndex] songID]];
+    [avPlayer advanceToNextItem];
     currentIndex++;
     [self setMediaInfo];
 }
