@@ -200,6 +200,7 @@
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification {
     [self scrobble:YES withID:[[songList objectAtIndex:currentIndex] songID]];
+    [self navBarLabel];
 }
 
 - (void)buildPlaylist {
@@ -251,6 +252,10 @@
     currentIndex++;
     [self setMediaInfo];
     
+    [self navBarLabel];
+}
+
+-(void)navBarLabel {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
     label.backgroundColor = [UIColor clearColor];
     label.numberOfLines = 3;
@@ -267,7 +272,6 @@
     label.text = songData;
     self.navigationItem.titleView = label;
 }
-
 
 -(IBAction)prevSong:(id)prevButton{
     currentIndex--;
