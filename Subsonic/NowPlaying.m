@@ -219,7 +219,6 @@
     [self scrobble:YES withID:[[songList objectAtIndex:currentIndex] songID]];
     currentIndex++;
     [self setMediaInfo];
-    NSLog(@"Finished");
 }
 
 - (void)buildPlaylist {
