@@ -48,4 +48,5 @@
 -(IBAction) adjustVolume;
 - (void)buildPlaylist;
 - (UIImage *)reflectedImage:(UIImageView *)fromImage withHeight:(NSUInteger)height;
+-(BOOL)scrobble:(BOOL)submission withID:(NSString *)id;
 @end
