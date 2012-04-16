@@ -89,26 +89,16 @@
             reflectionImage.image = [self reflectedImage:albumArt withHeight:reflectionHeight];
             reflectionImage.alpha = 0.60;
         }
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
+        label.backgroundColor = [UIColor clearColor];
+        label.numberOfLines = 3;
+        label.font = [UIFont boldSystemFontOfSize: 12.0f];
+        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        label.textAlignment = UITextAlignmentLeft;
+        label.textColor = [UIColor whiteColor];
+        label.text = songInfo;
+        self.navigationItem.titleView = label;
     }
-    //AVPlayerLayer *avPlayerLayer = [[AVPlayerLayer playerLayerWithPlayer:avPlayer] retain];
-    //[avPlayer play];
-    //avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
-    //UI Label for multiline title
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
-    label.backgroundColor = [UIColor clearColor];
-    label.numberOfLines = 3;
-    label.font = [UIFont boldSystemFontOfSize: 12.0f];
-    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    label.textAlignment = UITextAlignmentLeft;
-    label.textColor = [UIColor whiteColor];
-    NSString *songData;
-    songData = [[songList objectAtIndex:currentIndex] artistName];
-    songData = [songData stringByAppendingString:@"\n"];
-    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] songName]];
-    songData = [songData stringByAppendingString:@"\n"];
-    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] albumName]];
-    label.text = songData;
-    self.navigationItem.titleView = label;
     MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(20,380,280,20)];
     [volumeView sizeToFit];
     [self.view addSubview:volumeView];
@@ -212,6 +202,7 @@
     songData = [songData stringByAppendingString:@"\n"];
     songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] albumName]];
     label.text = songData;
+    songInfo = songData;
     self.navigationItem.titleView = label;
 }
 

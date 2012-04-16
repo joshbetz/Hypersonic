@@ -33,7 +33,7 @@ extern UIImage *art;
 extern BOOL differentAlbum;
 extern BOOL multiDisk;
 extern BOOL firstTimeAlbum;
-
+extern NSString *songInfo;
 -(void)loadSettings;
 -(void)saveSettings;
 +(void)updateArtists;

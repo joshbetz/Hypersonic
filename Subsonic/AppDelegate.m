@@ -35,6 +35,7 @@ int selectedArtistIndex;
 int selectedAlbumIndex;
 BOOL multiDisk;
 BOOL firstTimeAlbum;
+NSString *songInfo;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
