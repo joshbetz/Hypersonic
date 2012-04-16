@@ -108,7 +108,11 @@
     if ([[segue identifier] isEqualToString:@"AlbumClick"]) {
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         NSString *directoryID = [[[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].section]objectAtIndex:[self.tableView indexPathForSelectedRow].row ] artistID];
+        selectedArtistSection = [self.tableView indexPathForSelectedRow].section;
+        selectedArtistIndex = [self.tableView indexPathForSelectedRow].row;
         nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
+        firstTimeAlbum = true;
+        multiDisk = false;
     }
 }
 

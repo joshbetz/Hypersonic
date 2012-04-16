@@ -30,6 +30,11 @@ UIImage *art;
 int currentIndex;
 BOOL differentAlbum = false;
 NSMutableArray *artistList;
+int selectedArtistSection;
+int selectedArtistIndex;
+int selectedAlbumIndex;
+BOOL multiDisk;
+BOOL firstTimeAlbum;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

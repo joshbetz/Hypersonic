@@ -21,7 +21,7 @@
 @end
 
 @implementation NowPlaying
-@synthesize songID, playerItem, playButton, userName, userPassword, serverURL, albumArt, reflectionImage, albumArtID, nextButton, prevButton, volumeSlider;
+@synthesize songID, playerItem, playButton, userName, userPassword, serverURL, albumArt, reflectionImage, albumArtID, nextButton, prevButton, volumeSlider, artistListProperty;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -223,25 +223,38 @@
 }
 
 - (void)buildPlaylist {
-    queueList = [NSMutableArray array];
-    itemList = [NSMutableArray array];
-    
-    NSString *maxBitRate;
-    if ( hqMode )
-        maxBitRate = @"256";
-    else
-        maxBitRate = @"128";
-    
-    for (int i = 0; i < [songList count]; i++){
-        userURL = [NSString stringWithFormat:@"%@&id=%@&maxBitRate=%@", [AppDelegate getEndpoint:@"stream"], [[songList objectAtIndex:i] songID], maxBitRate];
-        url = [NSURL URLWithString:userURL];
-        [queueList addObject:url];
+    BOOL noProblems = true;
+    for (int i = 0; i < [[[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] objectAtIndex:selectedAlbumIndex] songList]count]; i++){
+        if ([[[[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] objectAtIndex:selectedAlbumIndex] songList]objectAtIndex:i]songData] == nil){
+            noProblems = false;
+            break;
+        }
     }
-    
-    NSLog(@"%d", [queueList count]);
-    for (int i = 0; i < [queueList count]; i++){
-        url = [queueList objectAtIndex:i];
-        [itemList addObject:[AVPlayerItem playerItemWithURL:url]];
+    if (noProblems == true){
+        itemList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] objectAtIndex:selectedAlbumIndex] songList];
+    }
+    else {
+        queueList = [NSMutableArray array];
+        itemList = [NSMutableArray array];
+        
+        NSString *maxBitRate;
+        if ( hqMode )
+            maxBitRate = @"256";
+        else
+            maxBitRate = @"128";
+        
+        for (int i = 0; i < [songList count]; i++){
+            userURL = [NSString stringWithFormat:@"%@&id=%@&maxBitRate=%@", [AppDelegate getEndpoint:@"stream"], [[songList objectAtIndex:i] songID], maxBitRate];
+            url = [NSURL URLWithString:userURL];
+            [queueList addObject:url];
+        }
+        
+        NSLog(@"%d", [queueList count]);
+        for (int i = 0; i < [queueList count]; i++){
+            url = [queueList objectAtIndex:i];
+            AVPlayerItem *songItem = [AVPlayerItem playerItemWithURL:url];
+            [itemList addObject:songItem];
+        }
     }
 }
 
@@ -413,5 +426,6 @@ CGContextRef MyCreateBitmapContext(int pixelsWide, int pixelsHigh)
     
     return theImage;
 }
+
 
 @end

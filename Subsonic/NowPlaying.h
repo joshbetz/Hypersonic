@@ -23,7 +23,7 @@
     UIButton *nextButton;
     UIButton *prevButton;
     UISlider *volumeSlider;
-    
+    NSMutableArray *artistListProperty;
     NSString *userURL;
     NSURL *url;
 }
@@ -40,6 +40,7 @@
 @property (nonatomic, strong) IBOutlet UIImageView *albumArt;
 @property (nonatomic, strong) IBOutlet UIImageView *reflectionImage;
 @property (nonatomic, strong) IBOutlet UISlider *volumeSlider;
+@property (nonatomic, strong) NSMutableArray *artistListProperty;
 
 - (IBAction)done:(id)sender;
 -(IBAction)playSong:(id)playButton;

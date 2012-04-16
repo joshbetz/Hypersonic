@@ -25,9 +25,14 @@ extern NSMutableArray *songList;
 extern NSMutableArray *queueList;
 extern NSMutableArray *itemList;
 extern int currentIndex;
+extern int selectedArtistSection;
+extern int selectedArtistIndex;
+extern int selectedAlbumIndex;
 extern NSMutableArray *artistList;
 extern UIImage *art;
 extern BOOL differentAlbum;
+extern BOOL multiDisk;
+extern BOOL firstTimeAlbum;
 
 -(void)loadSettings;
 -(void)saveSettings;

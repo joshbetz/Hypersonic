@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Artist : NSObject<NSCoding>{
+@interface Artist : NSObject <NSCoding>{
     NSString *artistName;
     NSString *artistID;
+    @public
     NSMutableArray *albumList;
 }
 
@@ -20,4 +21,5 @@
 
 -(void)encodeWithCoder:(NSCoder *)encoder;
 -(id)initWithCoder:(NSCoder *)decoder;
+- (id)copyWithZone:(NSZone *)zone;
 @end

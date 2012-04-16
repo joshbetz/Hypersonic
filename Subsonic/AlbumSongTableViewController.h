@@ -17,12 +17,14 @@
     NSString *userName;
     NSString *serverURL;
     NSString *userPassword;
+    NSMutableArray *artistListProperty;
 }
 @property (nonatomic, strong) NSMutableArray *albumList;
 @property (strong, nonatomic) NSString *userURL;
 @property (strong, nonatomic) NSString *userName;
 @property (strong, nonatomic) NSString *userPassword;
 @property (strong, nonatomic) NSString *serverURL;
+@property (nonatomic, strong) NSMutableArray *artistListProperty;
 
-
+-(void)saveSettings;
 @end
