@@ -55,6 +55,7 @@
      songList  = parser.songList;
         if ([songList count] > 0){
             songs = true;
+            songCount = 0;
             self.title = [[songList objectAtIndex:0] albumName];
             [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] objectAtIndex:selectedAlbumIndex] setSongList:songList];
             [self saveSettings];
@@ -66,6 +67,7 @@
             if (firstTimeAlbum == false){
                 multiDisk = true;
                 albums = true;
+                albumCount = [albumList count];
                 self.title = [[albumList objectAtIndex:0] artistName];
                 [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex]albumList]objectAtIndex:selectedAlbumIndex] setDiskList:albumList];
                 [self saveSettings];
@@ -73,6 +75,7 @@
             else {
                 firstTimeAlbum = false;
                 albums = true;
+                albumCount = [albumList count];
                 self.title = [[albumList objectAtIndex:0] artistName];
                 [[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] setAlbumList:albumList];
                 [self saveSettings];
@@ -185,16 +188,42 @@
     
     // Edge case with songs and albums mixed - need a way to fill the table in an organized way.
     if ( songs && albums ) {
-        static NSString *CellIdentifier = @"Albums";
-        
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        if (albumCount > 0){
+            static NSString *CellIdentifier = @"Albums";
+            
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.textLabel.text = [NSString stringWithFormat:@"%@", [[albumList objectAtIndex: indexPath.row] albumName]];
+            if ([[albumList objectAtIndex: indexPath.row] artistName] != nil){
+                cell.detailTextLabel.text = [[albumList objectAtIndex: indexPath.row] artistName];
+            }
+            else{
+                cell.detailTextLabel.text = @"";
+            }
+            if ([[albumList objectAtIndex: indexPath.row] coverArt] != nil){
+                NSString *URL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getCoverArt"], [[albumList objectAtIndex: indexPath.row] coverArt]];
+                NSURL *imageURL = [NSURL URLWithString: URL];
+                NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+                UIImage *image = [UIImage imageWithData:imageData]; 
+                cell.imageView.image = image;
+            }
+            albumCount--;
+            return cell;
         }
-        
-        // Configure the cell...
-        
-        return cell;
+        else {
+            static NSString *CellIdentifier = @"Songs";
+            
+            UITableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell2 == nil) {
+                cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            // Configure the cell...
+            cell2.textLabel.text = [NSString stringWithFormat:@"%@", [[songList objectAtIndex: songCount] songName] ];
+            songCount++;
+            return cell2;
+        }
     }
     else if ( songs ) {
         static NSString *CellIdentifier = @"Songs";

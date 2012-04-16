@@ -18,6 +18,8 @@
     NSString *serverURL;
     NSString *userPassword;
     NSMutableArray *artistListProperty;
+    int albumCount;
+    int songCount;
 }
 @property (nonatomic, strong) NSMutableArray *albumList;
 @property (strong, nonatomic) NSString *userURL;
