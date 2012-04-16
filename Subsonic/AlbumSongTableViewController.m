@@ -116,8 +116,7 @@
 }
 
 - (void) pushToPlayer {
-    NowPlaying *player = [self.storyboard instantiateViewControllerWithIdentifier:@"NowPlaying"];
-    [self.navigationController pushViewController:player animated:YES];
+    [self.navigationController pushViewController:nowPlaying animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated

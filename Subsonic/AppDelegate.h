@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVPlayerItem.h>
 #import <AVFoundation/AVPlayer.h>
+#import "NowPlaying.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -34,6 +35,7 @@ extern BOOL differentAlbum;
 extern BOOL multiDisk;
 extern BOOL firstTimeAlbum;
 extern NSString *songInfo;
+extern NowPlaying *nowPlaying;
 -(void)loadSettings;
 -(void)saveSettings;
 +(void)updateArtists;

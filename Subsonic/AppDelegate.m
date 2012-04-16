@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "ArtistTableViewController.h"
 #import "RSSParser.h"
+#import "NowPlaying.h"
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -36,6 +37,7 @@ int selectedAlbumIndex;
 BOOL multiDisk;
 BOOL firstTimeAlbum;
 NSString *songInfo;
+NowPlaying *nowPlaying;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

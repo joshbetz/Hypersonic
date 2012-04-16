@@ -122,6 +122,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    nowPlaying = self;
     [super viewWillDisappear:animated];
     
     //End recieving events
@@ -153,6 +154,7 @@
 
 - (void)viewDidUnload
 {
+    nowPlaying = self;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
