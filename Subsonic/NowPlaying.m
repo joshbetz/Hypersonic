@@ -296,6 +296,7 @@
     songData = [songData stringByAppendingString:@"\n"];
     songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] albumName]];
     label.text = songData;
+    songInfo = songData;
     self.navigationItem.titleView = label;
     UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
     
