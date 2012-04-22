@@ -35,6 +35,7 @@
 		038DDB88152545F40003490B /* prev.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB80152545F40003490B /* prev.png */; };
 		038DDB89152545F40003490B /* prev@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB81152545F40003490B /* prev@2x.png */; };
 		03A9B72E151F6DA1002ECD97 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A9B72D151F6DA1002ECD97 /* Settings.m */; };
+		03AEAD8E1544A3C300182328 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AEAD8D1544A3C300182328 /* CoreMedia.framework */; };
 		03D8A0ED1502B54C00DA09D4 /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D8A0EC1502B54C00DA09D4 /* RSSParser.m */; };
 		03EDBDBF1509800D0093C55C /* NowPlaying.m in Sources */ = {isa = PBXBuildFile; fileRef = 03EDBDBE1509800D0093C55C /* NowPlaying.m */; };
 		03FAD29C152392D2006FFB40 /* controlbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FAD29A152392D2006FFB40 /* controlbar.png */; };
@@ -93,6 +94,7 @@
 		038DDB81152545F40003490B /* prev@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "prev@2x.png"; path = "Resources/prev@2x.png"; sourceTree = "<group>"; };
 		03A9B72C151F6DA1002ECD97 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		03A9B72D151F6DA1002ECD97 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		03AEAD8D1544A3C300182328 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		03D8A0EB1502B54C00DA09D4 /* RSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSParser.h; sourceTree = "<group>"; };
 		03D8A0EC1502B54C00DA09D4 /* RSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSParser.m; sourceTree = "<group>"; };
 		03EDBDBD1509800D0093C55C /* NowPlaying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlaying.h; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03AEAD8E1544A3C300182328 /* CoreMedia.framework in Frameworks */,
 				03FAD2D11523CC10006FFB40 /* QuartzCore.framework in Frameworks */,
 				9EFB4D0A1520F363006F8EDF /* MediaPlayer.framework in Frameworks */,
 				762D070B1512444A0015363A /* AVFoundation.framework in Frameworks */,
@@ -167,6 +170,7 @@
 		032E6EAF14F3F4860072697A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				03AEAD8D1544A3C300182328 /* CoreMedia.framework */,
 				03FAD2D01523CC10006FFB40 /* QuartzCore.framework */,
 				9EFB4D091520F363006F8EDF /* MediaPlayer.framework */,
 				762D070A1512444A0015363A /* AVFoundation.framework */,

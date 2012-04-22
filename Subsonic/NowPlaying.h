@@ -26,6 +26,8 @@
     NSMutableArray *artistListProperty;
     NSString *userURL;
     NSURL *url;
+    
+    UISlider *seek;
 }
 
 @property (nonatomic, strong) NSString *songID;
@@ -41,6 +43,8 @@
 @property (nonatomic, strong) IBOutlet UIImageView *reflectionImage;
 @property (nonatomic, strong) IBOutlet UISlider *volumeSlider;
 @property (nonatomic, strong) NSMutableArray *artistListProperty;
+
+@property (nonatomic, strong) IBOutlet UISlider *seek;
 
 - (IBAction)done:(id)sender;
 -(IBAction)playSong:(id)playButton;

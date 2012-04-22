@@ -15,6 +15,14 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="albumArt.png" id="nfu-dL-sjS">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="316"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="d3a-uY-L2E">
+                                <rect key="frame" x="-5" y="307" width="330" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="reflectionmask.png" id="Y2k-KX-4N3">
                                 <rect key="frame" x="0.0" y="316" width="325" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -22,10 +30,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="l96-To-pF0">
                                 <rect key="frame" x="-5" y="316" width="325" height="104"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="albumArt.png" id="nfu-dL-sjS">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="316"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <navigationBar contentMode="bottom" barStyle="blackTranslucent" id="41M-Fn-X7N">
                                 <rect key="frame" x="0.0" y="416" width="320" height="44"/>
@@ -94,6 +98,7 @@
                         <outlet property="playButton" destination="sUC-UX-5If" id="BKc-k5-nh0"/>
                         <outlet property="prevButton" destination="HeO-Zm-4n8" id="0U7-iU-40Z"/>
                         <outlet property="reflectionImage" destination="l96-To-pF0" id="NUt-fT-31t"/>
+                        <outlet property="seek" destination="d3a-uY-L2E" id="pmW-lK-qWD"/>
                     </connections>
                 </viewController>
             </objects>
@@ -643,6 +648,7 @@
                 <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="prevButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="reflectionImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="seek" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="volumeSlider" candidateClass="UISlider"/>
             </relationships>
         </class>
