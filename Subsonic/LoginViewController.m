@@ -97,6 +97,13 @@
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:artistListProperty];
 	[prefs setObject:data  forKey:@"artistList"];
     [prefs synchronize];
+    
+    NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+    if (store) {
+        [store setObject:serverURL forKey:@"serverURL"];
+        [store setObject:userPassword forKey:@"userPassword"];
+        [store setObject:userName forKey:@"userName"];
+    }
 	
 }
 

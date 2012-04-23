@@ -42,6 +42,11 @@ NowPlaying *nowPlaying;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    NSUbiquitousKeyValueStore* store = [NSUbiquitousKeyValueStore defaultStore];
+    if (store) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(storeChanged:) name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification object:store];
+        [store synchronize];
+    }
     
     [self loadSettings];
     
@@ -110,6 +115,33 @@ NowPlaying *nowPlaying;
      */
 }
 
+- (void)storeChanged:(NSNotification*)notification {
+    
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *reason = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangeReasonKey];
+    
+    if (reason) {
+        
+        NSInteger reasonValue = [reason integerValue];
+        NSLog(@"storeChanged with reason %d", reasonValue);
+        
+        if ((reasonValue == NSUbiquitousKeyValueStoreServerChange) ||
+            (reasonValue == NSUbiquitousKeyValueStoreInitialSyncChange)) {
+            
+            NSArray *keys = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangedKeysKey];
+            NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            
+            for (NSString *key in keys) {
+                id value = [store objectForKey:key];
+                [userDefaults setObject:value forKey:key];
+                NSLog(@"storeChanged updated value for %@",key);
+            }
+        }
+        
+    }
+}
+
 -(void)loadSettings {
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
@@ -133,6 +165,16 @@ NowPlaying *nowPlaying;
     [prefs setObject:localServer forKey:@"localServerURL"];
     [prefs setBool:localMode forKey:@"localMode"];
     [prefs setBool:hqMode forKey:@"hqMode"];
+    
+    NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+    if (store) {
+        [store setObject:server forKey:@"serverURL"];
+        [store setObject:password forKey:@"userPassword"];
+        [store setObject:name forKey:@"userName"];
+        [store setObject:localServer forKey:@"localServerURL"];
+        [store setBool:localMode forKey:@"localMode"];
+        [store setBool:hqMode forKey:@"hqMode"];
+    }
     
     [prefs synchronize];
 }

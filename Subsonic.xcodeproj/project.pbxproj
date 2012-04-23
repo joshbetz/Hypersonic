@@ -107,6 +107,7 @@
 		03FAD2A3152393AE006FFB40 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/Icon@2x.png"; sourceTree = "<group>"; };
 		03FAD2D01523CC10006FFB40 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		03FAD2D91523EBF6006FFB40 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Resources/iTunesArtwork; sourceTree = "<group>"; };
+		41C82FB01545F338009D618D /* Hypersonic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hypersonic.entitlements; sourceTree = "<group>"; };
 		762D070A1512444A0015363A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		76C8D310151CBDCB00A91966 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
 		76C8D311151CBDCC00A91966 /* Playlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playlist.m; sourceTree = "<group>"; };
@@ -152,6 +153,7 @@
 		032E6EA114F3F4860072697A = {
 			isa = PBXGroup;
 			children = (
+				41C82FB01545F338009D618D /* Hypersonic.entitlements */,
 				03FAD29F152392DB006FFB40 /* Resources */,
 				032E6EB614F3F4860072697A /* Subsonic */,
 				032E6EAF14F3F4860072697A /* Frameworks */,
@@ -448,6 +450,7 @@
 		032E6ED614F3F4870072697A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Hypersonic.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subsonic/Subsonic-Prefix.pch";
 				INFOPLIST_FILE = "Subsonic/Subsonic-Info.plist";
@@ -459,6 +462,7 @@
 		032E6ED714F3F4870072697A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Hypersonic.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subsonic/Subsonic-Prefix.pch";
 				INFOPLIST_FILE = "Subsonic/Subsonic-Info.plist";
@@ -490,6 +494,7 @@
 		03AEF1E81522AB840026C015 /* Ad Hoc Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Hypersonic.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subsonic/Subsonic-Prefix.pch";
