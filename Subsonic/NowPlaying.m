@@ -191,9 +191,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:[avPlayer currentItem]];
     
     // setup seek slider
-    [seek setMaximumValue:120.0];
+    NSString *durString = [[songList objectAtIndex:currentIndex] songDuration];
+    float dur = [durString floatValue];
+    NSLog(@"Duration: %@", durString);
+    [seek setMaximumValue:dur];
     [seek setThumbImage:[[UIImage alloc] init] forState:UIControlStateNormal];
-    [NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
     
     // Update the nav bar label
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];

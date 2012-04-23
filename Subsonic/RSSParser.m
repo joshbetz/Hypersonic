@@ -121,6 +121,8 @@ static NSString * const kLetter = @"index";
         self.currentSong.artistName = [self.currentData copy];
         [currentData setString:[attributeDict objectForKey:@"album"]];
         self.currentSong.albumName = [self.currentData copy];
+        [currentData setString:[attributeDict objectForKey:@"duration"]];
+        self.currentSong.songDuration = [self.currentData copy];
         if ([attributeDict objectForKey:@"coverArt"] != nil){
             [currentData setString:[attributeDict objectForKey:@"coverArt"]];
             self.currentSong.albumArt = [self.currentData copy];

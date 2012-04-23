@@ -10,13 +10,14 @@
 #import <AVFoundation/AVPlayerItem.h>
 
 @implementation Song 
-@synthesize songID, songName, artistName, albumName, albumArt, songData;
+@synthesize songID, songName, artistName, albumName, albumArt, songDuration, songData;
 -(void)encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeObject:songID forKey:@"songID"];
     [encoder encodeObject:artistName forKey:@"songArtistName"];
     [encoder encodeObject:albumName forKey:@"songAlbumName"];
     [encoder encodeObject:albumArt forKey:@"songAlbumArt"];
     [encoder encodeObject:songName forKey:@"songName"];
+    [encoder encodeObject:songName forKey:@"songDuration"];
     [encoder encodeObject:songData forKey:@"songData"];
 }
 
@@ -26,6 +27,7 @@
     self.albumName = [decoder decodeObjectForKey:@"songAlbumName"];
     self.albumArt = [decoder decodeObjectForKey:@"songAlbumArt"];
     self.songName = [decoder decodeObjectForKey:@"songName"];
+    self.songDuration = [decoder decodeObjectForKey:@"songDuration"];
     self.songData = [decoder decodeObjectForKey:@"songData"];
     return self;
 }
@@ -39,6 +41,7 @@
         [copy setSongName:[self.songName copyWithZone:zone]];
         [copy setAlbumName:[self.albumName copyWithZone:zone]];
         [copy setAlbumArt:[self.albumArt copyWithZone:zone]];
+        [copy setSongDuration:[self.songDuration copyWithZone:zone]];
         [copy setSongData:[self.songData copyWithZone:zone]];
     }
     
