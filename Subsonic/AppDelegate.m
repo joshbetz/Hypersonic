@@ -83,12 +83,13 @@ NowPlaying *nowPlaying;
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
     if (server != nil && password != nil && name != nil){
-    NSString *userURL = [AppDelegate getEndpoint:@"ping"];
-    RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
-    NSMutableArray *errors = rssParser.errorList;
-    if (![errors count] > 0 && !connectionProblem){
-        [self saveSettings];
-    }
+        NSString *userURL = [AppDelegate getEndpoint:@"ping"];
+        RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+        NSMutableArray *errors = rssParser.errorList;
+        
+        if (![errors count] > 0 && !connectionProblem){
+            [self saveSettings];
+        }
     }
 }
 
@@ -97,8 +98,6 @@ NowPlaying *nowPlaying;
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
-    
-    [self saveSettings];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -119,29 +118,16 @@ NowPlaying *nowPlaying;
 
 - (void)storeChanged:(NSNotification*)notification {
     
-    NSDictionary *userInfo = [notification userInfo];
-    NSNumber *reason = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangeReasonKey];
+    NSUbiquitousKeyValueStore* store = [NSUbiquitousKeyValueStore defaultStore];
     
-    if (reason) {
-        
-        NSInteger reasonValue = [reason integerValue];
-        NSLog(@"storeChanged with reason %d", reasonValue);
-        
-        if ((reasonValue == NSUbiquitousKeyValueStoreServerChange) ||
-            (reasonValue == NSUbiquitousKeyValueStoreInitialSyncChange)) {
-            
-            NSArray *keys = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangedKeysKey];
-            NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            
-            for (NSString *key in keys) {
-                id value = [store objectForKey:key];
-                [userDefaults setObject:value forKey:key];
-                NSLog(@"storeChanged updated value for %@",key);
-            }
-        }
-        
-    }
+    server = [store objectForKey:@"serverURL"];
+	password = [store objectForKey:@"userPassword"];
+	name = [store objectForKey:@"userName"];
+    localServer = [store objectForKey:@"localServerURL"];
+    localMode = [store boolForKey:@"localMode"];
+    hqMode = [store boolForKey:@"hqMode"];
+    
+    [self saveSettings];
 }
 
 -(void)loadSettings {
@@ -177,6 +163,7 @@ NowPlaying *nowPlaying;
         [store setObject:localServer forKey:@"localServerURL"];
         [store setBool:localMode forKey:@"localMode"];
         [store setBool:hqMode forKey:@"hqMode"];
+        [store synchronize];
     }
     
     

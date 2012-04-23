@@ -115,7 +115,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[playlistList objectAtIndex: indexPath.row] name]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[playlistList objectAtIndex: indexPath.row] playlistName]];
 
     // Configure the cell...
     

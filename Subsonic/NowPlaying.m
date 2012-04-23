@@ -67,7 +67,7 @@
             
             NSUInteger reflectionHeight = albumArt.bounds.size.height * 0.65;
             reflectionImage.image = [self reflectedImage:albumArt withHeight:reflectionHeight];
-            reflectionImage.alpha = 0.60;
+            reflectionImage.alpha = 0.45;
         }
         
         avPlayer = [[AVQueuePlayer alloc] initWithPlayerItem:[itemList objectAtIndex:currentIndex]];
