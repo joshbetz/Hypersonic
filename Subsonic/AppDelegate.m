@@ -97,6 +97,8 @@ NowPlaying *nowPlaying;
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
+    
+    [self saveSettings];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -157,14 +159,15 @@ NowPlaying *nowPlaying;
 }
 
 -(void)saveSettings {
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	[prefs setObject:server forKey:@"serverURL"];
     [prefs setObject:password forKey:@"userPassword"];
     [prefs setObject:name forKey:@"userName"];
     [prefs setObject:localServer forKey:@"localServerURL"];
     [prefs setBool:localMode forKey:@"localMode"];
     [prefs setBool:hqMode forKey:@"hqMode"];
+    [prefs synchronize];
     
     NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
     if (store) {
@@ -176,7 +179,7 @@ NowPlaying *nowPlaying;
         [store setBool:hqMode forKey:@"hqMode"];
     }
     
-    [prefs synchronize];
+    
 }
 
 +(NSString *)getEndpoint:(NSString *)method {
