@@ -220,8 +220,13 @@
 - (void)playerItemDidReachEnd:(NSNotification *)notification {
     [self scrobble:YES withID:[[songList objectAtIndex:currentIndex] songID]];
     [avPlayer advanceToNextItem];
-    currentIndex++;
-    [self setMediaInfo];
+    
+    if ([[avPlayer items] count] <= 0) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
+        currentIndex++;
+        [self setMediaInfo];
+    }
 }
 
 - (void)buildPlaylist {
