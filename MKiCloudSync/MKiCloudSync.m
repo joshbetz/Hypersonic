@@ -38,6 +38,7 @@
         
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ( [key length] > 7 && [[key substringToIndex:7] isEqualToString:@"iCloud-"] ) {
+            NSLog(@"Save Key: %@", key);
             [[NSUbiquitousKeyValueStore defaultStore] setObject:obj forKey:key];
         }
     }];
@@ -57,7 +58,7 @@
                                                   object:nil];
 
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        
+        NSLog(@"Update Key: %@", key);
         [[NSUserDefaults standardUserDefaults] setObject:obj forKey:key];
     }];
 

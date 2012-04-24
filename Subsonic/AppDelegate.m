@@ -45,6 +45,7 @@ NowPlaying *nowPlaying;
 {
     
     [MKiCloudSync start];
+    [[NSUbiquitousKeyValueStore defaultStore] synchronize];
     
     [self loadSettings];
     
