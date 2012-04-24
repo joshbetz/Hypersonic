@@ -91,19 +91,12 @@
 -(void)saveSettings{
 	
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	[prefs setObject:userName  forKey:@"userName"];
-	[prefs setObject:userPassword forKey:@"userPassword"];
-	[prefs setObject:serverURL forKey:@"serverURL"];
+	[prefs setObject:userName  forKey:@"iCloud-userName"];
+	[prefs setObject:userPassword forKey:@"iCloud-userPassword"];
+	[prefs setObject:serverURL forKey:@"iCloud-serverURL"];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:artistListProperty];
-	[prefs setObject:data  forKey:@"artistList"];
+	[prefs setObject:data  forKey:@"local-artistList"];
     [prefs synchronize];
-    
-    NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
-    if (store) {
-        [store setObject:serverURL forKey:@"serverURL"];
-        [store setObject:userPassword forKey:@"userPassword"];
-        [store setObject:userName forKey:@"userName"];
-    }
 	
 }
 

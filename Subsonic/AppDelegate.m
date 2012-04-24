@@ -11,6 +11,8 @@
 #import "ArtistTableViewController.h"
 #import "RSSParser.h"
 #import "NowPlaying.h"
+#import "MKiCloudSync.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -42,11 +44,7 @@ NowPlaying *nowPlaying;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    NSUbiquitousKeyValueStore* store = [NSUbiquitousKeyValueStore defaultStore];
-    if (store) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(storeChanged:) name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification object:store];
-        [store synchronize];
-    }
+    [MKiCloudSync start];
     
     [self loadSettings];
     
@@ -116,56 +114,30 @@ NowPlaying *nowPlaying;
      */
 }
 
-- (void)storeChanged:(NSNotification*)notification {
-    
-    NSUbiquitousKeyValueStore* store = [NSUbiquitousKeyValueStore defaultStore];
-    
-    server = [store objectForKey:@"serverURL"];
-	password = [store objectForKey:@"userPassword"];
-	name = [store objectForKey:@"userName"];
-    localServer = [store objectForKey:@"localServerURL"];
-    localMode = [store boolForKey:@"localMode"];
-    hqMode = [store boolForKey:@"hqMode"];
-    
-    [self saveSettings];
-}
-
 -(void)loadSettings {
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
-	server = [prefs objectForKey:@"serverURL"];
-	password = [prefs objectForKey:@"userPassword"];
-	name = [prefs objectForKey:@"userName"];
-    localServer = [prefs objectForKey:@"localServerURL"];
-    localMode = [prefs boolForKey:@"localMode"];
-    hqMode = [prefs boolForKey:@"hqMode"];
+	server = [prefs objectForKey:@"iCloud-serverURL"];
+	password = [prefs objectForKey:@"iCloud-userPassword"];
+	name = [prefs objectForKey:@"iCloud-userName"];
+    localServer = [prefs objectForKey:@"iCloud-localServerURL"];
+    localMode = [prefs boolForKey:@"iCloud-localMode"];
+    hqMode = [prefs boolForKey:@"iCloud-hqMode"];
     
-    NSData *data = [prefs objectForKey:@"artistList"];
+    NSData *data = [prefs objectForKey:@"local-artistList"];
     artistList = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
 }
 
 -(void)saveSettings {
 
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	[prefs setObject:server forKey:@"serverURL"];
-    [prefs setObject:password forKey:@"userPassword"];
-    [prefs setObject:name forKey:@"userName"];
-    [prefs setObject:localServer forKey:@"localServerURL"];
-    [prefs setBool:localMode forKey:@"localMode"];
-    [prefs setBool:hqMode forKey:@"hqMode"];
-    [prefs synchronize];
-    
-    NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
-    if (store) {
-        [store setObject:server forKey:@"serverURL"];
-        [store setObject:password forKey:@"userPassword"];
-        [store setObject:name forKey:@"userName"];
-        [store setObject:localServer forKey:@"localServerURL"];
-        [store setBool:localMode forKey:@"localMode"];
-        [store setBool:hqMode forKey:@"hqMode"];
-        [store synchronize];
-    }
-    
+	[prefs setObject:server forKey:@"iCloud-serverURL"];
+    [prefs setObject:password forKey:@"iCloud-userPassword"];
+    [prefs setObject:name forKey:@"iCloud-userName"];
+    [prefs setObject:localServer forKey:@"iCloud-localServerURL"];
+    [prefs setBool:localMode forKey:@"iCloud-localMode"];
+    [prefs setBool:hqMode forKey:@"iCloud-hqMode"];
+    [prefs synchronize];  
     
 }
 
@@ -192,7 +164,7 @@ NowPlaying *nowPlaying;
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:rssParser.artistList];
-	[prefs setObject:data  forKey:@"artistList"];
+	[prefs setObject:data  forKey:@"local-artistList"];
     [prefs synchronize];
 }
          

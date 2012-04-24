@@ -14,6 +14,7 @@
 		032E6EBD14F3F4860072697A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 032E6EBC14F3F4860072697A /* main.m */; };
 		032E6EC114F3F4860072697A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 032E6EC014F3F4860072697A /* AppDelegate.m */; };
 		032E6EC414F3F4860072697A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 032E6EC214F3F4860072697A /* MainStoryboard.storyboard */; };
+		0368CD2215462E7F003777F7 /* MKiCloudSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 0368CD2115462E7F003777F7 /* MKiCloudSync.m */; };
 		038DDB3E1524BB2F0003490B /* albumArt.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB3C1524BB2F0003490B /* albumArt.png */; };
 		038DDB3F1524BB2F0003490B /* albumArt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB3D1524BB2F0003490B /* albumArt@2x.png */; };
 		038DDB591524C45F0003490B /* reflectionmask.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB571524C45F0003490B /* reflectionmask.png */; };
@@ -72,6 +73,8 @@
 		032E6EBF14F3F4860072697A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		032E6EC014F3F4860072697A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		032E6EC314F3F4860072697A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		0368CD2015462E7F003777F7 /* MKiCloudSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKiCloudSync.h; path = MKiCloudSync/MKiCloudSync.h; sourceTree = "<group>"; };
+		0368CD2115462E7F003777F7 /* MKiCloudSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKiCloudSync.m; path = MKiCloudSync/MKiCloudSync.m; sourceTree = "<group>"; };
 		038DDB3C1524BB2F0003490B /* albumArt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = albumArt.png; path = Resources/albumArt.png; sourceTree = "<group>"; };
 		038DDB3D1524BB2F0003490B /* albumArt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "albumArt@2x.png"; path = "Resources/albumArt@2x.png"; sourceTree = "<group>"; };
 		038DDB571524C45F0003490B /* reflectionmask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reflectionmask.png; path = Resources/reflectionmask.png; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				41C82FB01545F338009D618D /* Hypersonic.entitlements */,
+				0368CD1815462DAA003777F7 /* MKiCloudSync */,
 				03FAD29F152392DB006FFB40 /* Resources */,
 				032E6EB614F3F4860072697A /* Subsonic */,
 				032E6EAF14F3F4860072697A /* Frameworks */,
@@ -220,6 +224,15 @@
 				032E6EBE14F3F4860072697A /* Subsonic-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0368CD1815462DAA003777F7 /* MKiCloudSync */ = {
+			isa = PBXGroup;
+			children = (
+				0368CD2015462E7F003777F7 /* MKiCloudSync.h */,
+				0368CD2115462E7F003777F7 /* MKiCloudSync.m */,
+			);
+			name = MKiCloudSync;
 			sourceTree = "<group>";
 		};
 		038DDB601524F5810003490B /* Objects */ = {
@@ -377,6 +390,7 @@
 				76C8D312151CBDCC00A91966 /* Playlist.m in Sources */,
 				76C8D317151CBF7000A91966 /* PlaylistTableViewController.m in Sources */,
 				03A9B72E151F6DA1002ECD97 /* Settings.m in Sources */,
+				0368CD2215462E7F003777F7 /* MKiCloudSync.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

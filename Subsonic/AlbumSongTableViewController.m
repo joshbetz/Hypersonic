@@ -275,7 +275,7 @@
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     [self setArtistListProperty:artistList];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:artistListProperty];
-	[prefs setObject:data  forKey:@"artistList"];
+	[prefs setObject:data  forKey:@"local-artistList"];
     [prefs synchronize];
 }
 
