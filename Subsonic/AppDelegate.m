@@ -157,7 +157,7 @@ NowPlaying *nowPlaying;
 
 + (void)updateArtists
 {   
-    NSString *userURL = endpoint;
+    NSString *userURL = [AppDelegate getEndpoint:@"getIndexes"];
     
     RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
     artistList = rssParser.artistList;

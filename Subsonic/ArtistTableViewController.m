@@ -63,6 +63,13 @@
         UIBarButtonItem *nowPlaying = [[UIBarButtonItem alloc] initWithTitle:@"Now Playing" style:UIBarButtonItemStylePlain target:self action: @selector(pushToPlayer)];
         self.parentViewController.navigationItem.rightBarButtonItem = nowPlaying;
     }
+    
+    self.parentViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+}
+
+- (void) refresh {
+    [AppDelegate updateArtists];
+    [self.tableView reloadData];
 }
 
 - (void) pushToPlayer {
