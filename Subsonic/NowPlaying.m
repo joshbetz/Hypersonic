@@ -21,7 +21,7 @@
 @end
 
 @implementation NowPlaying
-@synthesize songID, playerItem, playButton, userName, userPassword, serverURL, albumArt, reflectionImage, albumArtID, nextButton, prevButton, volumeSlider, artistListProperty;
+@synthesize songID, playerItem, playButton, userName, userPassword, serverURL, albumArt, reflectionImage, albumArtID, nextButton, prevButton, volumeSlider, artistListProperty, seek;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
