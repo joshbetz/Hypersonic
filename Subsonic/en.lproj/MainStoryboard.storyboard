@@ -659,6 +659,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/Settings.h"/>
             <relationships>
                 <relationship kind="outlet" name="hqModeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="iCloudModeSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="localModeSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="localServerLabel" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="loginLabel" candidateClass="UITextField"/>

@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "ArtistTableViewController.h"
 #import "RSSParser.h"
+#import "MKiCloudSync.h"
 
 @implementation LoginViewController
 @synthesize loginButton, passwordText, nameText, serverText, userPassword, userName, serverURL, artistListProperty;
@@ -72,11 +73,19 @@
     [tempImageView setFrame:self.tableView.frame]; 
     
     self.tableView.backgroundView = tempImageView;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(iCloudLogin) 
+                                                 name:kMKiCloudSyncNotification                                                    
+                                               object:nil];
+    [MKiCloudSync requestUpdate];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:kMKiCloudSyncNotification];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -87,6 +96,41 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(void)loadSettings {
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+	server = [prefs objectForKey:@"iCloud-serverURL"];
+	password = [prefs objectForKey:@"iCloud-userPassword"];
+	name = [prefs objectForKey:@"iCloud-userName"];
+    localServer = [prefs objectForKey:@"iCloud-localServerURL"];
+    localMode = [prefs boolForKey:@"iCloud-localMode"];
+    hqMode = [prefs boolForKey:@"iCloud-hqMode"];
+}
+
+- (void) iCloudLogin {
+    NSLog(@"Update from iCloud");
+    [self loadSettings];
+    
+    if ([server length] != 0 && [password length] != 0 && [name length] != 0) {
+        UIAlertView *alert= [[UIAlertView alloc] initWithTitle:@"Login with iCloud?" message:@"Hypersonic preferences were found in iCloud. Login with these settings?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Login",nil];
+        [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+    }
+    else if (buttonIndex == 1)
+    {
+        nameText.text = name;
+        serverText.text = server;
+        passwordText.text = password;
+        [self login:nil];
+    }
+}
 
 -(void)saveSettings{
 	
@@ -101,7 +145,7 @@
 }
 
 -(IBAction)login:(id)sender{
-    if ([nameText.text length] == 0 || [serverText.text length] == 0 || [passwordText.text length] == 0){
+    if (([nameText.text length] == 0 && [name length] == 0) || ([serverText.text length] == 0 && [server length] == 0) || ([passwordText.text length] == 0 && [password length] == 0)){
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"Please enter a server URL, username, and password!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",nil];
         [alertView show];
     }
@@ -109,6 +153,7 @@
         name = nameText.text;
         server = serverText.text;
         password = passwordText.text;
+        
         NSString *userURL = [AppDelegate getEndpoint:@"ping"];
         NSURL *temp = [NSURL URLWithString:userURL];
         if (temp != nil) {
@@ -123,7 +168,7 @@
             }
             else{
                 [self saveSettings];
-                [self performSegueWithIdentifier:@"Login" sender:sender];
+                [self performSegueWithIdentifier:@"Login" sender:nil];
             }
         }
     }
