@@ -108,7 +108,6 @@
 }
 
 - (void) iCloudLogin {
-    NSLog(@"Update from iCloud");
     [self loadSettings];
     
     if ([server length] != 0 && [password length] != 0 && [name length] != 0) {
