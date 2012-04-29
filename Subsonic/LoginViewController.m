@@ -176,6 +176,10 @@
 -(IBAction)textFieldReturn:(id)sender
 {
     [sender resignFirstResponder];
+    if (([nameText.text length] != 0 || [name length] != 0) && ([serverText.text length] != 0 || [server length] != 0) && ([passwordText.text length] != 0 || [password length] != 0)){
+        [self login:sender];
+    }
+    
 }
 -(IBAction)backgroundTouched:(id)sender
 {
