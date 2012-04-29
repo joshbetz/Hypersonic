@@ -67,6 +67,10 @@
     }
 }
 
+- (void) pushToPlayer {
+    [self.navigationController pushViewController:nowPlaying animated:YES];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
