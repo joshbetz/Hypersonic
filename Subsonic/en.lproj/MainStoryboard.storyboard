@@ -473,9 +473,9 @@
                                                     <rect key="frame" x="20" y="6" width="260" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                     <connections>
-                                                        <action selector="textFieldReturn:" destination="mhq-4u-kqK" eventType="editingDidEndOnExit" id="nS7-Qi-sdy"/>
+                                                        <action selector="textFieldSend:" destination="mhq-4u-kqK" eventType="editingDidEndOnExit" id="HuG-Kg-JcE"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -629,6 +629,7 @@
                 <relationship kind="action" name="backgroundTouched:"/>
                 <relationship kind="action" name="login:"/>
                 <relationship kind="action" name="textFieldReturn:"/>
+                <relationship kind="action" name="textFieldSend:"/>
                 <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameText" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>

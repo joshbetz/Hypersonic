@@ -31,5 +31,6 @@
 -(void)saveSettings;
 -(IBAction)login:(id)loginButton;
 - (IBAction)textFieldReturn:(id)sender;
+- (IBAction)textFieldSend:(id)sender;
 - (IBAction)backgroundTouched:(id)sender;
 @end
