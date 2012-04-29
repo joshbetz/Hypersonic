@@ -190,22 +190,36 @@
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
     
     // Update the nav bar label
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
-    label.backgroundColor = [UIColor clearColor];
-    label.numberOfLines = 3;
-    label.font = [UIFont boldSystemFontOfSize: 12.0f];
-    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    label.textAlignment = UITextAlignmentLeft;
-    label.textColor = [UIColor whiteColor];
-    NSString *songData;
-    songData = [[songList objectAtIndex:currentIndex] artistName];
-    songData = [songData stringByAppendingString:@"\n"];
-    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] songName]];
-    songData = [songData stringByAppendingString:@"\n"];
-    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] albumName]];
-    label.text = songData;
-    songInfo = songData;
-    self.navigationItem.titleView = label;
+    UIView *titleBar = [[UIView alloc] initWithFrame:CGRectMake(0, 4, 320, 36)];
+    
+    UILabel *artist = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 190, 12)];
+    artist.text = [[songList objectAtIndex:currentIndex] artistName];
+    artist.textColor = [UIColor grayColor];
+    artist.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    artist.backgroundColor = [UIColor clearColor];
+    artist.font = [UIFont boldSystemFontOfSize: 12.0f];
+    artist.textAlignment = UITextAlignmentCenter;
+    [titleBar addSubview:artist];
+    
+    UILabel *song = [[UILabel alloc] initWithFrame:CGRectMake(0, 12, 190, 12)];
+    song.text = [[songList objectAtIndex:currentIndex] songName];
+    song.textColor = [UIColor whiteColor];
+    song.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    song.backgroundColor = [UIColor clearColor];
+    song.font = [UIFont boldSystemFontOfSize: 12.0f];
+    song.textAlignment = UITextAlignmentCenter;
+    [titleBar addSubview:song];
+    
+    UILabel *album = [[UILabel alloc] initWithFrame:CGRectMake(0, 24, 190, 12)];
+    album.text = [[songList objectAtIndex:currentIndex] albumName];
+    album.textColor = [UIColor grayColor];
+    album.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    album.backgroundColor = [UIColor clearColor];
+    album.font = [UIFont boldSystemFontOfSize: 12.0f];
+    album.textAlignment = UITextAlignmentCenter;
+    [titleBar addSubview:album];
+    
+    self.navigationItem.titleView = titleBar;
 }
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification {
