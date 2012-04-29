@@ -32,6 +32,15 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 37, 31)];
+    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [backButton addTarget:nil action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+}
+
 - (void)viewDidLoad
 {
     
@@ -190,9 +199,9 @@
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
     
     // Update the nav bar label
-    UIView *titleBar = [[UIView alloc] initWithFrame:CGRectMake(0, 4, 320, 36)];
+    UIView *titleBar = [[UIView alloc] initWithFrame:CGRectMake(0, 4, 224, 36)];
     
-    UILabel *artist = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 190, 12)];
+    UILabel *artist = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 224, 12)];
     artist.text = [[songList objectAtIndex:currentIndex] artistName];
     artist.textColor = [UIColor grayColor];
     artist.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
@@ -201,7 +210,7 @@
     artist.textAlignment = UITextAlignmentCenter;
     [titleBar addSubview:artist];
     
-    UILabel *song = [[UILabel alloc] initWithFrame:CGRectMake(0, 12, 190, 12)];
+    UILabel *song = [[UILabel alloc] initWithFrame:CGRectMake(0, 12, 224, 12)];
     song.text = [[songList objectAtIndex:currentIndex] songName];
     song.textColor = [UIColor whiteColor];
     song.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
@@ -210,7 +219,7 @@
     song.textAlignment = UITextAlignmentCenter;
     [titleBar addSubview:song];
     
-    UILabel *album = [[UILabel alloc] initWithFrame:CGRectMake(0, 24, 190, 12)];
+    UILabel *album = [[UILabel alloc] initWithFrame:CGRectMake(0, 24, 224, 12)];
     album.text = [[songList objectAtIndex:currentIndex] albumName];
     album.textColor = [UIColor grayColor];
     album.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];

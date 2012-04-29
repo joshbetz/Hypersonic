@@ -14,6 +14,8 @@
 		032E6EBD14F3F4860072697A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 032E6EBC14F3F4860072697A /* main.m */; };
 		032E6EC114F3F4860072697A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 032E6EC014F3F4860072697A /* AppDelegate.m */; };
 		032E6EC414F3F4860072697A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 032E6EC214F3F4860072697A /* MainStoryboard.storyboard */; };
+		03435CF9154CE5CB00918F22 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 03435CF7154CE5CB00918F22 /* back.png */; };
+		03435CFA154CE5CB00918F22 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03435CF8154CE5CB00918F22 /* back@2x.png */; };
 		0368CD2215462E7F003777F7 /* MKiCloudSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 0368CD2115462E7F003777F7 /* MKiCloudSync.m */; };
 		038DDB3E1524BB2F0003490B /* albumArt.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB3C1524BB2F0003490B /* albumArt.png */; };
 		038DDB3F1524BB2F0003490B /* albumArt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 038DDB3D1524BB2F0003490B /* albumArt@2x.png */; };
@@ -73,6 +75,8 @@
 		032E6EBF14F3F4860072697A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		032E6EC014F3F4860072697A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		032E6EC314F3F4860072697A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		03435CF7154CE5CB00918F22 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = Resources/back.png; sourceTree = SOURCE_ROOT; };
+		03435CF8154CE5CB00918F22 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back@2x.png"; path = "Resources/back@2x.png"; sourceTree = SOURCE_ROOT; };
 		0368CD2015462E7F003777F7 /* MKiCloudSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKiCloudSync.h; path = MKiCloudSync/MKiCloudSync.h; sourceTree = "<group>"; };
 		0368CD2115462E7F003777F7 /* MKiCloudSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKiCloudSync.m; path = MKiCloudSync/MKiCloudSync.m; sourceTree = "<group>"; };
 		038DDB3C1524BB2F0003490B /* albumArt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = albumArt.png; path = Resources/albumArt.png; sourceTree = "<group>"; };
@@ -255,6 +259,8 @@
 		03FAD29F152392DB006FFB40 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				03435CF7154CE5CB00918F22 /* back.png */,
+				03435CF8154CE5CB00918F22 /* back@2x.png */,
 				038DDB7A152545F40003490B /* next.png */,
 				038DDB7B152545F40003490B /* next@2x.png */,
 				038DDB7C152545F40003490B /* pause.png */,
@@ -365,6 +371,8 @@
 				038DDB87152545F40003490B /* play@2x.png in Resources */,
 				038DDB88152545F40003490B /* prev.png in Resources */,
 				038DDB89152545F40003490B /* prev@2x.png in Resources */,
+				03435CF9154CE5CB00918F22 /* back.png in Resources */,
+				03435CFA154CE5CB00918F22 /* back@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
