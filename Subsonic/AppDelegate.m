@@ -10,6 +10,9 @@
 #import "LoginViewController.h"
 #import "ArtistTableViewController.h"
 #import "RSSParser.h"
+#import "NowPlaying.h"
+#import "MKiCloudSync.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -30,9 +33,19 @@ UIImage *art;
 int currentIndex;
 BOOL differentAlbum = false;
 NSMutableArray *artistList;
+int selectedArtistSection;
+int selectedArtistIndex;
+int selectedAlbumIndex;
+BOOL multiDisk;
+BOOL firstTimeAlbum;
+NSString *songInfo;
+NowPlaying *nowPlaying;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    [MKiCloudSync start];
+    [[NSUbiquitousKeyValueStore defaultStore] synchronize];
     
     [self loadSettings];
     
@@ -69,12 +82,13 @@ NSMutableArray *artistList;
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
     if (server != nil && password != nil && name != nil){
-    NSString *userURL = [AppDelegate getEndpoint:@"ping"];
-    RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
-    NSMutableArray *errors = rssParser.errorList;
-    if (![errors count] > 0 && !connectionProblem){
-        [self saveSettings];
-    }
+        NSString *userURL = [AppDelegate getEndpoint:@"ping"];
+        RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
+        NSMutableArray *errors = rssParser.errorList;
+        
+        if (![errors count] > 0 && !connectionProblem){
+            [self saveSettings];
+        }
     }
 }
 
@@ -104,28 +118,28 @@ NSMutableArray *artistList;
 -(void)loadSettings {
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
-	server = [prefs objectForKey:@"serverURL"];
-	password = [prefs objectForKey:@"userPassword"];
-	name = [prefs objectForKey:@"userName"];
-    localServer = [prefs objectForKey:@"localServerURL"];
-    localMode = [prefs boolForKey:@"localMode"];
-    hqMode = [prefs boolForKey:@"hqMode"];
+	server = [prefs objectForKey:@"iCloud-serverURL"];
+	password = [prefs objectForKey:@"iCloud-userPassword"];
+	name = [prefs objectForKey:@"iCloud-userName"];
+    localServer = [prefs objectForKey:@"iCloud-localServerURL"];
+    localMode = [prefs boolForKey:@"iCloud-localMode"];
+    hqMode = [prefs boolForKey:@"iCloud-hqMode"];
     
-    NSData *data = [prefs objectForKey:@"artistList"];
+    NSData *data = [prefs objectForKey:@"local-artistList"];
     artistList = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
 }
 
 -(void)saveSettings {
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 
-	[prefs setObject:server forKey:@"serverURL"];
-    [prefs setObject:password forKey:@"userPassword"];
-    [prefs setObject:name forKey:@"userName"];
-    [prefs setObject:localServer forKey:@"localServerURL"];
-    [prefs setBool:localMode forKey:@"localMode"];
-    [prefs setBool:hqMode forKey:@"hqMode"];
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	[prefs setObject:server forKey:@"iCloud-serverURL"];
+    [prefs setObject:password forKey:@"iCloud-userPassword"];
+    [prefs setObject:name forKey:@"iCloud-userName"];
+    [prefs setObject:localServer forKey:@"iCloud-localServerURL"];
+    [prefs setBool:localMode forKey:@"iCloud-localMode"];
+    [prefs setBool:hqMode forKey:@"iCloud-hqMode"];
+    [prefs synchronize];  
     
-    [prefs synchronize];
 }
 
 +(NSString *)getEndpoint:(NSString *)method {
@@ -143,7 +157,7 @@ NSMutableArray *artistList;
 
 + (void)updateArtists
 {   
-    NSString *userURL = endpoint;
+    NSString *userURL = [AppDelegate getEndpoint:@"getIndexes"];
     
     RSSParser *rssParser = [[RSSParser alloc] initWithRSSFeed: userURL];
     artistList = rssParser.artistList;
@@ -151,7 +165,7 @@ NSMutableArray *artistList;
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:rssParser.artistList];
-	[prefs setObject:data  forKey:@"artistList"];
+	[prefs setObject:data  forKey:@"local-artistList"];
     [prefs synchronize];
 }
          

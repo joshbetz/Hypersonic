@@ -15,6 +15,14 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="albumArt.png" id="nfu-dL-sjS">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="316"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="d3a-uY-L2E">
+                                <rect key="frame" x="-5" y="307" width="330" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="reflectionmask.png" id="Y2k-KX-4N3">
                                 <rect key="frame" x="0.0" y="316" width="325" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -22,10 +30,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="l96-To-pF0">
                                 <rect key="frame" x="-5" y="316" width="325" height="104"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="albumArt.png" id="nfu-dL-sjS">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="316"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <navigationBar contentMode="bottom" barStyle="blackTranslucent" id="41M-Fn-X7N">
                                 <rect key="frame" x="0.0" y="416" width="320" height="44"/>
@@ -94,6 +98,7 @@
                         <outlet property="playButton" destination="sUC-UX-5If" id="BKc-k5-nh0"/>
                         <outlet property="prevButton" destination="HeO-Zm-4n8" id="0U7-iU-40Z"/>
                         <outlet property="reflectionImage" destination="l96-To-pF0" id="NUt-fT-31t"/>
+                        <outlet property="seek" destination="d3a-uY-L2E" id="pmW-lK-qWD"/>
                     </connections>
                 </viewController>
             </objects>
@@ -496,9 +501,9 @@
                                                     <rect key="frame" x="20" y="6" width="260" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                     <connections>
-                                                        <action selector="textFieldReturn:" destination="mhq-4u-kqK" eventType="editingDidEndOnExit" id="nS7-Qi-sdy"/>
+                                                        <action selector="textFieldSend:" destination="mhq-4u-kqK" eventType="editingDidEndOnExit" id="HuG-Kg-JcE"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -636,6 +641,62 @@
         <image name="reflectionmask.png" width="150" height="150"/>
         <image name="settings.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="AlbumMethodsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumMethodsTableViewController.h"/>
+        </class>
+        <class className="AlbumSongTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumSongTableViewController.h"/>
+        </class>
+        <class className="ArtistTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ArtistTableViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTouched:"/>
+                <relationship kind="action" name="login:"/>
+                <relationship kind="action" name="textFieldReturn:"/>
+                <relationship kind="action" name="textFieldSend:"/>
+                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="serverText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NowPlaying" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NowPlaying.h"/>
+            <relationships>
+                <relationship kind="action" name="adjustVolume"/>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="nextSong:"/>
+                <relationship kind="action" name="playSong:"/>
+                <relationship kind="action" name="prevSong:"/>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nextButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="prevButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="reflectionImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="seek" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="volumeSlider" candidateClass="UISlider"/>
+            </relationships>
+        </class>
+        <class className="PlaylistTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaylistTableViewController.h"/>
+        </class>
+        <class className="Settings" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Settings.h"/>
+            <relationships>
+                <relationship kind="outlet" name="hqModeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="iCloudModeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="localModeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="localServerLabel" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="loginLabel" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordLabel" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="serverLabel" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

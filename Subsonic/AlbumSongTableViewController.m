@@ -14,7 +14,7 @@
 #import "AppDelegate.h"
 
 @implementation AlbumSongTableViewController
-@synthesize albumList, userURL, userPassword, userName, serverURL;
+@synthesize albumList, userURL, userPassword, userName, serverURL, artistListProperty;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -36,25 +36,57 @@
 
 - (void)viewDidLoad
 {
-    RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
-    
-    albumList = parser.albumList;
-    songList  = parser.songList;
-    if ([songList count] > 0){
-        songs = true;
-        self.title = [[songList objectAtIndex:0] albumName];
-    }
-    else {
-        songs = false;
-    }    
-    if ([albumList count] > 0) {
+    if (([[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] != nil && firstTimeAlbum == true)){
+        firstTimeAlbum = false;
+        albumList = [[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList];
         albums = true;
-        self.title = [[albumList objectAtIndex:0] artistName];
     }
-    else {
-        albums = false;
+    else if ([[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]songList] != nil && multiDisk == false){
+        songList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex] songList];
+        songs = true;
     }
-    
+    else if ([[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]diskList] != nil && multiDisk == true){
+        multiDisk = false;
+        albumList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]diskList];
+    }
+    else{
+     RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
+     albumList = parser.albumList;
+     songList  = parser.songList;
+        if ([songList count] > 0){
+            songs = true;
+            songCount = 0;
+            self.title = [[songList objectAtIndex:0] albumName];
+            [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] objectAtIndex:selectedAlbumIndex] setSongList:songList];
+            [self saveSettings];
+        }
+        else {
+            songs = false;
+        }    
+        if ([albumList count] > 0) {
+            if (firstTimeAlbum == false){
+                multiDisk = true;
+                albums = true;
+                albumCount = [albumList count];
+                self.title = [[albumList objectAtIndex:0] artistName];
+                [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex]albumList]objectAtIndex:selectedAlbumIndex] setDiskList:albumList];
+                [self saveSettings];
+            }
+            else {
+                firstTimeAlbum = false;
+                albums = true;
+                albumCount = [albumList count];
+                self.title = [[albumList objectAtIndex:0] artistName];
+                [[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] setAlbumList:albumList];
+                [self saveSettings];
+            }
+        }
+        else {
+            albums = false;
+        }
+
+    }
+        
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -78,14 +110,16 @@
     if ( [avPlayer currentItem] == nil )
         self.navigationItem.rightBarButtonItem = nil;
     else {
-        UIBarButtonItem *nowPlaying = [[UIBarButtonItem alloc] initWithTitle:@"Now Playing" style:UIBarButtonItemStylePlain target:self action: @selector(pushToPlayer)];
-        self.navigationItem.rightBarButtonItem = nowPlaying;
+        // custom now playing button
+        UIButton *nowplaying = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 61, 31)];
+        [nowplaying setImage:[UIImage imageNamed:@"nowplaying.png"] forState:UIControlStateNormal];
+        [nowplaying addTarget:self action:@selector(pushToPlayer) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:nowplaying];
     }
 }
 
 - (void) pushToPlayer {
-    NowPlaying *player = [self.storyboard instantiateViewControllerWithIdentifier:@"NowPlaying"];
-    [self.navigationController pushViewController:player animated:YES];
+    [self.navigationController pushViewController:nowPlaying animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -115,10 +149,9 @@
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         NSString *directoryID = [[albumList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumID];
         nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
+        selectedAlbumIndex = [self.tableView indexPathForSelectedRow].row;
     }
     if ([[segue identifier] isEqualToString:@"SelectedSong"]) {
-        NowPlaying *nextViewController = [segue destinationViewController];
-        
         art = nil;
         currentIndex = [self.tableView indexPathForSelectedRow].row;
         differentAlbum = true;
@@ -157,16 +190,42 @@
     
     // Edge case with songs and albums mixed - need a way to fill the table in an organized way.
     if ( songs && albums ) {
-        static NSString *CellIdentifier = @"Albums";
-        
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        if (albumCount > 0){
+            static NSString *CellIdentifier = @"Albums";
+            
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            cell.textLabel.text = [NSString stringWithFormat:@"%@", [[albumList objectAtIndex: indexPath.row] albumName]];
+            if ([[albumList objectAtIndex: indexPath.row] artistName] != nil){
+                cell.detailTextLabel.text = [[albumList objectAtIndex: indexPath.row] artistName];
+            }
+            else{
+                cell.detailTextLabel.text = @"";
+            }
+            if ([[albumList objectAtIndex: indexPath.row] coverArt] != nil){
+                NSString *URL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getCoverArt"], [[albumList objectAtIndex: indexPath.row] coverArt]];
+                NSURL *imageURL = [NSURL URLWithString: URL];
+                NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+                UIImage *image = [UIImage imageWithData:imageData]; 
+                cell.imageView.image = image;
+            }
+            albumCount--;
+            return cell;
         }
-        
-        // Configure the cell...
-        
-        return cell;
+        else {
+            static NSString *CellIdentifier = @"Songs";
+            
+            UITableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell2 == nil) {
+                cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            // Configure the cell...
+            cell2.textLabel.text = [NSString stringWithFormat:@"%@", [[songList objectAtIndex: songCount] songName] ];
+            songCount++;
+            return cell2;
+        }
     }
     else if ( songs ) {
         static NSString *CellIdentifier = @"Songs";
@@ -196,8 +255,8 @@
             cell.detailTextLabel.text = @"";
         }
         if ([[albumList objectAtIndex: indexPath.row] coverArt] != nil){
-            NSString *userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getCoverArt"], [[albumList objectAtIndex: indexPath.row] coverArt]];
-            NSURL *imageURL = [NSURL URLWithString: userURL];
+            NSString *URL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getCoverArt"], [[albumList objectAtIndex: indexPath.row] coverArt]];
+            NSURL *imageURL = [NSURL URLWithString: URL];
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
             UIImage *image = [UIImage imageWithData:imageData]; 
             cell.imageView.image = image;
@@ -212,6 +271,15 @@
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.backgroundColor = indexPath.row % 2 ? [UIColor colorWithRed: 248.0/255.0 green: 248.0/255.0 blue: 248.0/255.0 alpha: 1.0] : [UIColor whiteColor];
     }
+}
+
+-(void)saveSettings{
+	
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [self setArtistListProperty:artistList];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:artistListProperty];
+	[prefs setObject:data  forKey:@"local-artistList"];
+    [prefs synchronize];
 }
 
 /*

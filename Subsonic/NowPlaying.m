@@ -21,7 +21,7 @@
 @end
 
 @implementation NowPlaying
-@synthesize songID, playerItem, playButton, userName, userPassword, serverURL, albumArt, reflectionImage, albumArtID, nextButton, prevButton, volumeSlider;
+@synthesize songID, playerItem, playButton, userName, userPassword, serverURL, albumArt, reflectionImage, albumArtID, nextButton, prevButton, volumeSlider, artistListProperty, seek;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,6 +30,10 @@
         
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidLoad
@@ -67,7 +71,7 @@
             
             NSUInteger reflectionHeight = albumArt.bounds.size.height * 0.65;
             reflectionImage.image = [self reflectedImage:albumArt withHeight:reflectionHeight];
-            reflectionImage.alpha = 0.60;
+            reflectionImage.alpha = 0.45;
         }
         
         avPlayer = [[AVQueuePlayer alloc] initWithPlayerItem:[itemList objectAtIndex:currentIndex]];
@@ -90,25 +94,6 @@
             reflectionImage.alpha = 0.60;
         }
     }
-    //AVPlayerLayer *avPlayerLayer = [[AVPlayerLayer playerLayerWithPlayer:avPlayer] retain];
-    //[avPlayer play];
-    //avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
-    //UI Label for multiline title
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
-    label.backgroundColor = [UIColor clearColor];
-    label.numberOfLines = 3;
-    label.font = [UIFont boldSystemFontOfSize: 12.0f];
-    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    label.textAlignment = UITextAlignmentLeft;
-    label.textColor = [UIColor whiteColor];
-    NSString *songData;
-    songData = [[songList objectAtIndex:currentIndex] artistName];
-    songData = [songData stringByAppendingString:@"\n"];
-    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] songName]];
-    songData = [songData stringByAppendingString:@"\n"];
-    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] albumName]];
-    label.text = songData;
-    self.navigationItem.titleView = label;
     MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(20,380,280,20)];
     [volumeView sizeToFit];
     [self.view addSubview:volumeView];
@@ -120,7 +105,12 @@
         [playButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
     else
         [playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
-        
+    
+    // custom back button
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 37, 31)];
+    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [backButton addTarget:nil action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -132,6 +122,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    nowPlaying = self;
     [super viewWillDisappear:animated];
     
     //End recieving events
@@ -163,6 +154,7 @@
 
 - (void)viewDidUnload
 {
+    nowPlaying = self;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -194,54 +186,96 @@
         center.nowPlayingInfo = songInfo;
     }
     
+    // setup scrobbling
     [self scrobble:NO withID:[[songList objectAtIndex:currentIndex] songID]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:[avPlayer currentItem]];
     
+    // setup seek slider
+    NSString *durString = [[songList objectAtIndex:currentIndex] songDuration];
+    float dur = [durString floatValue];
+    NSLog(@"Duration: %@", durString);
+    [seek setMaximumValue:dur];
+    [seek setThumbImage:[[UIImage alloc] init] forState:UIControlStateNormal];
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
+    
     // Update the nav bar label
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
-    label.backgroundColor = [UIColor clearColor];
-    label.numberOfLines = 3;
-    label.font = [UIFont boldSystemFontOfSize: 12.0f];
-    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    label.textAlignment = UITextAlignmentLeft;
-    label.textColor = [UIColor whiteColor];
-    NSString *songData;
-    songData = [[songList objectAtIndex:currentIndex] artistName];
-    songData = [songData stringByAppendingString:@"\n"];
-    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] songName]];
-    songData = [songData stringByAppendingString:@"\n"];
-    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] albumName]];
-    label.text = songData;
-    self.navigationItem.titleView = label;
+    UIView *titleBar = [[UIView alloc] initWithFrame:CGRectMake(0, 4, 224, 36)];
+    
+    UILabel *artist = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 224, 12)];
+    artist.text = [[songList objectAtIndex:currentIndex] artistName];
+    artist.textColor = [UIColor grayColor];
+    artist.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    artist.backgroundColor = [UIColor clearColor];
+    artist.font = [UIFont boldSystemFontOfSize: 12.0f];
+    artist.textAlignment = UITextAlignmentCenter;
+    [titleBar addSubview:artist];
+    
+    UILabel *song = [[UILabel alloc] initWithFrame:CGRectMake(0, 12, 224, 12)];
+    song.text = [[songList objectAtIndex:currentIndex] songName];
+    song.textColor = [UIColor whiteColor];
+    song.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    song.backgroundColor = [UIColor clearColor];
+    song.font = [UIFont boldSystemFontOfSize: 12.0f];
+    song.textAlignment = UITextAlignmentCenter;
+    [titleBar addSubview:song];
+    
+    UILabel *album = [[UILabel alloc] initWithFrame:CGRectMake(0, 24, 224, 12)];
+    album.text = [[songList objectAtIndex:currentIndex] albumName];
+    album.textColor = [UIColor grayColor];
+    album.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    album.backgroundColor = [UIColor clearColor];
+    album.font = [UIFont boldSystemFontOfSize: 12.0f];
+    album.textAlignment = UITextAlignmentCenter;
+    [titleBar addSubview:album];
+    
+    self.navigationItem.titleView = titleBar;
 }
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification {
     [self scrobble:YES withID:[[songList objectAtIndex:currentIndex] songID]];
     [avPlayer advanceToNextItem];
-    currentIndex++;
-    [self setMediaInfo];
+    
+    if ([[avPlayer items] count] <= 0) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
+        currentIndex++;
+        [self setMediaInfo];
+    }
 }
 
 - (void)buildPlaylist {
-    queueList = [NSMutableArray array];
-    itemList = [NSMutableArray array];
-    
-    NSString *maxBitRate;
-    if ( hqMode )
-        maxBitRate = @"256";
-    else
-        maxBitRate = @"128";
-    
-    for (int i = 0; i < [songList count]; i++){
-        userURL = [NSString stringWithFormat:@"%@&id=%@&maxBitRate=%@", [AppDelegate getEndpoint:@"stream"], [[songList objectAtIndex:i] songID], maxBitRate];
-        url = [NSURL URLWithString:userURL];
-        [queueList addObject:url];
+    BOOL noProblems = true;
+    for (int i = 0; i < [[[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] objectAtIndex:selectedAlbumIndex] songList]count]; i++){
+        if ([[[[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] objectAtIndex:selectedAlbumIndex] songList]objectAtIndex:i]songData] == nil){
+            noProblems = false;
+            break;
+        }
     }
-    
-    NSLog(@"%d", [queueList count]);
-    for (int i = 0; i < [queueList count]; i++){
-        url = [queueList objectAtIndex:i];
-        [itemList addObject:[AVPlayerItem playerItemWithURL:url]];
+    if (noProblems == true){
+        itemList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] objectAtIndex:selectedAlbumIndex] songList];
+    }
+    else {
+        queueList = [NSMutableArray array];
+        itemList = [NSMutableArray array];
+        
+        NSString *maxBitRate;
+        if ( hqMode )
+            maxBitRate = @"256";
+        else
+            maxBitRate = @"128";
+        
+        for (int i = 0; i < [songList count]; i++){
+            userURL = [NSString stringWithFormat:@"%@&id=%@&maxBitRate=%@", [AppDelegate getEndpoint:@"stream"], [[songList objectAtIndex:i] songID], maxBitRate];
+            url = [NSURL URLWithString:userURL];
+            [queueList addObject:url];
+        }
+        
+        NSLog(@"%d", [queueList count]);
+        for (int i = 0; i < [queueList count]; i++){
+            url = [queueList objectAtIndex:i];
+            AVPlayerItem *songItem = [AVPlayerItem playerItemWithURL:url];
+            [itemList addObject:songItem];
+        }
     }
 }
 
@@ -276,21 +310,7 @@
     currentIndex--;
     if( currentIndex < 0 )
         currentIndex = 0;
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
-    label.backgroundColor = [UIColor clearColor];
-    label.numberOfLines = 3;
-    label.font = [UIFont boldSystemFontOfSize: 12.0f];
-    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    label.textAlignment = UITextAlignmentLeft;
-    label.textColor = [UIColor whiteColor];
-    NSString *songData;
-    songData = [[songList objectAtIndex:currentIndex] artistName];
-    songData = [songData stringByAppendingString:@"\n"];
-    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] songName]];
-    songData = [songData stringByAppendingString:@"\n"];
-    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] albumName]];
-    label.text = songData;
-    self.navigationItem.titleView = label;
+
     UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
     
     avPlayer = [[AVQueuePlayer alloc] initWithPlayerItem:[AVPlayerItem playerItemWithURL:[queueList objectAtIndex:currentIndex]]];
@@ -321,7 +341,11 @@
     {
         //[avPlayer set = volumeSlider.value;
     }
-} 
+}
+
+- (void)updateTime:(NSTimer *)timer {
+    [seek setValue:CMTimeGetSeconds([avPlayer currentTime])];
+}
 
 #pragma mark - Image Reflection
 
@@ -413,5 +437,6 @@ CGContextRef MyCreateBitmapContext(int pixelsWide, int pixelsHigh)
     
     return theImage;
 }
+
 
 @end

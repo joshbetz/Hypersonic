@@ -60,6 +60,20 @@
     [super viewWillAppear:animated];
     
     self.parentViewController.title = @"Playlists";
+    
+    if ( [avPlayer currentItem] == nil )
+        self.parentViewController.navigationItem.rightBarButtonItem = nil;
+    else {
+        // custom now playing button
+        UIButton *nowplaying = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 61, 31)];
+        [nowplaying setImage:[UIImage imageNamed:@"nowplaying.png"] forState:UIControlStateNormal];
+        [nowplaying addTarget:self action:@selector(pushToPlayer) forControlEvents:UIControlEventTouchUpInside];
+        self.parentViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:nowplaying];
+    }
+}
+
+- (void) pushToPlayer {
+    [self.navigationController pushViewController:nowPlaying animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -115,7 +129,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[playlistList objectAtIndex: indexPath.row] name]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[playlistList objectAtIndex: indexPath.row] playlistName]];
 
     // Configure the cell...
     

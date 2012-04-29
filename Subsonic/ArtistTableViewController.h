@@ -7,25 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EGORefreshTableHeaderView.h"
 
-@interface ArtistTableViewController : UITableViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface ArtistTableViewController
 {
     IBOutlet UISearchDisplayController *artistSearchDisplayController;
     IBOutlet UISearchBar *artistSearchBar;
     NSMutableArray *itemsFromCurrentSearch;
-	
-    EGORefreshTableHeaderView *_refreshHeaderView;
-	
-	//  Reloading var should really be your tableviews datasource
-	//  Putting it here for demo purposes 
-	BOOL _reloading;
 }
 @property (strong, nonatomic) IBOutlet UISearchDisplayController *artistSearchDisplayController;
 @property (strong, nonatomic) IBOutlet UISearchBar *artistSearchBar;
 @property (strong, nonatomic) NSMutableArray *itemsFromCurrentSearch;
 
-
-- (void)reloadTableViewDataSource;
-- (void)doneLoadingTableViewData;
 @end

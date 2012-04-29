@@ -10,6 +10,7 @@
 #import <AVFoundation/AVPlayerItem.h>
 #import <AVFoundation/AVPlayer.h>
 #import "ArtistTableViewController.h"
+#import "NowPlaying.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -26,10 +27,16 @@ extern NSMutableArray *songList;
 extern NSMutableArray *queueList;
 extern NSMutableArray *itemList;
 extern int currentIndex;
+extern int selectedArtistSection;
+extern int selectedArtistIndex;
+extern int selectedAlbumIndex;
 extern NSMutableArray *artistList;
 extern UIImage *art;
 extern BOOL differentAlbum;
-
+extern BOOL multiDisk;
+extern BOOL firstTimeAlbum;
+extern NSString *songInfo;
+extern NowPlaying *nowPlaying;
 -(void)loadSettings;
 -(void)saveSettings;
 +(void)updateArtists;

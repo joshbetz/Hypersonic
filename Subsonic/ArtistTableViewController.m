@@ -42,18 +42,11 @@
 {
     [super viewDidLoad];
     
-    if (_refreshHeaderView == nil) {
-		
-		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height) arrowImageName:@"grayArrow.png" textColor:[UIColor colorWithRed:128.0/255.0 green:128.0/255.0 blue:128.0/255.0 alpha:1.0] ];
-		view.delegate = self;
-		[self.tableView addSubview:view];
-		_refreshHeaderView = view;
-	}
-	
-	//  update the last update date
-	[_refreshHeaderView refreshLastUpdatedDate];
-
     itemsFromCurrentSearch = [NSMutableArray array];
+    
+    [self.tableView reloadData];
+    NSIndexPath *scrollToPath = [NSIndexPath indexPathForRow:0 inSection:0]; 
+    [self.tableView scrollToRowAtIndexPath:scrollToPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 - (void)viewDidUnload
@@ -75,21 +68,26 @@
     
     self.parentViewController.title = @"Artists";
     
-    [self.tableView reloadData];
-    NSIndexPath *scrollToPath = [NSIndexPath indexPathForRow:0 inSection:0]; 
-    [self.tableView scrollToRowAtIndexPath:scrollToPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    
     if ( [avPlayer currentItem] == nil )
         self.parentViewController.navigationItem.rightBarButtonItem = nil;
     else {
-        UIBarButtonItem *nowPlaying = [[UIBarButtonItem alloc] initWithTitle:@"Now Playing" style:UIBarButtonItemStylePlain target:self action: @selector(pushToPlayer)];
-        self.parentViewController.navigationItem.rightBarButtonItem = nowPlaying;
+        // custom now playing button
+        UIButton *nowplaying = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 61, 31)];
+        [nowplaying setImage:[UIImage imageNamed:@"nowplaying.png"] forState:UIControlStateNormal];
+        [nowplaying addTarget:self action:@selector(pushToPlayer) forControlEvents:UIControlEventTouchUpInside];
+        self.parentViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:nowplaying];
     }
+    
+    self.parentViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+}
+
+- (void) refresh {
+    [AppDelegate updateArtists];
+    [self.tableView reloadData];
 }
 
 - (void) pushToPlayer {
-    NowPlaying *player = [self.storyboard instantiateViewControllerWithIdentifier:@"NowPlaying"];
-    [self.navigationController pushViewController:player animated:YES];
+    [self.navigationController pushViewController:nowPlaying animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -122,21 +120,22 @@
         NSLog(@"%i",[self.tableView indexPathForSelectedRow].row);
         
         NSString *directoryID = [[[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].section]objectAtIndex:[self.tableView indexPathForSelectedRow].row ] artistID];
+        selectedArtistSection = [self.tableView indexPathForSelectedRow].section;
+        selectedArtistIndex = [self.tableView indexPathForSelectedRow].row;
         nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
         
     //Segue from Search results
     } else {
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         
-        NSLog(@"%i", [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow].section);
-        NSLog(@"%i",[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow].row);
-        
         NSString *directoryID = [[self.itemsFromCurrentSearch objectAtIndex:[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow].row ] artistID];
         nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
         
         //Leave search Land!
         [self.searchDisplayController setActive:NO];
-
+        
+        firstTimeAlbum = true;
+        multiDisk = false;
     }
 }
 
@@ -323,66 +322,6 @@
     // Configure the cell...
     
     return cell;
-}
-
-#pragma mark Data Source Loading / Reloading Methods
-
-- (void)reload{
-    [AppDelegate updateArtists];
-    [self doneLoadingTableViewData];
-}
-
-- (void)reloadTableViewDataSource{
-	
-	//  should be calling your tableviews data source model to reload
-	//  put here just for demo
-    [self reload];
-    
-	_reloading = YES;
-    
-}
-
-- (void)doneLoadingTableViewData{
-	
-	//  model should call this when its done loading
-	_reloading = NO;
-	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
-	
-}
-
-#pragma mark UIScrollViewDelegate Methods
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
-	
-	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-    
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-	
-	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-	
-}
-
-#pragma mark EGORefreshTableHeaderDelegate Methods
-
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
-	
-	[self reloadTableViewDataSource];
-	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
-	
-}
-
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
-	
-	return _reloading; // should return if data source model is reloading
-	
-}
-
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
-	
-	return [NSDate date]; // should return date data source was last changed
-	
 }
 
 //Callback function made when the searchbar text changes

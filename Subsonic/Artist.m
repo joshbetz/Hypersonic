@@ -23,4 +23,17 @@
     self.albumList = [decoder decodeObjectForKey:@"albumList"];
     return self;
 }
+
+- (id)copyWithZone:(NSZone *)zone{
+    id copy = [[[self class] alloc] init];
+    
+    if (copy) {
+        [copy setArtistName:[self.artistName copyWithZone:zone]];
+        [copy setArtistID:[self.artistID copyWithZone:zone]];
+        [copy setAlbumList:[self.albumList copyWithZone:zone]];
+    }
+    
+    return copy;
+    
+}
 @end
