@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ArtistTableViewController
+@interface ArtistTableViewController: UITableViewController
 {
     IBOutlet UISearchDisplayController *artistSearchDisplayController;
     IBOutlet UISearchBar *artistSearchBar;
