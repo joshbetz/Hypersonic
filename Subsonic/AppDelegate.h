@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVPlayerItem.h>
 #import <AVFoundation/AVPlayer.h>
+#import "ArtistTableViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

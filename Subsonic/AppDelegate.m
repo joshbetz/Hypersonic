@@ -30,7 +30,6 @@ UIImage *art;
 int currentIndex;
 BOOL differentAlbum = false;
 NSMutableArray *artistList;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     

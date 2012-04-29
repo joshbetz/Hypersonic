@@ -315,6 +315,15 @@
                                     <segue destination="fw5-hh-zK0" kind="push" identifier="SelectedSong" id="RDu-Bv-khE"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="idv-XZ-Qxk">
+                                <rect key="frame" x="0.0" y="101" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="BtQ-0J-xoL" id="Agb-Zl-5AK"/>
@@ -385,11 +394,11 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="3KW-Tl-1tr">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="3KW-Tl-1tr">
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -409,7 +418,7 @@
                         <outlet property="artistSearchBar" destination="2Mk-O8-uKr" id="wbY-r7-dql"/>
                         <outlet property="artistSearchDisplayController" destination="GwI-3b-Ymb" id="ev8-D2-Tw8"/>
                         <outlet property="searchDisplayController" destination="GwI-3b-Ymb" id="hj3-UN-AVk"/>
-                        <segue destination="BtQ-0J-xoL" kind="push" identifier="FromSearch" id="Oxg-Pg-xg3"/>
+                        <segue destination="BtQ-0J-xoL" kind="push" identifier="FromSearch" id="G3Y-WC-cHw"/>
                     </connections>
                 </tableViewController>
                 <searchDisplayController id="GwI-3b-Ymb">
@@ -633,6 +642,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Oxg-Pg-xg3"/>
+        <segue reference="G3Y-WC-cHw"/>
     </inferredMetricsTieBreakers>
 </document>

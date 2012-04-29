@@ -115,22 +115,33 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    //Normal Segue
     if ([[segue identifier] isEqualToString:@"AlbumClick"]) {
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
+        NSLog(@"%i", [self.tableView indexPathForSelectedRow].section);
+        NSLog(@"%i",[self.tableView indexPathForSelectedRow].row);
         
         NSString *directoryID = [[[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].section]objectAtIndex:[self.tableView indexPathForSelectedRow].row ] artistID];
         nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
+        
+    //Segue from Search results
     } else {
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         
-        NSString *directoryID = [[self.itemsFromCurrentSearch objectAtIndex:[self.tableView indexPathForSelectedRow].row ] artistID];
+        NSLog(@"%i", [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow].section);
+        NSLog(@"%i",[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow].row);
+        
+        NSString *directoryID = [[self.itemsFromCurrentSearch objectAtIndex:[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow].row ] artistID];
         nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
+        
+        //Leave search Land!
+        [self.searchDisplayController setActive:NO];
+
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    //Store *storeToDetail = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
         [self performSegueWithIdentifier:@"FromSearch" sender:self];
@@ -150,7 +161,8 @@
 {
     // Return the number of sections.
     if([tableView isEqual:self.artistSearchDisplayController.searchResultsTableView]){
-        //return [self.itemsFromCurrentSearch count];
+        
+        //Search will always have 1 section
         return 1;
     }else{
         
@@ -160,10 +172,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    //This function will also be used for the SearchDisplay so following
-    //Conditional checks which rows are being returned and responds
-    //accordingly
+    //Number of rows if in search table view
     if ([tableView 
          isEqual:self.artistSearchDisplayController.searchResultsTableView]){
         return [self.itemsFromCurrentSearch count];
@@ -378,12 +387,11 @@
 
 //Callback function made when the searchbar text changes
 //This can be implemented 2 ways
-//1. Search through the values we already have
+//1. Search through the values we already have (done currently)
 //2. Hit the server
 - (void)filterContentForSearchText:(NSString*)searchText 
                              scope:(NSString*)scope
 {
-    //NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"(artistName) contains[cd] %@",searchText];
     
     if(![searchText isEqualToString:@""]){
         UniChar alph = [[searchText lowercaseString] characterAtIndex:0];
@@ -464,12 +472,7 @@
             arrIndex = 24;
         }
 
-
-
-
-
-
-        
+        //Continuously sort tableview results, results placed in 'itemsFromCurrentSearch'
         NSInteger i = 0;
         NSMutableArray *temp;
         NSString *temp1;
@@ -481,24 +484,15 @@
 
             for(i = 0; i < [[artistList objectAtIndex:arrIndex] count]; i++){
                 temp1 = [[[temp objectAtIndex:i] artistName] lowercaseString];
-                //searchText = [searchText lowercaseString];
                 NSRange range = [temp1 rangeOfString:searchText options:NSCaseInsensitiveSearch];
                 
                 if (range.location != NSNotFound){
                     [self.itemsFromCurrentSearch addObject:[temp objectAtIndex:i]];
+                    
                 }
             }
         }
     }
-    /*if(arrIndex != -1){
-        self.itemsFromCurrentSearch = [[NSMutableArray alloc] initWithArray:artistList copyItems:YES];
-        NSLog(@"%@", itemsFromCurrentSearch);
-        itemsFromCurrentSearch = [self.itemsFromCurrentSearch objectAtIndex:arrIndex];
-        NSLog(@"%@", self.itemsFromCurrentSearch);
-        [self.itemsFromCurrentSearch filterUsingPredicate:resultPredicate];
-        //NSLog(@"%@", self.itemsFromCurrentSearch);
-        //NSLog(@"%@", artistList);
-    }*/
 }
 
 #pragma mark - UISearchDisplayController delegate methods
@@ -512,16 +506,4 @@ shouldReloadTableForSearchString:(NSString *)searchString
     
     return YES;
 }
-
-/*- (BOOL)searchDisplayController:(UISearchDisplayController *)controller 
-shouldReloadTableForSearchScope:(NSInteger)searchOption
-{
-    [self filterContentForSearchText:[self.searchDisplayController.searchBar text] 
-                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-                                      objectAtIndex:searchOption]];
-    
-    return YES;
-}*/
-
-
 @end
