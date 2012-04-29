@@ -60,8 +60,11 @@
     if ( [avPlayer currentItem] == nil )
         self.parentViewController.navigationItem.rightBarButtonItem = nil;
     else {
-        UIBarButtonItem *nowPlaying = [[UIBarButtonItem alloc] initWithTitle:@"Now Playing" style:UIBarButtonItemStylePlain target:self action: @selector(pushToPlayer)];
-        self.parentViewController.navigationItem.rightBarButtonItem = nowPlaying;
+        // custom now playing button
+        UIButton *nowplaying = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 61, 31)];
+        [nowplaying setImage:[UIImage imageNamed:@"nowplaying.png"] forState:UIControlStateNormal];
+        [nowplaying addTarget:self action:@selector(pushToPlayer) forControlEvents:UIControlEventTouchUpInside];
+        self.parentViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:nowplaying];
     }
     
     self.parentViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
