@@ -34,11 +34,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 37, 31)];
-    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [backButton addTarget:nil action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
 }
 
 - (void)viewDidLoad
@@ -110,7 +105,12 @@
         [playButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
     else
         [playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
-        
+    
+    // custom back button
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 37, 31)];
+    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [backButton addTarget:nil action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
