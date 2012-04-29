@@ -60,6 +60,13 @@
     [super viewWillAppear:animated];
     
     self.parentViewController.title = @"Playlists";
+    
+    if ( [avPlayer currentItem] == nil )
+        self.parentViewController.navigationItem.rightBarButtonItem = nil;
+    else {
+        UIBarButtonItem *nowPlaying = [[UIBarButtonItem alloc] initWithTitle:@"Now Playing" style:UIBarButtonItemStylePlain target:self action: @selector(pushToPlayer)];
+        self.parentViewController.navigationItem.rightBarButtonItem = nowPlaying;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
