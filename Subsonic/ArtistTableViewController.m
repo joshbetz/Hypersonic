@@ -19,7 +19,7 @@
 @synthesize artistSearchDisplayController = _artistSearchDisplayController;
 @synthesize artistSearchBar = _artistSearchBar;
 @synthesize itemsFromCurrentSearch;
-@synthesize activityIndicator;
+@synthesize activityIndicator, savedView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -118,6 +118,7 @@
     [super viewDidDisappear:animated];
     [activityIndicator stopAnimating];
     activityIndicator.hidden = YES;
+    [self setView:savedView];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -162,6 +163,9 @@
     activityIndicator.center = self.view.center;
     activityIndicator.hidden = NO;
     [activityIndicator startAnimating];
+    savedView = self.tableView;
+    [self setView:activityIndicator];
+    
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
         [self performSegueWithIdentifier:@"FromSearch" sender:self];

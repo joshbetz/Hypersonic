@@ -14,10 +14,12 @@
     IBOutlet UISearchBar *artistSearchBar;
     NSMutableArray *itemsFromCurrentSearch;
     UIActivityIndicatorView * activityIndicator;
+    ArtistTableViewController *savedView;
 }
 @property (strong, nonatomic) IBOutlet UISearchDisplayController *artistSearchDisplayController;
 @property (strong, nonatomic) IBOutlet UISearchBar *artistSearchBar;
 @property (strong, nonatomic) NSMutableArray *itemsFromCurrentSearch;
 @property(nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) ArtistTableViewController *savedView;
 
 @end
