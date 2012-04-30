@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ArtistTableViewController : UITableViewController{
+
+@interface ArtistTableViewController: UITableViewController {
+    IBOutlet UISearchDisplayController *artistSearchDisplayController;
+    IBOutlet UISearchBar *artistSearchBar;
+    NSMutableArray *itemsFromCurrentSearch;
     UIActivityIndicatorView * activityIndicator;
 }
+@property (strong, nonatomic) IBOutlet UISearchDisplayController *artistSearchDisplayController;
+@property (strong, nonatomic) IBOutlet UISearchBar *artistSearchBar;
+@property (strong, nonatomic) NSMutableArray *itemsFromCurrentSearch;
 @property(nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 @end

@@ -38,7 +38,6 @@
         
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ( [key length] > 7 && [[key substringToIndex:7] isEqualToString:@"iCloud-"] ) {
-            NSLog(@"Save Key: %@", key);
             [[NSUbiquitousKeyValueStore defaultStore] setObject:obj forKey:key];
         }
     }];
@@ -58,7 +57,7 @@
                                                   object:nil];
 
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        NSLog(@"Update Key: %@", key);
+        NSLog(@"Grab Key: %@", key);
         [[NSUserDefaults standardUserDefaults] setObject:obj forKey:key];
     }];
 
@@ -72,6 +71,23 @@
 												object:nil];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kMKiCloudSyncNotification object:nil];
+}
+
++(void) requestUpdate {
+    
+    if(NSClassFromString(@"NSUbiquitousKeyValueStore")) { // is iOS 5?
+        
+        if([NSUbiquitousKeyValueStore defaultStore]) {  // is iCloud enabled
+            
+            [self updateFromiCloud:[NSNotification notificationWithName:@"manualiCloudRequest" object:nil]];
+            
+        } else {
+            DLog(@"iCloud not enabled");          
+        }
+    }
+    else {
+        DLog(@"Not an iOS 5 device");        
+    }
 }
 
 +(void) start {

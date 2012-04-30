@@ -380,10 +380,14 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" barStyle="blackOpaque" id="6mb-l1-vI5">
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="2Mk-O8-uKr">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="Nqi-oT-6uF" id="oHJ-Vb-0z5"/>
+                            </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="3KW-Tl-1tr">
@@ -406,7 +410,22 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Artists" image="artist.png" id="QDl-3n-MMW"/>
                     <navigationItem key="navigationItem" title="Artists" id="i3d-lj-qdo"/>
+                    <connections>
+                        <outlet property="artistSearchBar" destination="2Mk-O8-uKr" id="wbY-r7-dql"/>
+                        <outlet property="artistSearchDisplayController" destination="GwI-3b-Ymb" id="ev8-D2-Tw8"/>
+                        <outlet property="searchDisplayController" destination="GwI-3b-Ymb" id="hj3-UN-AVk"/>
+                        <segue destination="BtQ-0J-xoL" kind="push" identifier="FromSearch" id="G3Y-WC-cHw"/>
+                    </connections>
                 </tableViewController>
+                <searchDisplayController id="GwI-3b-Ymb">
+                    <connections>
+                        <outlet property="delegate" destination="Nqi-oT-6uF" id="hTF-VA-IZf"/>
+                        <outlet property="searchBar" destination="2Mk-O8-uKr" id="CPY-Nb-P30"/>
+                        <outlet property="searchContentsController" destination="Nqi-oT-6uF" id="bZQ-sc-VbH"/>
+                        <outlet property="searchResultsDataSource" destination="Nqi-oT-6uF" id="UVi-2L-txO"/>
+                        <outlet property="searchResultsDelegate" destination="Nqi-oT-6uF" id="anC-EE-Loh"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="657" y="455"/>
         </scene>
@@ -473,9 +492,9 @@
                                                     <rect key="frame" x="20" y="6" width="260" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                     <connections>
-                                                        <action selector="textFieldReturn:" destination="mhq-4u-kqK" eventType="editingDidEndOnExit" id="nS7-Qi-sdy"/>
+                                                        <action selector="textFieldSend:" destination="mhq-4u-kqK" eventType="editingDidEndOnExit" id="HuG-Kg-JcE"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -622,6 +641,10 @@
         </class>
         <class className="ArtistTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ArtistTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="artistSearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="artistSearchDisplayController" candidateClass="UISearchDisplayController"/>
+            </relationships>
         </class>
         <class className="LoginViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
@@ -629,6 +652,7 @@
                 <relationship kind="action" name="backgroundTouched:"/>
                 <relationship kind="action" name="login:"/>
                 <relationship kind="action" name="textFieldReturn:"/>
+                <relationship kind="action" name="textFieldSend:"/>
                 <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nameText" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
@@ -659,6 +683,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/Settings.h"/>
             <relationships>
                 <relationship kind="outlet" name="hqModeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="iCloudModeSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="localModeSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="localServerLabel" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="loginLabel" candidateClass="UITextField"/>
@@ -673,6 +698,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="BRV-Dn-iWY"/>
+        <segue reference="G3Y-WC-cHw"/>
     </inferredMetricsTieBreakers>
 </document>

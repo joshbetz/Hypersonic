@@ -32,6 +32,10 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidLoad
 {
     
@@ -89,15 +93,6 @@
             reflectionImage.image = [self reflectedImage:albumArt withHeight:reflectionHeight];
             reflectionImage.alpha = 0.60;
         }
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
-        label.backgroundColor = [UIColor clearColor];
-        label.numberOfLines = 3;
-        label.font = [UIFont boldSystemFontOfSize: 12.0f];
-        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-        label.textAlignment = UITextAlignmentLeft;
-        label.textColor = [UIColor whiteColor];
-        label.text = songInfo;
-        self.navigationItem.titleView = label;
     }
     MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(20,380,280,20)];
     [volumeView sizeToFit];
@@ -110,7 +105,12 @@
         [playButton setImage:[UIImage imageNamed:@"pause.png"] forState:UIControlStateNormal];
     else
         [playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
-        
+    
+    // custom back button
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 37, 31)];
+    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [backButton addTarget:nil action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -199,22 +199,36 @@
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
     
     // Update the nav bar label
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
-    label.backgroundColor = [UIColor clearColor];
-    label.numberOfLines = 3;
-    label.font = [UIFont boldSystemFontOfSize: 12.0f];
-    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    label.textAlignment = UITextAlignmentLeft;
-    label.textColor = [UIColor whiteColor];
-    NSString *songData;
-    songData = [[songList objectAtIndex:currentIndex] artistName];
-    songData = [songData stringByAppendingString:@"\n"];
-    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] songName]];
-    songData = [songData stringByAppendingString:@"\n"];
-    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] albumName]];
-    label.text = songData;
-    songInfo = songData;
-    self.navigationItem.titleView = label;
+    UIView *titleBar = [[UIView alloc] initWithFrame:CGRectMake(0, 4, 224, 36)];
+    
+    UILabel *artist = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 224, 12)];
+    artist.text = [[songList objectAtIndex:currentIndex] artistName];
+    artist.textColor = [UIColor grayColor];
+    artist.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    artist.backgroundColor = [UIColor clearColor];
+    artist.font = [UIFont boldSystemFontOfSize: 12.0f];
+    artist.textAlignment = UITextAlignmentCenter;
+    [titleBar addSubview:artist];
+    
+    UILabel *song = [[UILabel alloc] initWithFrame:CGRectMake(0, 12, 224, 12)];
+    song.text = [[songList objectAtIndex:currentIndex] songName];
+    song.textColor = [UIColor whiteColor];
+    song.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    song.backgroundColor = [UIColor clearColor];
+    song.font = [UIFont boldSystemFontOfSize: 12.0f];
+    song.textAlignment = UITextAlignmentCenter;
+    [titleBar addSubview:song];
+    
+    UILabel *album = [[UILabel alloc] initWithFrame:CGRectMake(0, 24, 224, 12)];
+    album.text = [[songList objectAtIndex:currentIndex] albumName];
+    album.textColor = [UIColor grayColor];
+    album.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    album.backgroundColor = [UIColor clearColor];
+    album.font = [UIFont boldSystemFontOfSize: 12.0f];
+    album.textAlignment = UITextAlignmentCenter;
+    [titleBar addSubview:album];
+    
+    self.navigationItem.titleView = titleBar;
 }
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification {
@@ -296,22 +310,7 @@
     currentIndex--;
     if( currentIndex < 0 )
         currentIndex = 0;
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
-    label.backgroundColor = [UIColor clearColor];
-    label.numberOfLines = 3;
-    label.font = [UIFont boldSystemFontOfSize: 12.0f];
-    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    label.textAlignment = UITextAlignmentLeft;
-    label.textColor = [UIColor whiteColor];
-    NSString *songData;
-    songData = [[songList objectAtIndex:currentIndex] artistName];
-    songData = [songData stringByAppendingString:@"\n"];
-    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] songName]];
-    songData = [songData stringByAppendingString:@"\n"];
-    songData = [songData stringByAppendingString: [[songList objectAtIndex:currentIndex] albumName]];
-    label.text = songData;
-    songInfo = songData;
-    self.navigationItem.titleView = label;
+
     UIBackgroundTaskIdentifier newTaskId = UIBackgroundTaskInvalid;
     
     avPlayer = [[AVQueuePlayer alloc] initWithPlayerItem:[AVPlayerItem playerItemWithURL:[queueList objectAtIndex:currentIndex]]];
