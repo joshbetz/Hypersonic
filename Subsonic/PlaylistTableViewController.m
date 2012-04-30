@@ -99,6 +99,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    playlistMeth = true;
     if ([[segue identifier] isEqualToString:@"SelectPlaylist"]) {
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         

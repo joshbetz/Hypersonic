@@ -38,6 +38,7 @@ extern BOOL firstTimeAlbum;
 extern NSString *songInfo;
 extern NowPlaying *nowPlaying;
 extern BOOL albumMeth;
+extern BOOL playlistMeth;
 -(void)loadSettings;
 -(void)saveSettings;
 +(void)updateArtists;

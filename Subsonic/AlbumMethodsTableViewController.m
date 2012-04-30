@@ -107,9 +107,6 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    activityIndicator.center = self.view.center;
-    activityIndicator.hidden = NO;
-    [activityIndicator startAnimating];
     albumMeth = true;
     if ([[segue identifier] isEqualToString:@"Random"]) {
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
@@ -121,6 +118,13 @@
             nextViewController.userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], @"recent"];
         }
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    activityIndicator.center = self.view.center;
+    activityIndicator.hidden = NO;
+    [activityIndicator startAnimating];
 }
 
 #pragma mark - Table view data source
@@ -192,15 +196,5 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
 
 @end

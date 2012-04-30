@@ -54,6 +54,7 @@
     NSIndexPath *scrollToPath = [NSIndexPath indexPathForRow:0 inSection:0]; 
     [self.tableView scrollToRowAtIndexPath:scrollToPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
     albumMeth = false;
+    playlistMeth = false;
 }
 
 - (void)viewDidUnload
@@ -127,13 +128,12 @@
 
 
 
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
     //Normal Segue
     if ([[segue identifier] isEqualToString:@"AlbumClick"]) {
-        activityIndicator.center = self.view.center;
-        activityIndicator.hidden = NO;
-        [activityIndicator startAnimating];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         
         NSString *directoryID = [[[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].section]objectAtIndex:[self.tableView indexPathForSelectedRow].row ] artistID];
@@ -159,6 +159,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
+    activityIndicator.center = self.view.center;
+    activityIndicator.hidden = NO;
+    [activityIndicator startAnimating];
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
         [self performSegueWithIdentifier:@"FromSearch" sender:self];

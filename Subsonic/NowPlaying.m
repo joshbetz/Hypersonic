@@ -98,6 +98,7 @@
     [volumeView sizeToFit];
     [self.view addSubview:volumeView];
     albumMeth = false;
+    playlistMeth = false;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     

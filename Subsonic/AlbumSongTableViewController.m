@@ -43,7 +43,7 @@
     [activityIndicator stopAnimating];
     activityIndicator.hidden = YES;
     [self.view addSubview:activityIndicator];
-    if (albumMeth == true){
+    if (albumMeth == true || playlistMeth == true){
         RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
         albumList = parser.albumList;
         songList  = parser.songList;
@@ -187,9 +187,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    activityIndicator.center = self.view.center;
-    activityIndicator.hidden = NO;
-    [activityIndicator startAnimating];
+
     if ([[segue identifier] isEqualToString:@"ShowAlbums"]) {
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         NSString *directoryID = [[albumList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumID];
@@ -203,6 +201,12 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    activityIndicator.center = self.view.center;
+    activityIndicator.hidden = NO;
+    [activityIndicator startAnimating];
+}
 
 #pragma mark - Table view data source
 
@@ -368,15 +372,5 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
 
 @end
