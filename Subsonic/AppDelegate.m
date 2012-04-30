@@ -40,6 +40,7 @@ BOOL multiDisk;
 BOOL firstTimeAlbum;
 NSString *songInfo;
 NowPlaying *nowPlaying;
+BOOL albumMeth = false;;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

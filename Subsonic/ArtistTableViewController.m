@@ -15,7 +15,7 @@
 #import "NowPlaying.h"
 
 @implementation ArtistTableViewController
-
+@synthesize activityIndicator;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -38,15 +38,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityIndicator.backgroundColor = [UIColor grayColor];
+	activityIndicator.hidesWhenStopped = YES;
+    [activityIndicator stopAnimating];
+    activityIndicator.hidden = YES;
+    [self.view addSubview:activityIndicator];
     [self.tableView reloadData];
     NSIndexPath *scrollToPath = [NSIndexPath indexPathForRow:0 inSection:0]; 
     [self.tableView scrollToRowAtIndexPath:scrollToPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    albumMeth = false;
 }
 
 - (void)viewDidUnload
 {
+    
     [super viewDidUnload];
+    [activityIndicator stopAnimating];
+    activityIndicator.hidden = YES;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -89,6 +98,8 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    [activityIndicator stopAnimating];
+    activityIndicator.hidden = YES;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -97,9 +108,14 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"AlbumClick"]) {
+        activityIndicator.center = self.view.center;
+        activityIndicator.hidden = NO;
+        [activityIndicator startAnimating];
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         NSString *directoryID = [[[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].section]objectAtIndex:[self.tableView indexPathForSelectedRow].row ] artistID];
         selectedArtistSection = [self.tableView indexPathForSelectedRow].section;
@@ -111,6 +127,8 @@
 }
 
 #pragma mark - Table view data source
+
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

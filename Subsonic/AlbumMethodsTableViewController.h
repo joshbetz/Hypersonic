@@ -10,6 +10,8 @@
 
 @interface AlbumMethodsTableViewController : UITableViewController{
     NSString *types[2];
+    UIActivityIndicatorView *activityIndicator;
 }
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @end

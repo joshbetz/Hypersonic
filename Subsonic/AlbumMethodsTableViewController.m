@@ -11,7 +11,7 @@
 #import "AlbumSongTableViewController.h"
 
 @implementation AlbumMethodsTableViewController
-
+@synthesize activityIndicator;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -33,6 +33,12 @@
 
 - (void)viewDidLoad
 {
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityIndicator.backgroundColor = [UIColor grayColor];
+	activityIndicator.hidesWhenStopped = YES;
+    [activityIndicator stopAnimating];
+    activityIndicator.hidden = YES;
+    [self.view addSubview:activityIndicator];
     types[0] = @"Random";
     //types[1] = @"Newest";  //don't even work in internet browser
     //types[2] = @"Frequent";
@@ -49,6 +55,8 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    [activityIndicator stopAnimating];
+    activityIndicator.hidden = YES;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -73,6 +81,8 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    [activityIndicator stopAnimating];
+    activityIndicator.hidden = YES;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -83,6 +93,10 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    activityIndicator.center = self.view.center;
+    activityIndicator.hidden = NO;
+    [activityIndicator startAnimating];
+    albumMeth = true;
     if ([[segue identifier] isEqualToString:@"Random"]) {
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         

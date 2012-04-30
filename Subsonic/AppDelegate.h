@@ -36,6 +36,7 @@ extern BOOL multiDisk;
 extern BOOL firstTimeAlbum;
 extern NSString *songInfo;
 extern NowPlaying *nowPlaying;
+extern BOOL albumMeth;
 -(void)loadSettings;
 -(void)saveSettings;
 +(void)updateArtists;

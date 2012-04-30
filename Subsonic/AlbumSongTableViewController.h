@@ -20,7 +20,10 @@
     NSMutableArray *artistListProperty;
     int albumCount;
     int songCount;
+    UIActivityIndicatorView * activityIndicator;
 }
+
+@property(nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) NSMutableArray *albumList;
 @property (strong, nonatomic) NSString *userURL;
 @property (strong, nonatomic) NSString *userName;

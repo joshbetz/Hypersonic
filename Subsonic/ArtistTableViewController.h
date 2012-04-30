@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ArtistTableViewController : UITableViewController
-
+@interface ArtistTableViewController : UITableViewController{
+    UIActivityIndicatorView * activityIndicator;
+}
+@property(nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end

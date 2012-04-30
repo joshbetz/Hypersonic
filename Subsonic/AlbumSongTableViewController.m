@@ -14,7 +14,7 @@
 #import "AppDelegate.h"
 
 @implementation AlbumSongTableViewController
-@synthesize albumList, userURL, userPassword, userName, serverURL, artistListProperty;
+@synthesize albumList, userURL, userPassword, userName, serverURL, artistListProperty, activityIndicator;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -36,7 +36,45 @@
 
 - (void)viewDidLoad
 {
-    if (([[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] != nil && firstTimeAlbum == true)){
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityIndicator.backgroundColor = [UIColor grayColor];
+	activityIndicator.hidesWhenStopped = YES;
+    [activityIndicator stopAnimating];
+    activityIndicator.hidden = YES;
+    [self.view addSubview:activityIndicator];
+    if (albumMeth == true){
+        RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
+        albumList = parser.albumList;
+        songList  = parser.songList;
+        if ([songList count] > 0){
+            songs = true;
+            songCount = 0;
+            self.title = [[songList objectAtIndex:0] albumName];
+        }
+        else {
+            songs = false;
+        }    
+        if ([albumList count] > 0) {
+            if (firstTimeAlbum == false){
+                multiDisk = true;
+                albums = true;
+                albumCount = [albumList count];
+                self.title = [[albumList objectAtIndex:0] artistName];
+            }
+            else {
+                firstTimeAlbum = false;
+                albums = true;
+                albumCount = [albumList count];
+                self.title = [[albumList objectAtIndex:0] artistName];
+            }
+        }
+        else {
+            albums = false;
+        }
+
+    }
+    else if (([[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] != nil && firstTimeAlbum == true)){
         firstTimeAlbum = false;
         albumList = [[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList];
         albums = true;
@@ -88,7 +126,7 @@
     }
         
     [super viewDidLoad];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -99,6 +137,8 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    [activityIndicator stopAnimating];
+    activityIndicator.hidden = YES;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -132,6 +172,8 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    [activityIndicator stopAnimating];
+    activityIndicator.hidden = YES;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -142,6 +184,9 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    activityIndicator.center = self.view.center;
+    activityIndicator.hidden = NO;
+    [activityIndicator startAnimating];
     if ([[segue identifier] isEqualToString:@"ShowAlbums"]) {
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         NSString *directoryID = [[albumList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumID];
