@@ -122,11 +122,9 @@
         selectedArtistIndex = [self.tableView indexPathForSelectedRow].row;
         nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
         
-        firstTimeAlbum = true;
-        multiDisk = false;
-        
+    }
     //Segue from Search results
-    } else {
+    else {
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         
         NSString *directoryID = [[self.itemsFromCurrentSearch objectAtIndex:[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow].row ] artistID];
@@ -134,10 +132,10 @@
         
         //Leave search Land!
         [self.searchDisplayController setActive:NO];
-        
-        firstTimeAlbum = true;
-        multiDisk = false;
     }
+    
+    firstTimeAlbum = true;
+    multiDisk = false;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
