@@ -192,7 +192,8 @@
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         NSString *directoryID = [[albumList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumID];
         nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
-        selectedAlbumIndex = [self.tableView indexPathForSelectedRow].row;
+        if (playlistMeth != true && albumMeth != true)
+            selectedAlbumIndex = [self.tableView indexPathForSelectedRow].row;
     }
     if ([[segue identifier] isEqualToString:@"SelectedSong"]) {
         art = nil;
