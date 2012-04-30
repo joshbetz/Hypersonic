@@ -104,6 +104,9 @@
         
         NSString *playlistID = [[playlistList objectAtIndex:[self.tableView indexPathForSelectedRow].row] playlistID];
         nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getPlaylist"], playlistID];
+        
+        firstTimeAlbum = true;
+        multiDisk = false;
     }
 }
 

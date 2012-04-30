@@ -106,6 +106,9 @@
         else if ([self.tableView indexPathForSelectedRow].row == 1){
             nextViewController.userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], @"recent"];
         }
+        
+        firstTimeAlbum = true;
+        multiDisk = false;
     }
 }
 

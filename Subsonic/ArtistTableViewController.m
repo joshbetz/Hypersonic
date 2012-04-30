@@ -116,13 +116,14 @@
     //Normal Segue
     if ([[segue identifier] isEqualToString:@"AlbumClick"]) {
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
-        NSLog(@"%i", [self.tableView indexPathForSelectedRow].section);
-        NSLog(@"%i",[self.tableView indexPathForSelectedRow].row);
         
         NSString *directoryID = [[[artistList objectAtIndex:[self.tableView indexPathForSelectedRow].section]objectAtIndex:[self.tableView indexPathForSelectedRow].row ] artistID];
         selectedArtistSection = [self.tableView indexPathForSelectedRow].section;
         selectedArtistIndex = [self.tableView indexPathForSelectedRow].row;
         nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
+        
+        firstTimeAlbum = true;
+        multiDisk = false;
         
     //Segue from Search results
     } else {
