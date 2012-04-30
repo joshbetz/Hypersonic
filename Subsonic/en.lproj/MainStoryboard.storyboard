@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="10K549" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="48m-cn-VIM">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="48m-cn-VIM">
     <dependencies>
-        <deployment defaultVersion="1280" identifier="iOS"/>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
+        <!--Now Playing - Music Player-->
         <scene sceneID="isy-Aq-syK">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tfh-8W-dHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -103,6 +104,7 @@
             </objects>
             <point key="canvasLocation" x="657" y="-146"/>
         </scene>
+        <!--Settings - Settings-->
         <scene sceneID="uSM-LA-ld9">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6i-PG-gGT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -255,6 +257,7 @@
             </objects>
             <point key="canvasLocation" x="1103" y="-146"/>
         </scene>
+        <!--Album Song Table View Controller-->
         <scene sceneID="siv-3Q-Jh3">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VtC-JB-1XW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -317,15 +320,6 @@
                                     <segue destination="fw5-hh-zK0" kind="push" identifier="SelectedSong" id="RDu-Bv-khE"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="idv-XZ-Qxk">
-                                <rect key="frame" x="0.0" y="101" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="BtQ-0J-xoL" id="Agb-Zl-5AK"/>
@@ -337,6 +331,7 @@
             </objects>
             <point key="canvasLocation" x="1484" y="764"/>
         </scene>
+        <!--Navigation Controller-->
         <scene sceneID="Vxu-0O-kxg">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Wi-sK-msH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -354,6 +349,7 @@
             </objects>
             <point key="canvasLocation" x="-319" y="180"/>
         </scene>
+        <!--Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
@@ -375,6 +371,7 @@
             </objects>
             <point key="canvasLocation" x="132" y="180"/>
         </scene>
+        <!--Artist Table View Controller - Artists-->
         <scene sceneID="7ax-8p-rRk">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kks-xJ-E4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -432,6 +429,7 @@
             </objects>
             <point key="canvasLocation" x="657" y="455"/>
         </scene>
+        <!--Login View Controller-->
         <scene sceneID="oWe-LO-9w1">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uEa-Gg-xQS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -552,6 +550,7 @@
             </objects>
             <point key="canvasLocation" x="-752" y="180"/>
         </scene>
+        <!--Album Methods Table View Controller - Albums-->
         <scene sceneID="GRJ-XS-bOn">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXn-N5-RGb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -587,6 +586,7 @@
             </objects>
             <point key="canvasLocation" x="657" y="1037"/>
         </scene>
+        <!--Playlist Table View Controller - Playlists-->
         <scene sceneID="tji-60-77c">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SKA-wj-ctS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -639,7 +639,7 @@
         <class className="AlbumSongTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumSongTableViewController.h"/>
         </class>
-        <class className="ArtistTableViewController">
+        <class className="ArtistTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ArtistTableViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="artistSearchBar" candidateClass="UISearchBar"/>
