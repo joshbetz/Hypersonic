@@ -246,39 +246,17 @@
 
 - (void)buildPlaylist {
     BOOL noProblems = true;
-    if (playlistMeth != true && albumMeth != true){
+    if (!playlistMeth && !albumMeth){
         for (int i = 0; i < [[[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] objectAtIndex:selectedAlbumIndex] songList]count]; i++){
             if ([[[[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] objectAtIndex:selectedAlbumIndex] songList]objectAtIndex:i]songData] == nil){
                 noProblems = false;
                 break;
             }
         }
-        if (noProblems == true){
-            itemList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] objectAtIndex:selectedAlbumIndex] songList];
-        }
-        else {
-            queueList = [NSMutableArray array];
-            itemList = [NSMutableArray array];
-            
-            NSString *maxBitRate;
-            if ( hqMode )
-                maxBitRate = @"256";
-            else
-                maxBitRate = @"128";
-            
-            for (int i = 0; i < [songList count]; i++){
-                userURL = [NSString stringWithFormat:@"%@&id=%@&maxBitRate=%@", [AppDelegate getEndpoint:@"stream"], [[songList objectAtIndex:i] songID], maxBitRate];
-                url = [NSURL URLWithString:userURL];
-                [queueList addObject:url];
-            }
-            
-            NSLog(@"%d", [queueList count]);
-            for (int i = 0; i < [queueList count]; i++){
-                url = [queueList objectAtIndex:i];
-                AVPlayerItem *songItem = [AVPlayerItem playerItemWithURL:url];
-                [itemList addObject:songItem];
-            }
-        }
+    }
+    
+    if (!playlistMeth && !albumMeth && noProblems) {
+        itemList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] objectAtIndex:selectedAlbumIndex] songList];
     }
     else {
         queueList = [NSMutableArray array];
@@ -301,8 +279,7 @@
             url = [queueList objectAtIndex:i];
             AVPlayerItem *songItem = [AVPlayerItem playerItemWithURL:url];
             [itemList addObject:songItem];
-        }
-
+        } 
     }
 }
 
