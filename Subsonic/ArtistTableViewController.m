@@ -20,6 +20,7 @@
 @synthesize artistSearchBar = _artistSearchBar;
 @synthesize itemsFromCurrentSearch;
 @synthesize activityIndicator;
+@synthesize searchSec;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -50,6 +51,7 @@
     activityIndicator.hidden = YES;
     [self.view addSubview:activityIndicator];
     itemsFromCurrentSearch = [NSMutableArray array];
+    searchSec = -1;
     [self.tableView reloadData];
     NSIndexPath *scrollToPath = [NSIndexPath indexPathForRow:0 inSection:0]; 
     [self.tableView scrollToRowAtIndexPath:scrollToPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
@@ -147,6 +149,10 @@
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         
         NSString *directoryID = [[self.itemsFromCurrentSearch objectAtIndex:[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow].row ] artistID];
+        
+        selectedArtistSection = searchSec;
+        selectedArtistIndex = [[artistList objectAtIndex:searchSec]  indexOfObject:[self.itemsFromCurrentSearch objectAtIndex:[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow].row]]; 
+            
         nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
         
         //Leave search Land!
@@ -439,7 +445,8 @@
         
         if(arrIndex != -1){
             temp = [[NSMutableArray alloc] initWithArray:[artistList objectAtIndex:arrIndex]];
-
+            searchSec = arrIndex;
+            
             for(i = 0; i < [[artistList objectAtIndex:arrIndex] count]; i++){
                 temp1 = [[[temp objectAtIndex:i] artistName] lowercaseString];
                 NSRange range = [temp1 rangeOfString:searchText options:NSCaseInsensitiveSearch];
