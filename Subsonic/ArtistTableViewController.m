@@ -145,10 +145,6 @@
     {
         [self performSegueWithIdentifier:@"FromSearch" sender:self];
     }
-    else
-    {
-        [self performSegueWithIdentifier:@"AlbumClick" sender:self];
-    }
     
     // How to get segue destination controller and set object?!
     // Before doing:
