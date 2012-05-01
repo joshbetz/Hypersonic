@@ -89,7 +89,7 @@ BOOL playlistMeth = false;
         NSMutableArray *errors = rssParser.errorList;
         
         if (![errors count] > 0 && !connectionProblem){
-            [self saveSettings];
+            [AppDelegate saveSettings];
         }
     }
 }
