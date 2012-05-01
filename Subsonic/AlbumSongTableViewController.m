@@ -43,6 +43,12 @@
     [activityIndicator stopAnimating];
     activityIndicator.hidden = YES;
     [self.view addSubview:activityIndicator];
+    
+    NSMutableArray *currentAlbumList = [[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList];
+    NSMutableArray *currentSongList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]songList];
+    NSMutableArray *currentDiskList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]diskList];
+    
+    // special albums or playlists
     if (albumMeth == true || playlistMeth == true){
         RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
         albumList = parser.albumList;
@@ -56,17 +62,15 @@
             songs = false;
         }    
         if ([albumList count] > 0) {
+            albums = true;
+            albumCount = [albumList count];
+            //self.title = [[albumList objectAtIndex:0] artistName];
+            
             if (firstTimeAlbum == false){
                 multiDisk = true;
-                albums = true;
-                albumCount = [albumList count];
-                self.title = [[albumList objectAtIndex:0] artistName];
             }
             else {
                 firstTimeAlbum = false;
-                albums = true;
-                albumCount = [albumList count];
-                self.title = [[albumList objectAtIndex:0] artistName];
             }
         }
         else {
@@ -74,23 +78,31 @@
         }
 
     }
-    else if (([[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] != nil && firstTimeAlbum == true)){
+    
+    // something is in the album list and this is the first time
+    else if (currentAlbumList != nil && firstTimeAlbum){
         firstTimeAlbum = false;
         albumList = [[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList];
         albums = true;
     }
-    else if ([[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]songList] != nil && multiDisk == false){
+    
+    // something is in the song list and it's only 1 disk
+    else if (currentSongList != nil && !multiDisk){
         songList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex] songList];
         songs = true;
     }
-    else if ([[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]diskList] != nil && multiDisk == true){
+    
+    // something is in the disk list and it's multidisk
+    else if (currentDiskList != nil && multiDisk){
         multiDisk = false;
         albumList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]diskList];
     }
+    
+    // every other case
     else{
-     RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
-     albumList = parser.albumList;
-     songList  = parser.songList;
+        RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
+        albumList = parser.albumList;
+        songList  = parser.songList;
         if ([songList count] > 0){
             songs = true;
             songCount = 0;
@@ -102,36 +114,28 @@
             songs = false;
         }    
         if ([albumList count] > 0) {
+            albums = true;
+            albumCount = [albumList count];
+            self.title = [[albumList objectAtIndex:0] artistName];
+            
             if (firstTimeAlbum == false){
                 multiDisk = true;
-                albums = true;
-                albumCount = [albumList count];
-                self.title = [[albumList objectAtIndex:0] artistName];
                 [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex]albumList]objectAtIndex:selectedAlbumIndex] setDiskList:albumList];
-                [self saveSettings];
             }
             else {
                 firstTimeAlbum = false;
-                albums = true;
-                albumCount = [albumList count];
-                self.title = [[albumList objectAtIndex:0] artistName];
                 [[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] setAlbumList:albumList];
-                [self saveSettings];
             }
+            
+            [self saveSettings];
         }
         else {
             albums = false;
         }
-
     }
         
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
@@ -146,7 +150,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+        
     if ( [avPlayer currentItem] == nil )
         self.navigationItem.rightBarButtonItem = nil;
     else {
@@ -192,10 +196,10 @@
         AlbumSongTableViewController *nextViewController = [segue destinationViewController];
         NSString *directoryID = [[albumList objectAtIndex:[self.tableView indexPathForSelectedRow].row] albumID];
         nextViewController.userURL = [NSString stringWithFormat:@"%@&id=%@", [AppDelegate getEndpoint:@"getMusicDirectory"], directoryID];
-        if (playlistMeth != true && albumMeth != true)
+        if (!playlistMeth && !albumMeth)
             selectedAlbumIndex = [self.tableView indexPathForSelectedRow].row;
     }
-    if ([[segue identifier] isEqualToString:@"SelectedSong"]) {
+    else if ([[segue identifier] isEqualToString:@"SelectedSong"]) {
         art = nil;
         currentIndex = [self.tableView indexPathForSelectedRow].row;
         differentAlbum = true;
@@ -331,47 +335,5 @@
 	[prefs setObject:data  forKey:@"local-artistList"];
     [prefs synchronize];
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
 
 @end
