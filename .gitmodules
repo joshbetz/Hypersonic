@@ -1,0 +1,3 @@
+[submodule "MKiCloudSync"]
+	path = MKiCloudSync
+	url = git@github.com:joshbetz/MKiCloudSync.git
