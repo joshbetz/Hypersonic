@@ -131,7 +131,7 @@ BOOL playlistMeth = false;
     artistList = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
 }
 
--(void)saveSettings {
++(void)saveSettings {
 
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	[prefs setObject:server forKey:@"iCloud-serverURL"];

@@ -88,6 +88,8 @@
             }
         }
     }
+    
+    [AppDelegate saveSettings];
 }
 
 - (void)viewDidUnload

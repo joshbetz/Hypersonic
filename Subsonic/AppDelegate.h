@@ -40,7 +40,7 @@ extern NowPlaying *nowPlaying;
 extern BOOL albumMeth;
 extern BOOL playlistMeth;
 -(void)loadSettings;
--(void)saveSettings;
++(void)saveSettings;
 +(void)updateArtists;
 +(NSString *)getEndpoint:(NSString *)method;
 @end
