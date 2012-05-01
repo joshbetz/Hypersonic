@@ -97,8 +97,8 @@
     MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(20,380,280,20)];
     [volumeView sizeToFit];
     [self.view addSubview:volumeView];
-    albumMeth = false;
-    playlistMeth = false;
+    
+    //playlistMeth = false;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     

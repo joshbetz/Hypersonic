@@ -56,8 +56,7 @@
     [self.tableView reloadData];
     NSIndexPath *scrollToPath = [NSIndexPath indexPathForRow:0 inSection:0]; 
     [self.tableView scrollToRowAtIndexPath:scrollToPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    albumMeth = false;
-    playlistMeth = false;
+    
 }
 
 - (void)viewDidUnload
@@ -163,6 +162,8 @@
     
     firstTimeAlbum = true;
     multiDisk = false;
+    albumMeth = false;
+    playlistMeth = false;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
