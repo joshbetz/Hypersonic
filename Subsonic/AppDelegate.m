@@ -23,6 +23,7 @@ NSString *server;
 NSString *localServer;
 BOOL localMode;
 BOOL hqMode;
+BOOL lastfm;
 BOOL connectionProblem = false;
 NSString *endpoint;
 AVQueuePlayer *avPlayer;
@@ -126,6 +127,7 @@ BOOL playlistMeth = false;
     localServer = [prefs objectForKey:@"iCloud-localServerURL"];
     localMode = [prefs boolForKey:@"iCloud-localMode"];
     hqMode = [prefs boolForKey:@"iCloud-hqMode"];
+    lastfm = [prefs boolForKey:@"iCloud-lastfm"];
     
     NSData *data = [prefs objectForKey:@"local-artistList"];
     artistList = [[NSKeyedUnarchiver unarchiveObjectWithData:data]mutableCopy];
@@ -140,6 +142,7 @@ BOOL playlistMeth = false;
     [prefs setObject:localServer forKey:@"iCloud-localServerURL"];
     [prefs setBool:localMode forKey:@"iCloud-localMode"];
     [prefs setBool:hqMode forKey:@"iCloud-hqMode"];
+    [prefs setBool:lastfm forKey:@"iCloud-lastfm"];
     [prefs synchronize];  
     
 }

@@ -16,7 +16,7 @@
     IBOutlet UITextField *passwordLabel;
     IBOutlet UISwitch *localModeSwitch;
     IBOutlet UISwitch *hqModeSwitch;
-    IBOutlet UISwitch *iCloudModeSwitch;
+    IBOutlet UISwitch *lastfmSwitch;
 }
 
 @property (strong, nonatomic) IBOutlet UITextField *serverLabel;
@@ -25,6 +25,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *passwordLabel;
 @property (strong, nonatomic) IBOutlet UISwitch *localModeSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *hqModeSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *lastfmSwitch;
 
 -(NSString *)makeURL:(NSString *)method: (NSString *)serverName: (NSString *)login: (NSString *)passwordUser;
 @end

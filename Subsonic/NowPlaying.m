@@ -188,7 +188,9 @@
     }
     
     // setup scrobbling
-    [self scrobble:NO withID:[[songList objectAtIndex:currentIndex] songID]];
+    if (lastfm)
+        [self scrobble:NO withID:[[songList objectAtIndex:currentIndex] songID]];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:[avPlayer currentItem]];
     
     // setup seek slider
@@ -233,7 +235,9 @@
 }
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification {
-    [self scrobble:YES withID:[[songList objectAtIndex:currentIndex] songID]];
+    if (lastfm)
+        [self scrobble:YES withID:[[songList objectAtIndex:currentIndex] songID]];
+    
     [avPlayer advanceToNextItem];
     
     if ([[avPlayer items] count] <= 0) {
@@ -320,7 +324,8 @@
     avPlayer = [[AVQueuePlayer alloc] initWithPlayerItem:[AVPlayerItem playerItemWithURL:[queueList objectAtIndex:currentIndex]]];
     [avPlayer play];
     
-    [self scrobble:NO withID:[[songList objectAtIndex:currentIndex] songID]];
+    if (lastfm)
+        [self scrobble:NO withID:[[songList objectAtIndex:currentIndex] songID]];
     
     [self buildPlaylist];
     for ( int i=currentIndex+1; i < [itemList count]; i++ )

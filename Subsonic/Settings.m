@@ -16,7 +16,7 @@
 
 @implementation Settings
 
-@synthesize loginLabel, localServerLabel, serverLabel, passwordLabel, localModeSwitch, hqModeSwitch;
+@synthesize loginLabel, localServerLabel, serverLabel, passwordLabel, localModeSwitch, hqModeSwitch, lastfmSwitch;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -47,6 +47,7 @@
     localServerLabel.text = localServer;
     localModeSwitch.on = localMode;
     hqModeSwitch.on = hqMode;
+    lastfmSwitch.on = lastfm;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -62,6 +63,7 @@
         localServer = localServerLabel.text;
         localMode = localModeSwitch.on;
         hqMode = hqModeSwitch.on;
+        lastfm = lastfmSwitch.on;
         NSString *tempPassword = password;
         if( [passwordLabel.text length] > 0 )
             tempPassword = passwordLabel.text;
@@ -83,6 +85,7 @@
                 localServer = localServerLabel.text;
                 localMode = localModeSwitch.on;
                 hqMode = hqModeSwitch.on;
+                lastfm = lastfmSwitch.on;
                 if( [passwordLabel.text length] > 0 )
                     password = passwordLabel.text;
             }
