@@ -39,7 +39,7 @@
 		03A9B72E151F6DA1002ECD97 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A9B72D151F6DA1002ECD97 /* Settings.m */; };
 		03AEAD8E1544A3C300182328 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AEAD8D1544A3C300182328 /* CoreMedia.framework */; };
 		03AFFDA61556166B00A93E28 /* MKiCloudSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AFFDA51556166B00A93E28 /* MKiCloudSync.m */; };
-		03AFFDAC155616B600A93E28 /* SMWebRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AFFDAB155616B600A93E28 /* SMWebRequest.m */; };
+		03AFFDAC155616B600A93E28 /* SMWebRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AFFDAB155616B600A93E28 /* SMWebRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		03AFFDAF155616C700A93E28 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AFFDAE155616C700A93E28 /* MBProgressHUD.m */; };
 		03D8A0ED1502B54C00DA09D4 /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D8A0EC1502B54C00DA09D4 /* RSSParser.m */; };
 		03EDBDBF1509800D0093C55C /* NowPlaying.m in Sources */ = {isa = PBXBuildFile; fileRef = 03EDBDBE1509800D0093C55C /* NowPlaying.m */; };
