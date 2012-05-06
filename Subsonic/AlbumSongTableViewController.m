@@ -41,71 +41,52 @@
     NSMutableArray *currentAlbumList = [[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList];
     NSMutableArray *currentSongList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]songList];
     NSMutableArray *currentDiskList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]diskList];
-    
+    CGRect frame = CGRectMake (120.0, 185.0, 80, 80);
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:frame];
+    activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    activityIndicator.backgroundColor = [UIColor blackColor];
+    activityIndicator.hidesWhenStopped = YES;
+    activityIndicator.center = CGPointMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.5);
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
     // special albums or playlists
     if (albumMeth == true || playlistMeth == true){
-        RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
-        albumList = parser.albumList;
-        songList  = parser.songList;
-        if ([songList count] > 0){
-            songs = true;
-            songCount = 0;
-            self.title = [[songList objectAtIndex:0] albumName];
-        }
-        else {
-            songs = false;
-        }    
-        if ([albumList count] > 0) {
-            albums = true;
-            albumCount = [albumList count];
-            //self.title = [[albumList objectAtIndex:0] artistName];
-            
-            if (firstTimeAlbum == false){
-                multiDisk = true;
-            }
-            else {
-                firstTimeAlbum = false;
-            }
-        }
-        else {
-            albums = false;
-        }
+        [self performSelector: @selector(parsePlaylistData) 
+                   withObject: nil 
+                   afterDelay: 0];
         
     }
     
     // something is in the album list and this is the first time
     else if (currentAlbumList != nil && firstTimeAlbum){
-        firstTimeAlbum = false;
-        albumList = [[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList];
-        albums = true;
+        [self performSelector: @selector(loadFromAlbum) 
+                   withObject: nil 
+                   afterDelay: 0];
     }
     
     // something is in the song list and it's only 1 disk
     else if (currentSongList != nil && !multiDisk){
-        songList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex] songList];
-        songs = true;
+        [self performSelector: @selector(loadFromSong) 
+                   withObject: nil 
+                   afterDelay: 0];
     }
     
     // something is in the disk list and it's multidisk
     else if (currentDiskList != nil && multiDisk){
-        multiDisk = false;
-        albumList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]diskList];
+        [self performSelector: @selector(loadFromDisk) 
+                   withObject: nil 
+                   afterDelay: 0];
     }
     
     // every other case
     else{
-        activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        activityIndicator.backgroundColor = [UIColor grayColor];
-        activityIndicator.hidesWhenStopped = YES;
-         activityIndicator.center = self.view.center;
-        [activityIndicator startAnimating];
-        [self.view addSubview:activityIndicator];
+        
         [self performSelector: @selector(parseMusicData) 
                    withObject: nil 
                    afterDelay: 0];
-        [super viewDidLoad];
+        
     }
-    
+    [super viewDidLoad];
     
 }
 
@@ -302,6 +283,59 @@
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:artistListProperty];
 	[prefs setObject:data  forKey:@"local-artistList"];
     [prefs synchronize];
+}
+
+-(void)loadFromDisk{
+    multiDisk = false;
+    albumList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]diskList];
+    [activityIndicator stopAnimating];
+    [self.tableView reloadData];
+}
+
+-(void)loadFromSong{
+    songList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex] songList];
+    songs = true;
+    [activityIndicator stopAnimating];
+    [self.tableView reloadData];
+}
+
+-(void)loadFromAlbum{
+    firstTimeAlbum = false;
+    albumList = [[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList];
+    albums = true;
+    [activityIndicator stopAnimating];
+    [self.tableView reloadData];
+}
+
+-(void)parsePlaylistData{
+    RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
+    albumList = parser.albumList;
+    songList  = parser.songList;
+    if ([songList count] > 0){
+        songs = true;
+        songCount = 0;
+        self.title = [[songList objectAtIndex:0] albumName];
+    }
+    else {
+        songs = false;
+    }    
+    if ([albumList count] > 0) {
+        albums = true;
+        albumCount = [albumList count];
+        //self.title = [[albumList objectAtIndex:0] artistName];
+        
+        if (firstTimeAlbum == false){
+            multiDisk = true;
+        }
+        else {
+            firstTimeAlbum = false;
+        }
+    }
+    else {
+        albums = false;
+    }
+    [activityIndicator stopAnimating];
+    [self.tableView reloadData];
 }
 
 -(void)parseMusicData{

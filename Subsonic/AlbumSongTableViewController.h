@@ -35,4 +35,8 @@
 
 -(void)saveSettings;
 -(void)parseMusicData;
+-(void)parsePlaylistData;
+-(void)loadFromAlbum;
+-(void)loadFromSong;
+-(void)loadFromDisk;
 @end
