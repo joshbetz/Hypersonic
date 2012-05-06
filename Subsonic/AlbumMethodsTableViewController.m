@@ -34,16 +34,11 @@
 - (void)viewDidLoad
 {
     types[0] = @"Random";
-    //types[1] = @"Newest";  //don't even work in internet browser
-    //types[2] = @"Frequent";
-    types[1] = @"Recent";
+    types[1] = @"Newest";
+    types[2] = @"Highest";
+    types[3] = @"Frequent";
+    types[4] = @"Recent";
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
@@ -105,6 +100,15 @@
             nextViewController.userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], @"random"];
         }
         else if ([self.tableView indexPathForSelectedRow].row == 1){
+            nextViewController.userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], @"newest"];
+        }
+        else if ([self.tableView indexPathForSelectedRow].row == 2){
+            nextViewController.userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], @"highest"];
+        }
+        else if ([self.tableView indexPathForSelectedRow].row == 3){
+            nextViewController.userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], @"frequent"];
+        }
+        else if ([self.tableView indexPathForSelectedRow].row == 4){
             nextViewController.userURL = [NSString stringWithFormat:@"%@&type=%@", [AppDelegate getEndpoint:@"getAlbumList"], @"recent"];
         }
     }
@@ -126,7 +130,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 2;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AlbumMethodsTableViewController : UITableViewController{
-    NSString *types[2];
+    NSString *types[5];
     UIActivityIndicatorView *activityIndicator;
 }
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
