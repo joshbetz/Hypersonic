@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "AlbumSongTableViewController.h"
 #import "Artist.h"
 #import "Album.h"
@@ -44,9 +45,11 @@
     CGRect frame = CGRectMake (120.0, 185.0, 80, 80);
     activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:frame];
     activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-    activityIndicator.backgroundColor = [UIColor blackColor];
+    activityIndicator.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     activityIndicator.hidesWhenStopped = YES;
     activityIndicator.center = CGPointMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.5);
+    activityIndicator.layer.cornerRadius = 10.0;
+    
     [activityIndicator startAnimating];
     [self.view addSubview:activityIndicator];
     // special albums or playlists
