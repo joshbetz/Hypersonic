@@ -93,6 +93,9 @@
 }
 
 - (void) refresh {
+    NSIndexPath *scrollToPath = [NSIndexPath indexPathForRow:0 inSection:0]; 
+    [self.tableView scrollToRowAtIndexPath:scrollToPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    
     CGRect frame = CGRectMake (120.0, 185.0, 80, 80);
     activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:frame];
     activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
