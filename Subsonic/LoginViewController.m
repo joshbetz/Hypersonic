@@ -96,6 +96,12 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    if (indexPath.row == 0 && indexPath.section == 1)
+        [self login:nil];
+}
+
 -(void)loadSettings {
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
