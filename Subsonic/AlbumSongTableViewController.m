@@ -42,6 +42,7 @@
     NSMutableArray *currentAlbumList = [[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList];
     NSMutableArray *currentSongList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]songList];
     NSMutableArray *currentDiskList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]diskList];
+    
     CGRect frame = CGRectMake (120.0, 185.0, 80, 80);
     activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:frame];
     activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
@@ -52,6 +53,7 @@
     
     [activityIndicator startAnimating];
     [self.view addSubview:activityIndicator];
+    
     // special albums or playlists
     if (albumMeth == true || playlistMeth == true){
         [self performSelector: @selector(parsePlaylistData) 

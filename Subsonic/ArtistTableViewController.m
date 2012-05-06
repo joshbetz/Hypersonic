@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "ArtistTableViewController.h"
 #import "RSSParser.h"
 #import "Artist.h"
@@ -92,8 +93,24 @@
 }
 
 - (void) refresh {
+    CGRect frame = CGRectMake (120.0, 185.0, 80, 80);
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:frame];
+    activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    activityIndicator.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+    activityIndicator.hidesWhenStopped = YES;
+    activityIndicator.center = CGPointMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.5);
+    activityIndicator.layer.cornerRadius = 10.0;
+    
+    [activityIndicator startAnimating];
+    [self.view addSubview:activityIndicator];
+    
+    [self performSelector:@selector(updateArtists) withObject:nil afterDelay:0.01];
+}
+
+- (void) updateArtists {
     [AppDelegate updateArtists];
     [self.tableView reloadData];
+    [activityIndicator stopAnimating];
 }
 
 - (void) pushToPlayer {
