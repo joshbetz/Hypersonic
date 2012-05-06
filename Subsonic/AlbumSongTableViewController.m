@@ -14,7 +14,7 @@
 #import "AppDelegate.h"
 
 @implementation AlbumSongTableViewController
-@synthesize albumList, userURL, userPassword, userName, serverURL, artistListProperty, activityIndicator;
+@synthesize albumList, userURL, userPassword, userName, serverURL, artistListProperty, activityIndicator, savedView;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -37,12 +37,6 @@
 - (void)viewDidLoad
 {
     
-    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityIndicator.backgroundColor = [UIColor grayColor];
-	activityIndicator.hidesWhenStopped = YES;
-    [activityIndicator stopAnimating];
-    activityIndicator.hidden = YES;
-    [self.view addSubview:activityIndicator];
     
     NSMutableArray *currentAlbumList = [[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList];
     NSMutableArray *currentSongList = [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList]objectAtIndex:selectedAlbumIndex]songList];
@@ -76,7 +70,7 @@
         else {
             albums = false;
         }
-
+        
     }
     
     // something is in the album list and this is the first time
@@ -100,49 +94,27 @@
     
     // every other case
     else{
-        RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
-        albumList = parser.albumList;
-        songList  = parser.songList;
-        if ([songList count] > 0){
-            songs = true;
-            songCount = 0;
-            self.title = [[songList objectAtIndex:0] albumName];
-            [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] objectAtIndex:selectedAlbumIndex] setSongList:songList];
-            [self saveSettings];
-        }
-        else {
-            songs = false;
-        }    
-        if ([albumList count] > 0) {
-            albums = true;
-            albumCount = [albumList count];
-            self.title = [[albumList objectAtIndex:0] artistName];
-            
-            if (firstTimeAlbum == false){
-                multiDisk = true;
-                [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex]albumList]objectAtIndex:selectedAlbumIndex] setDiskList:albumList];
-            }
-            else {
-                firstTimeAlbum = false;
-                [[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] setAlbumList:albumList];
-            }
-            
-            [self saveSettings];
-        }
-        else {
-            albums = false;
-        }
+        activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        activityIndicator.backgroundColor = [UIColor grayColor];
+        activityIndicator.hidesWhenStopped = YES;
+         activityIndicator.center = self.view.center;
+        [activityIndicator startAnimating];
+        [self.view addSubview:activityIndicator];
+        [self performSelector: @selector(parseMusicData) 
+                   withObject: nil 
+                   afterDelay: 0];
+        [super viewDidLoad];
     }
-        
-    [super viewDidLoad];
+    
     
 }
+
+
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    [activityIndicator stopAnimating];
-    activityIndicator.hidden = YES;
+    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -150,7 +122,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-        
+   
     if ( [avPlayer currentItem] == nil )
         self.navigationItem.rightBarButtonItem = nil;
     else {
@@ -179,8 +151,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [activityIndicator stopAnimating];
-    activityIndicator.hidden = YES;
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -208,9 +179,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    activityIndicator.center = self.view.center;
-    activityIndicator.hidden = NO;
-    [activityIndicator startAnimating];
 }
 
 #pragma mark - Table view data source
@@ -334,6 +302,43 @@
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:artistListProperty];
 	[prefs setObject:data  forKey:@"local-artistList"];
     [prefs synchronize];
+}
+
+-(void)parseMusicData{
+    RSSParser *parser = [[RSSParser alloc] initWithRSSFeed: userURL];
+    albumList = parser.albumList;
+    songList  = parser.songList;
+    if ([songList count] > 0){
+        songs = true;
+        songCount = 0;
+        self.title = [[songList objectAtIndex:0] albumName];
+        [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] albumList] objectAtIndex:selectedAlbumIndex] setSongList:songList];
+        [self saveSettings];
+    }
+    else {
+        songs = false;
+    }    
+    if ([albumList count] > 0) {
+        albums = true;
+        albumCount = [albumList count];
+        self.title = [[albumList objectAtIndex:0] artistName];
+        
+        if (firstTimeAlbum == false){
+            multiDisk = true;
+            [[[[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex]albumList]objectAtIndex:selectedAlbumIndex] setDiskList:albumList];
+        }
+        else {
+            firstTimeAlbum = false;
+            [[[artistList objectAtIndex:selectedArtistSection] objectAtIndex:selectedArtistIndex] setAlbumList:albumList];
+        }
+        
+        [self saveSettings];
+    }
+    else {
+        albums = false;
+    }
+    [activityIndicator stopAnimating];
+    [self.tableView reloadData];
 }
 
 @end

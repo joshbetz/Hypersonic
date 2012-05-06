@@ -23,6 +23,8 @@
 @synthesize searchSec;
 @synthesize savedView;
 
+
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -45,12 +47,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityIndicator.backgroundColor = [UIColor grayColor];
-	activityIndicator.hidesWhenStopped = YES;
-    [activityIndicator stopAnimating];
-    activityIndicator.hidden = YES;
-    [self.view addSubview:activityIndicator];
     itemsFromCurrentSearch = [NSMutableArray array];
     searchSec = -1;
     [self.tableView reloadData];
@@ -63,8 +59,6 @@
 {
     
     [super viewDidUnload];
-    [activityIndicator stopAnimating];
-    activityIndicator.hidden = YES;
 
     //Initializing SearchBar components
     //[self setArtistSearchBar:nil];
@@ -81,6 +75,7 @@
 {
     [super viewWillAppear:animated];
     
+   
     self.parentViewController.title = @"Artists";
     
     if ( [avPlayer currentItem] == nil )
@@ -108,6 +103,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -118,9 +114,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [activityIndicator stopAnimating];
-    activityIndicator.hidden = YES;
-    [self setView:savedView];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -168,12 +162,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    activityIndicator.center = self.view.center;
-    activityIndicator.hidden = NO;
-    [activityIndicator startAnimating];
-    savedView = self.tableView;
-    [self setView:activityIndicator];
-    
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
         [self performSegueWithIdentifier:@"FromSearch" sender:self];

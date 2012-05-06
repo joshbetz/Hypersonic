@@ -21,6 +21,7 @@
     int albumCount;
     int songCount;
     UIActivityIndicatorView * activityIndicator;
+    AlbumSongTableViewController *savedView;
 }
 
 @property(nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -30,6 +31,8 @@
 @property (strong, nonatomic) NSString *userPassword;
 @property (strong, nonatomic) NSString *serverURL;
 @property (nonatomic, strong) NSMutableArray *artistListProperty;
+@property (nonatomic, strong) AlbumSongTableViewController *savedView;
 
 -(void)saveSettings;
+-(void)parseMusicData;
 @end

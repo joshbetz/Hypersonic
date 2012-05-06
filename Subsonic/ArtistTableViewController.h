@@ -14,8 +14,9 @@
     IBOutlet UISearchBar *artistSearchBar;
     NSMutableArray *itemsFromCurrentSearch;
     NSInteger searchSec;
-    UIActivityIndicatorView * activityIndicator;
+    UIActivityIndicatorView *activityIndicator;
     ArtistTableViewController *savedView;
+    
 }
 @property (strong, nonatomic) IBOutlet UISearchDisplayController *artistSearchDisplayController;
 @property (strong, nonatomic) IBOutlet UISearchBar *artistSearchBar;
