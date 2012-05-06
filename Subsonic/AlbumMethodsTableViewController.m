@@ -34,10 +34,10 @@
 - (void)viewDidLoad
 {
     types[0] = @"Random";
-    types[1] = @"Newest";
-    types[2] = @"Highest";
-    types[3] = @"Frequent";
-    types[4] = @"Recent";
+    types[1] = @"Recently Added";
+    types[2] = @"Highest Rated";
+    types[3] = @"Most Played";
+    types[4] = @"Recently Played";
     [super viewDidLoad];
 }
 
