@@ -43,6 +43,7 @@ NSString *songInfo;
 NowPlaying *nowPlaying;
 BOOL albumMeth = false;
 BOOL playlistMeth = false;
+NSMutableArray *playingSongList;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

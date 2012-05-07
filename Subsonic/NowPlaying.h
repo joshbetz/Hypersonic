@@ -54,4 +54,6 @@
 - (void)buildPlaylist;
 - (UIImage *)reflectedImage:(UIImageView *)fromImage withHeight:(NSUInteger)height;
 -(BOOL)scrobble:(BOOL)submission withID:(NSString *)id;
+CGImageRef CreateGradientImage(int pixelsWide, int pixelsHigh);
+CGContextRef MyCreateBitmapContext(int pixelsWide, int pixelsHigh);
 @end

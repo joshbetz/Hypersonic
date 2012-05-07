@@ -14,7 +14,7 @@
     NSString *songID;
     NSString *artistName;
     NSString *albumName;
-    NSString *albumArg;
+    NSString *albumArt;
     NSString *songDuration;
     AVPlayerItem *songData;
 }

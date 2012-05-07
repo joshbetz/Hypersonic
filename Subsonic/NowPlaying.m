@@ -50,7 +50,8 @@
     
     if(songList.count > 0 && differentAlbum == true) {
         [self buildPlaylist];
-        
+        playingSongList = songList;
+        NSLog(@"%d", [playingSongList count]);
         NSString *artSize;
         if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2){
             //Retina
@@ -179,9 +180,9 @@
         }
         
         NSDictionary *songInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [[songList objectAtIndex:currentIndex] artistName], MPMediaItemPropertyArtist,
-                                  [[songList objectAtIndex:currentIndex] songName], MPMediaItemPropertyTitle,
-                                  [[songList objectAtIndex:currentIndex] albumName], MPMediaItemPropertyAlbumTitle,
+                                  [[playingSongList objectAtIndex:currentIndex] artistName], MPMediaItemPropertyArtist,
+                                  [[playingSongList objectAtIndex:currentIndex] songName], MPMediaItemPropertyTitle,
+                                  [[playingSongList objectAtIndex:currentIndex] albumName], MPMediaItemPropertyAlbumTitle,
                                   artwork, MPMediaItemPropertyArtwork,
                                   nil];
         center.nowPlayingInfo = songInfo;
@@ -189,12 +190,12 @@
     
     // setup scrobbling
     if (lastfm)
-        [self scrobble:NO withID:[[songList objectAtIndex:currentIndex] songID]];
+        [self scrobble:NO withID:[[playingSongList objectAtIndex:currentIndex] songID]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:[avPlayer currentItem]];
     
     // setup seek slider
-    NSString *durString = [[songList objectAtIndex:currentIndex] songDuration];
+    NSString *durString = [[playingSongList objectAtIndex:currentIndex] songDuration];
     float dur = [durString floatValue];
     NSLog(@"Duration: %@", durString);
     [seek setMaximumValue:dur];
@@ -205,7 +206,7 @@
     UIView *titleBar = [[UIView alloc] initWithFrame:CGRectMake(0, 4, 224, 36)];
     
     UILabel *artist = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 224, 12)];
-    artist.text = [[songList objectAtIndex:currentIndex] artistName];
+    artist.text = [[playingSongList objectAtIndex:currentIndex] artistName];
     artist.textColor = [UIColor grayColor];
     artist.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     artist.backgroundColor = [UIColor clearColor];
@@ -214,7 +215,7 @@
     [titleBar addSubview:artist];
     
     UILabel *song = [[UILabel alloc] initWithFrame:CGRectMake(0, 12, 224, 12)];
-    song.text = [[songList objectAtIndex:currentIndex] songName];
+    song.text = [[playingSongList objectAtIndex:currentIndex] songName];
     song.textColor = [UIColor whiteColor];
     song.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     song.backgroundColor = [UIColor clearColor];
@@ -223,7 +224,7 @@
     [titleBar addSubview:song];
     
     UILabel *album = [[UILabel alloc] initWithFrame:CGRectMake(0, 24, 224, 12)];
-    album.text = [[songList objectAtIndex:currentIndex] albumName];
+    album.text = [[playingSongList objectAtIndex:currentIndex] albumName];
     album.textColor = [UIColor grayColor];
     album.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     album.backgroundColor = [UIColor clearColor];
@@ -236,7 +237,7 @@
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification {
     if (lastfm)
-        [self scrobble:YES withID:[[songList objectAtIndex:currentIndex] songID]];
+        [self scrobble:YES withID:[[playingSongList objectAtIndex:currentIndex] songID]];
     
     [avPlayer advanceToNextItem];
     
@@ -325,7 +326,7 @@
     [avPlayer play];
     
     if (lastfm)
-        [self scrobble:NO withID:[[songList objectAtIndex:currentIndex] songID]];
+        [self scrobble:NO withID:[[playingSongList objectAtIndex:currentIndex] songID]];
     
     [self buildPlaylist];
     for ( int i=currentIndex+1; i < [itemList count]; i++ )
@@ -435,14 +436,14 @@ CGContextRef MyCreateBitmapContext(int pixelsWide, int pixelsHigh)
     CGContextDrawImage(mainViewContentContext, fromImage.bounds, fromImage.image.CGImage);
     
     // create CGImageRef of the main view bitmap content, and then release that bitmap context
-    CGImageRef reflectionImage = CGBitmapContextCreateImage(mainViewContentContext);
+    CGImageRef reflectedImage = CGBitmapContextCreateImage(mainViewContentContext);
     CGContextRelease(mainViewContentContext);
     
     // convert the finished reflection image to a UIImage 
-    UIImage *theImage = [UIImage imageWithCGImage:reflectionImage];
+    UIImage *theImage = [UIImage imageWithCGImage:reflectedImage];
     
     // image is retained by the property setting above, so we can release the original
-    CGImageRelease(reflectionImage);
+    CGImageRelease(reflectedImage);
     
     return theImage;
 }

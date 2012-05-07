@@ -40,6 +40,7 @@ extern NSString *songInfo;
 extern NowPlaying *nowPlaying;
 extern BOOL albumMeth;
 extern BOOL playlistMeth;
+extern NSMutableArray *playingSongList;
 -(void)loadSettings;
 +(void)saveSettings;
 +(void)updateArtists;
