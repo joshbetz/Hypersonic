@@ -125,7 +125,7 @@ static NSString * const kLetter = @"index";
         self.currentSong.songDuration = [self.currentData copy];
         if ([attributeDict objectForKey:@"coverArt"] != nil){
             [currentData setString:[attributeDict objectForKey:@"coverArt"]];
-            self.currentSong.albumArt = [self.currentData copy];
+            self.currentSong.albumArtID = [self.currentData copy];
         }
     }
     else if ([elementName isEqualToString:kAlbumAccess]) {
@@ -169,7 +169,7 @@ static NSString * const kLetter = @"index";
         self.currentSong.albumName = [self.currentData copy];
         if ([attributeDict objectForKey:@"coverArt"] != nil){
             [currentData setString:[attributeDict objectForKey:@"coverArt"]];
-            self.currentSong.albumArt = [self.currentData copy];
+            self.currentSong.albumArtID = [self.currentData copy];
         }
     }
     else if ([elementName isEqualToString:kPlaylistEntry] && [[attributeDict objectForKey:@"isDir"] isEqualToString:@"true"]) {

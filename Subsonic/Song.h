@@ -14,7 +14,7 @@
     NSString *songID;
     NSString *artistName;
     NSString *albumName;
-    NSString *albumArt;
+    NSString *albumArtID;
     NSString *songDuration;
     AVPlayerItem *songData;
 }
@@ -24,7 +24,7 @@
 @property (nonatomic, strong) NSString *songID;
 @property (nonatomic, strong) NSString *albumName;
 @property (nonatomic, strong) NSString *artistName;
-@property (nonatomic, strong) NSString *albumArt;
+@property (nonatomic, strong) NSString *albumArtID;
 @property (nonatomic, strong) NSString *songDuration;
 @property (nonatomic, strong) AVPlayerItem *songData;
 

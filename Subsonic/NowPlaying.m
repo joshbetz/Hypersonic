@@ -39,8 +39,8 @@
 - (void)viewDidLoad
 {
     
-    if ([[songList objectAtIndex:currentIndex] albumArt] != nil){
-        albumArtID = [[songList objectAtIndex:currentIndex] albumArt];
+    if ([[songList objectAtIndex:currentIndex] albumArtID] != nil){
+        albumArtID = [[songList objectAtIndex:currentIndex] albumArtID];
     }
     NSMutableArray *songArray = [[NSMutableArray array] init];
     for (int i = 0; i < [songList count]; i++){
