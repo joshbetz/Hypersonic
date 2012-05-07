@@ -174,6 +174,7 @@
         [self.searchDisplayController setActive:NO];
     }
     
+    selectedAlbumIndex = 0;
     firstTimeAlbum = true;
     multiDisk = false;
     albumMeth = false;
