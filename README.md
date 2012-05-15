@@ -2,7 +2,7 @@
 
 Hypersonic is a streaming music player for [Subsonic](http://subsonic.org).
 
-<a href="http://itunes.com/apps/hypersonicmp"><img src="http://f.cl.ly/items/1d0v1u3a3a0x3L36111i/App_Store_Badge_EN_0609.png" /></a>
+<a href="http://bit.ly/hypersonicmp"><img src="http://f.cl.ly/items/1d0v1u3a3a0x3L36111i/App_Store_Badge_EN_0609.png" /></a>
 
 #Authors
 
