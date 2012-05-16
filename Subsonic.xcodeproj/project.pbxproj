@@ -39,8 +39,6 @@
 		03A9B72E151F6DA1002ECD97 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A9B72D151F6DA1002ECD97 /* Settings.m */; };
 		03AEAD8E1544A3C300182328 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AEAD8D1544A3C300182328 /* CoreMedia.framework */; };
 		03AFFDA61556166B00A93E28 /* MKiCloudSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AFFDA51556166B00A93E28 /* MKiCloudSync.m */; };
-		03AFFDAC155616B600A93E28 /* SMWebRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AFFDAB155616B600A93E28 /* SMWebRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		03AFFDAF155616C700A93E28 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AFFDAE155616C700A93E28 /* MBProgressHUD.m */; };
 		03D8A0ED1502B54C00DA09D4 /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D8A0EC1502B54C00DA09D4 /* RSSParser.m */; };
 		03EDBDBF1509800D0093C55C /* NowPlaying.m in Sources */ = {isa = PBXBuildFile; fileRef = 03EDBDBE1509800D0093C55C /* NowPlaying.m */; };
 		03EE76D5154D9A7400A0057B /* nowplaying.png in Resources */ = {isa = PBXBuildFile; fileRef = 03EE76D3154D9A7400A0057B /* nowplaying.png */; };
@@ -106,10 +104,6 @@
 		03AEAD8D1544A3C300182328 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		03AFFDA31556165D00A93E28 /* MKiCloudSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MKiCloudSync.h; path = Libraries/MKiCloudSync/MKiCloudSync.h; sourceTree = "<group>"; };
 		03AFFDA51556166B00A93E28 /* MKiCloudSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MKiCloudSync.m; path = Libraries/MKiCloudSync/MKiCloudSync.m; sourceTree = "<group>"; };
-		03AFFDAA155616B600A93E28 /* SMWebRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMWebRequest.h; path = Libraries/SMWebRequest/SMWebRequest.h; sourceTree = "<group>"; };
-		03AFFDAB155616B600A93E28 /* SMWebRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMWebRequest.m; path = Libraries/SMWebRequest/SMWebRequest.m; sourceTree = "<group>"; };
-		03AFFDAD155616C700A93E28 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Libraries/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
-		03AFFDAE155616C700A93E28 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libraries/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		03D8A0EB1502B54C00DA09D4 /* RSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSParser.h; sourceTree = "<group>"; };
 		03D8A0EC1502B54C00DA09D4 /* RSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSParser.m; sourceTree = "<group>"; };
 		03EDBDBD1509800D0093C55C /* NowPlaying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlaying.h; sourceTree = "<group>"; };
@@ -243,8 +237,6 @@
 		0368CD1815462DAA003777F7 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				03AFFDA91556169D00A93E28 /* SMWebRequest */,
-				03AFFDA81556169100A93E28 /* MBProgressHUD */,
 				03AFFDA71556167900A93E28 /* MKiCloudSync */,
 			);
 			name = Libraries;
@@ -274,24 +266,6 @@
 				03AFFDA51556166B00A93E28 /* MKiCloudSync.m */,
 			);
 			name = MKiCloudSync;
-			sourceTree = "<group>";
-		};
-		03AFFDA81556169100A93E28 /* MBProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				03AFFDAD155616C700A93E28 /* MBProgressHUD.h */,
-				03AFFDAE155616C700A93E28 /* MBProgressHUD.m */,
-			);
-			name = MBProgressHUD;
-			sourceTree = "<group>";
-		};
-		03AFFDA91556169D00A93E28 /* SMWebRequest */ = {
-			isa = PBXGroup;
-			children = (
-				03AFFDAA155616B600A93E28 /* SMWebRequest.h */,
-				03AFFDAB155616B600A93E28 /* SMWebRequest.m */,
-			);
-			name = SMWebRequest;
 			sourceTree = "<group>";
 		};
 		03FAD29F152392DB006FFB40 /* Resources */ = {
@@ -441,8 +415,6 @@
 				76C8D317151CBF7000A91966 /* PlaylistTableViewController.m in Sources */,
 				03A9B72E151F6DA1002ECD97 /* Settings.m in Sources */,
 				03AFFDA61556166B00A93E28 /* MKiCloudSync.m in Sources */,
-				03AFFDAC155616B600A93E28 /* SMWebRequest.m in Sources */,
-				03AFFDAF155616C700A93E28 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
