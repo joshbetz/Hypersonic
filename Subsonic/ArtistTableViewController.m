@@ -51,8 +51,11 @@
     itemsFromCurrentSearch = [NSMutableArray array];
     searchSec = -1;
     [self.tableView reloadData];
-    NSIndexPath *scrollToPath = [NSIndexPath indexPathForRow:0 inSection:0]; 
-    [self.tableView scrollToRowAtIndexPath:scrollToPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    @try {
+        NSIndexPath *scrollToPath = [NSIndexPath indexPathForRow:0 inSection:0]; 
+        [self.tableView scrollToRowAtIndexPath:scrollToPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    } @catch (NSException *e) {}
+    
     
 }
 
