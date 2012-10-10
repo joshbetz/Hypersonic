@@ -51,6 +51,7 @@
 		03FAD2A7152393AE006FFB40 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FAD2A3152393AE006FFB40 /* Icon@2x.png */; };
 		03FAD2D11523CC10006FFB40 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FAD2D01523CC10006FFB40 /* QuartzCore.framework */; };
 		03FAD2DA1523EBF6006FFB40 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 03FAD2D91523EBF6006FFB40 /* iTunesArtwork */; };
+		284CE2871625768D002BE0CC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 284CE2861625768C002BE0CC /* Default-568h@2x.png */; };
 		762D070B1512444A0015363A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762D070A1512444A0015363A /* AVFoundation.framework */; };
 		76C8D312151CBDCC00A91966 /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C8D311151CBDCC00A91966 /* Playlist.m */; };
 		76C8D317151CBF7000A91966 /* PlaylistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C8D315151CBF6F00A91966 /* PlaylistTableViewController.m */; };
@@ -118,6 +119,7 @@
 		03FAD2A3152393AE006FFB40 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/Icon@2x.png"; sourceTree = "<group>"; };
 		03FAD2D01523CC10006FFB40 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		03FAD2D91523EBF6006FFB40 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Resources/iTunesArtwork; sourceTree = "<group>"; };
+		284CE2861625768C002BE0CC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		41C82FB01545F338009D618D /* Hypersonic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Hypersonic.entitlements; sourceTree = "<group>"; };
 		762D070A1512444A0015363A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		76C8D310151CBDCB00A91966 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				03FAD2D91523EBF6006FFB40 /* iTunesArtwork */,
 				03FAD2A0152393AE006FFB40 /* Default.png */,
 				03FAD2A1152393AE006FFB40 /* Default@2x.png */,
+				284CE2861625768C002BE0CC /* Default-568h@2x.png */,
 				03FAD2A2152393AE006FFB40 /* Icon.png */,
 				03FAD2A3152393AE006FFB40 /* Icon@2x.png */,
 				03FAD29A152392D2006FFB40 /* controlbar.png */,
@@ -390,6 +393,7 @@
 				03435CFA154CE5CB00918F22 /* back@2x.png in Resources */,
 				03EE76D5154D9A7400A0057B /* nowplaying.png in Resources */,
 				03EE76D6154D9A7400A0057B /* nowplaying@2x.png in Resources */,
+				284CE2871625768D002BE0CC /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,12 +514,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Hypersonic.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Neil Kimmett (BWHACCL49R)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subsonic/Subsonic-Prefix.pch";
 				INFOPLIST_FILE = "Subsonic/Subsonic-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "19B14DCF-689E-4681-B2B9-18EFD523070A";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -525,12 +529,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Hypersonic.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Neil Kimmett (BWHACCL49R)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subsonic/Subsonic-Prefix.pch";
 				INFOPLIST_FILE = "Subsonic/Subsonic-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "19B14DCF-689E-4681-B2B9-18EFD523070A";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -562,13 +566,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Hypersonic.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Neil Kimmett (BWHACCL49R)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subsonic/Subsonic-Prefix.pch";
 				INFOPLIST_FILE = "Subsonic/Subsonic-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "19B14DCF-689E-4681-B2B9-18EFD523070A";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -601,13 +605,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Hypersonic.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Neil Kimmett (BWHACCL49R)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Subsonic/Subsonic-Prefix.pch";
 				INFOPLIST_FILE = "Subsonic/Subsonic-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "19B14DCF-689E-4681-B2B9-18EFD523070A";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
