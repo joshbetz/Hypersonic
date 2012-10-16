@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="48m-cn-VIM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="48m-cn-VIM">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
         <!--Now Playing - Music Player-->
@@ -649,6 +649,70 @@
         <image name="reflectionmask.png" width="150" height="150"/>
         <image name="settings.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="AlbumMethodsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumMethodsTableViewController.h"/>
+        </class>
+        <class className="AlbumSongTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumSongTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+            </relationships>
+        </class>
+        <class className="ArtistTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ArtistTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="artistSearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="artistSearchDisplayController" candidateClass="UISearchDisplayController"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTouched:"/>
+                <relationship kind="action" name="login:"/>
+                <relationship kind="action" name="textFieldReturn:"/>
+                <relationship kind="action" name="textFieldSend:"/>
+                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="serverText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NowPlaying" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NowPlaying.h"/>
+            <relationships>
+                <relationship kind="action" name="adjustVolume"/>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="nextSong:"/>
+                <relationship kind="action" name="playSong:"/>
+                <relationship kind="action" name="prevSong:"/>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="nextButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="prevButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="reflectionImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="seek" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="volumeSlider" candidateClass="UISlider"/>
+            </relationships>
+        </class>
+        <class className="PlaylistTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaylistTableViewController.h"/>
+        </class>
+        <class className="Settings" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Settings.h"/>
+            <relationships>
+                <relationship kind="outlet" name="hqModeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="lastfmSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="localModeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="localServerLabel" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="loginLabel" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordLabel" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="serverLabel" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

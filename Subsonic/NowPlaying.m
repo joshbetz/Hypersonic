@@ -269,9 +269,9 @@
         
         NSString *maxBitRate;
         if ( hqMode )
-            maxBitRate = @"256";
+            maxBitRate = @"160";
         else
-            maxBitRate = @"128";
+            maxBitRate = @"96";
         
         for (int i = 0; i < [songList count]; i++){
             userURL = [NSString stringWithFormat:@"%@&id=%@&maxBitRate=%@", [AppDelegate getEndpoint:@"stream"], [[songList objectAtIndex:i] songID], maxBitRate];
