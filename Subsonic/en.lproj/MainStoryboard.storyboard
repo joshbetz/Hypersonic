@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="48m-cn-VIM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="48m-cn-VIM">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--Now Playing - Music Player-->
         <scene sceneID="isy-Aq-syK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tfh-8W-dHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="NowPlaying" title="Music Player" id="fw5-hh-zK0" customClass="NowPlaying" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ia9-bz-Bvx">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -101,13 +99,13 @@
                         <outlet property="seek" destination="d3a-uY-L2E" id="pmW-lK-qWD"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tfh-8W-dHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="657" y="-146"/>
         </scene>
         <!--Settings - Settings-->
         <scene sceneID="uSM-LA-ld9">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q6i-PG-gGT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController title="Settings" id="cAM-1u-YDi" customClass="Settings" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="lyg-PH-OKb">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -281,13 +279,13 @@
                         <outlet property="serverLabel" destination="4rp-ul-MPv" id="fuw-Y9-s1N"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q6i-PG-gGT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1103" y="-146"/>
         </scene>
         <!--Album Song Table View Controller-->
         <scene sceneID="siv-3Q-Jh3">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VtC-JB-1XW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="BtQ-0J-xoL" customClass="AlbumSongTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="HYh-jr-ZTD">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -355,13 +353,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="XhB-hW-DT3"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VtC-JB-1XW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1484" y="764"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Vxu-0O-kxg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Wi-sK-msH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="Start" definesPresentationContext="YES" id="48m-cn-VIM" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="fU0-Rq-P2Q"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
@@ -373,13 +371,13 @@
                         <segue destination="4" kind="relationship" relationship="rootViewController" id="lDk-M7-3Gf"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Wi-sK-msH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-319" y="180"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
                 <tabBarController id="4" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="2uc-7T-ovE"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -395,13 +393,13 @@
                         <segue destination="cAM-1u-YDi" kind="relationship" relationship="viewControllers" id="sp6-Se-diA"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="180"/>
         </scene>
         <!--Artist Table View Controller - Artists-->
         <scene sceneID="7ax-8p-rRk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kks-xJ-E4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController title="Artists" id="Nqi-oT-6uF" customClass="ArtistTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="YXd-qU-yQY">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -444,6 +442,7 @@
                         <segue destination="BtQ-0J-xoL" kind="push" identifier="FromSearch" id="G3Y-WC-cHw"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kks-xJ-E4m" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="GwI-3b-Ymb">
                     <connections>
                         <outlet property="delegate" destination="Nqi-oT-6uF" id="hTF-VA-IZf"/>
@@ -459,7 +458,6 @@
         <!--Login View Controller-->
         <scene sceneID="oWe-LO-9w1">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uEa-Gg-xQS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="Login" id="mhq-4u-kqK" customClass="LoginViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="E8Q-ta-T4W">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -565,13 +563,13 @@
                         <segue destination="48m-cn-VIM" kind="modal" identifier="Login" id="GRn-6t-gLx"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uEa-Gg-xQS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-752" y="180"/>
         </scene>
         <!--Album Methods Table View Controller - Albums-->
         <scene sceneID="GRJ-XS-bOn">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KXn-N5-RGb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController title="Albums" id="upn-zh-CHp" customClass="AlbumMethodsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="c4M-hJ-KNM">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -601,13 +599,13 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Albums" image="albums.png" id="0Lm-dA-Vc9"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KXn-N5-RGb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="657" y="1037"/>
         </scene>
         <!--Playlist Table View Controller - Playlists-->
         <scene sceneID="tji-60-77c">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SKA-wj-ctS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController title="Playlists" id="jTg-2a-G1F" customClass="PlaylistTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Z5H-pi-cNT">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -634,6 +632,7 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Playlists" image="playlist.png" id="ddP-bM-qWi"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SKA-wj-ctS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="657" y="1633"/>
         </scene>
@@ -650,70 +649,6 @@
         <image name="reflectionmask.png" width="150" height="150"/>
         <image name="settings.png" width="30" height="30"/>
     </resources>
-    <classes>
-        <class className="AlbumMethodsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumMethodsTableViewController.h"/>
-        </class>
-        <class className="AlbumSongTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlbumSongTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-            </relationships>
-        </class>
-        <class className="ArtistTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ArtistTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="activityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="artistSearchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="artistSearchDisplayController" candidateClass="UISearchDisplayController"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="action" name="login:"/>
-                <relationship kind="action" name="textFieldReturn:"/>
-                <relationship kind="action" name="textFieldSend:"/>
-                <relationship kind="outlet" name="loginButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="nameText" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordText" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="serverText" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NowPlaying" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NowPlaying.h"/>
-            <relationships>
-                <relationship kind="action" name="adjustVolume"/>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="nextSong:"/>
-                <relationship kind="action" name="playSong:"/>
-                <relationship kind="action" name="prevSong:"/>
-                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nextButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="prevButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="reflectionImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="seek" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="volumeSlider" candidateClass="UISlider"/>
-            </relationships>
-        </class>
-        <class className="PlaylistTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaylistTableViewController.h"/>
-        </class>
-        <class className="Settings" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Settings.h"/>
-            <relationships>
-                <relationship kind="outlet" name="hqModeSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="lastfmSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="localModeSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="localServerLabel" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="loginLabel" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordLabel" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="serverLabel" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
